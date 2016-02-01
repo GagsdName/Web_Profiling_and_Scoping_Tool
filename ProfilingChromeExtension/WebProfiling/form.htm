@@ -1,0 +1,83 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="shortcut icon" href="img/wb-icon.ico">
+<title>Web Profiling & Scoping</title>
+<meta
+	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
+	name='viewport'>
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+<link href="css/custom.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.10.3.min.js"></script>
+<script type="text/javascript" src="js/custom/custom.js"></script>
+
+</head>
+<body>
+
+	<div class="content">
+		<div class="row">
+			<div class="col-sm-12">
+
+
+				<div class="nav-tabs-custom" style="cursor: move;">
+					<!-- Tabs within a box -->
+					<ul class="nav nav-tabs pull-right ui-sortable-handle">
+						<li class=""><a href="#revenue-chart" data-toggle="tab"
+							aria-expanded="false">Area</a></li>
+						<li class="active"><a href="#sales-chart" data-toggle="tab"
+							aria-expanded="true">User Input</a></li>
+						<li class="pull-left header"><i class="fa fa-inbox"></i> Web
+							Profiling</li>
+					</ul>
+					<div class="tab-content no-padding">
+
+						<div class="chart tab-pane active" id="revenue-chart"
+							style="position: relative; height: 300px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+							<div class="box box-primary">
+
+								<!-- /.box-header -->
+								<!-- form start -->
+								<form role="form">
+									<div class="box-body">
+										<div class="form-group">
+											<label>Type of application :</label> <input type="text"
+												class="form-control" id="applicationType"
+												placeholder="Enter">
+										</div>
+										<div class="form-group">
+											<label>No. of user roles :</label> <input type="text"
+												class="form-control" id="userRoles"
+												placeholder="Enter">
+										</div>
+										<div class="form-group">
+											<label>Environment for execution/deployment :</label> <input
+												type="text" class="form-control" id="environment"
+												placeholder="Enter">
+										</div>
+										<div class="form-group">
+											<label>Specific features :</label> <input type="text"
+												class="form-control" id="features"
+												placeholder="Enter">
+										</div>
+										<div class="form-group">
+											<label>Title of Application :</label> <input type="text"
+												class="form-control" id="applicationTitle"
+												placeholder="Enter">
+										</div>
+										<div class="box-footer">
+											<button id="submit" type="button" class="btn btn-primary">Submit</button>
+										</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div> 	
+			</div>
+			
+		</div>
+	</div>
+</body>
+</html>
