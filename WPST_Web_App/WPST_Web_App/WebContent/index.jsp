@@ -5,8 +5,46 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script src="js/jquery.js"></script>
+
+<script>
+function testOpenPorts()	{
+
+	var hostUrl = $("#host").val()
+	var gameData = {
+			host : hostUrl
+		};
+
+	$.ajax({
+		type : "GET",
+		url : "http://localhost:8081/WPST_Web_App/rest/profiling_service/get_available_ports",
+		data : gameData,
+		timeout : 100000,
+		success : function(data) {
+			
+			console.log("SUCCESS");	
+			var test = data.openPorts;
+			console.log("Open Ports : "+test);
+						
+		},
+		error : function(e) {
+			console.log("ERROR: ", e);
+			
+		},
+		done : function(e) {
+			console.log("DONE");
+		}
+	});
+
+}
+</script>
+
 </head>
 <body>
+
+
+Host : <input type = "text" id = "host" />
+<button value="Get Open Ports" onclick="testOpenPorts()">Get Open Ports</button>
 
 </body>
 </html>

@@ -4,15 +4,14 @@ import java.util.List;
 
 public class WpstResponseBean {
 
-	private List<String> openPorts;
+	private List<Integer> openPorts;
 
-	public List<String> getOpenPorts() {
+	public List<Integer> getOpenPorts() {
 		return openPorts;
 	}
 
-	public void setOpenPorts(List<String> openPorts) {
+	public void setOpenPorts(List<Integer> openPorts) {
 		this.openPorts = openPorts;
 	}
-	
-	
+
 }
