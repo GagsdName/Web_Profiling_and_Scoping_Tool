@@ -13,6 +13,41 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.10.3.min.js"></script>
 <script type="text/javascript" src="js/custom/custom.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="popupOnload.js"></script>
+
+
+<script>
+function testOpenPorts()	{
+
+	var hostUrl = $("#host").val()
+	var gameData = {
+			host : hostUrl
+		};
+
+	$.ajax({
+		type : "GET",
+		url : "http://localhost:8080/WPST_Web_App/rest/profiling_service/get_available_ports",
+		data : gameData,
+		timeout : 100000,
+		success : function(data) {
+			
+			console.log("SUCCESS");	
+			var test = data.openPorts;
+			console.log("Open Ports : "+test);
+						
+		},
+		error : function(e) {
+			console.log("ERROR: ", e);
+			
+		},
+		done : function(e) {
+			console.log("DONE");
+		}
+	});
+
+}
+</script>
 
 </head>
 <body>
@@ -25,32 +60,35 @@
 				<div class="nav-tabs-custom" style="cursor: move;">
 					<!-- Tabs within a box -->
 					<ul class="nav nav-tabs pull-right ui-sortable-handle">
-						<li class=""><a href="#revenue-chart" data-toggle="tab"
-							aria-expanded="false">Area</a></li>
-						<li class="active"><a href="#sales-chart" data-toggle="tab"
-							aria-expanded="true">User Input</a></li>
+						<li class="tab"><a href="#passive" data-toggle="tab"
+							aria-expanded="false">Passive</a></li>
+						<li class="tab"><a href="#active" data-toggle="tab"
+							aria-expanded="false">Active</a></li>
+						<li class="tab active"><a href="#user-input"
+							data-toggle="tab" aria-expanded="true">User Input</a></li>
 						<li class="pull-left header"><i class="fa fa-inbox"></i> Web
 							Profiling</li>
 					</ul>
+
 					<div class="tab-content no-padding">
 
-						<div class="chart tab-pane active" id="revenue-chart"
-							style="position: relative; height: 300px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+						<div class="chart tab-pane active" id="user-input"
+							style="position: relative;">
 							<div class="box box-primary">
 
 								<!-- /.box-header -->
 								<!-- form start -->
-								<form role="form">
+								<form role=d"form">
 									<div class="box-body">
 										<div class="form-group">
+
 											<label>Type of application :</label> <input type="text"
 												class="form-control" id="applicationType"
 												placeholder="Enter">
 										</div>
 										<div class="form-group">
 											<label>No. of user roles :</label> <input type="text"
-												class="form-control" id="userRoles"
-												placeholder="Enter">
+												class="form-control" id="userRoles" placeholder="Enter">
 										</div>
 										<div class="form-group">
 											<label>Environment for execution/deployment :</label> <input
@@ -59,8 +97,7 @@
 										</div>
 										<div class="form-group">
 											<label>Specific features :</label> <input type="text"
-												class="form-control" id="features"
-												placeholder="Enter">
+												class="form-control" id="features" placeholder="Enter">
 										</div>
 										<div class="form-group">
 											<label>Title of Application :</label> <input type="text"
@@ -74,10 +111,85 @@
 							</div>
 						</div>
 					</div>
-				</div> 	
+
+					<div class="chart tab-pane" id="active" style="position: relative">
+						<div class="box box-primary">
+
+							<!-- /.box-header -->
+							<!-- form start -->
+							<form role="form">
+								<div class="box-body">
+									<div class="form-group">
+										Host : <input type="text" id="host" /> <input type="button"
+											id="getOpenPorts" value="Get Open Ports"
+											onclick="testOpenPorts()" />
+
+									</div>
+									<button type="button" class="btn btn-default"
+										data-toggle="collapse" data-target="#demo">
+										<span class="glyphicon glyphicon-plus"></span>
+										
+										</button> Click to configure crawler
+									<div id="demo" class="collapse">
+										<br><br>
+										<p>
+											Start on:<br> <input id="start" size=40>
+										</p>
+
+										<p>
+											Restrict to:<br> <input id="regex" size=40>
+										</p>
+										<p>
+											<input id="plusone" type="checkbox"> <label
+												for="plusone">Follow one link beyond restriction.</label>
+										</p>
+										<p>
+											<input id="inline" type="checkbox"> <label
+												for="inline">Check inline content. <small>(CSS,
+													images)</small></label>
+										</p>
+										<p>
+											<input id="scripts" type="checkbox"> <label
+												for="scripts">Check script content. <small>(JavaScript,
+													Flash)</small></label>
+										</p>
+										<p>
+											<input id="arguments" type="checkbox"> <label
+												for="arguments">Avoid links with arguments. <small>(e.g.&nbsp;page?foo=bar)</small></label>
+										</p>
+
+										<p>
+											<input type="button" value="Go" id="siteSpiderGo">
+										</p>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+
+
+
+
+					<div class="chart tab-pane" id="passive" style="position: relative">
+						<div class="box box-primary">
+
+							<!-- /.box-header -->
+							<!-- form start -->
+							<form role="form">
+								<div class="box-body">
+									<div class="form-group">Work in progress.....</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
 			</div>
-			
 		</div>
 	</div>
+
+	</div>
+
 </body>
 </html>

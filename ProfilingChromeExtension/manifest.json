@@ -1,15 +1,29 @@
 {
-  "manifest_version": 2,
-
+  "manifest_version" :2,
   "name": "Web Profiling - Cigital",
-  "description": "This extension will gather scoping information for this page",
-  "version": "1.0",
-
-  "browser_action": {
-   "default_icon": "icon.png",
-   "default_popup": "popup.html"
+  "version": "1.0.1",
+  "description": "This extension will gather profiling and scoping information for this page",
+  
+  "background": {
+      "page":"background.html"
   },
+  
   "permissions": [
-   "activeTab"
-   ]
+    "tabs",
+	"notifications",
+	"http://*/*",
+	"https://*/*"
+  ],
+  
+  "browser_action": {
+    "default_title": "Inspect page",
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
 }
