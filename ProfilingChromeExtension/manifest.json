@@ -5,7 +5,7 @@
   "description": "This extension will gather profiling and scoping information for this page",
   
   "background": {
-      "page":"background.html"
+      "page":"WebProfiling/background.html"
   },
   
   "permissions": [
@@ -17,13 +17,13 @@
   
   "browser_action": {
     "default_title": "Inspect page",
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
+    "default_icon": "WebProfiling/img/icon.png",
+    "default_popup": "WebProfiling/popup.html"
   },
   
   "icons": {
-    "16": "icon.png",
-    "48": "icon.png",
-    "128": "icon.png"
+    "16": "WebProfiling/img/icon.png",
+    "48": "WebProfiling/img/icon.png",
+    "128": "WebProfiling/img/icon.png"
   }
 }

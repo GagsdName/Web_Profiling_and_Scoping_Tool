@@ -198,7 +198,7 @@ function popupGo() {
 
     // Open a tab for the results.
     chrome.tabs.create({
-        url: 'results.html'
+        url: 'WebProfiling/results.html'
     }, resultsLoadCallback_);
 }
 
@@ -366,7 +366,7 @@ function spiderLoadCallback_(tab) {
     spiderTab = tab;
     setStatus('Spidering ' + spiderTab.url);
     chrome.tabs.executeScript(spiderTab.id, {
-        file: 'spider.js'
+        file: 'WebProfiling/js/custom/spider.js'
     });
 }
 
