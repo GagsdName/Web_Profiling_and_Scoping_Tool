@@ -1,0 +1,11 @@
+{
+  "name" : "Cookie API Demo",
+  "version" : "1",
+  "description" : "This is demonstration of Cookie API",
+  "permissions": [ "cookies","<all_urls>","tabs"],
+  "browser_action": {
+    "default_icon": "screen.png",
+    "default_popup":"popup.html"
+  },
+  "manifest_version": 2
+}
