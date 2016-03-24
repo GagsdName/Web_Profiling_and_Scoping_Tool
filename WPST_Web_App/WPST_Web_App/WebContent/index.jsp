@@ -17,7 +17,7 @@ function testOpenPorts()	{
 
 	$.ajax({
 		type : "GET",
-		url : "http://localhost:8081/WPST_Web_App/rest/profiling_service/get_available_ports",
+		url : "http://localhost:8080/WPST_Web_App/rest/profiling_service/get_available_ports",
 		data : gameData,
 		timeout : 100000,
 		success : function(data) {
@@ -35,8 +35,21 @@ function testOpenPorts()	{
 			console.log("DONE");
 		}
 	});
+	
+	
 
 }
+
+function getHeaders(){
+		var req = new XMLHttpRequest();
+		req.open('GET', document.location, false);
+		req.send(null);
+		var respheaders = req.getAllResponseHeaders().toLowerCase();
+		//var reqheaders = req.getAllRequestHeaders().toLowerCase();
+		console.log(respheaders);
+		//console.log(reqheaders);	
+}
+
 </script>
 
 </head>
@@ -44,7 +57,7 @@ function testOpenPorts()	{
 
 
 Host : <input type = "text" id = "host" />
-<button value="Get Open Ports" onclick="testOpenPorts()">Get Open Ports</button>
-
+<button value="Get Open Ports" onclick="testOpenPorts()">Get Open Ports</button><br>
+<button value="Get Headers" onclick="getHeaders()">Get Headers</button>
 </body>
 </html>
