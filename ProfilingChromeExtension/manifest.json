@@ -1,29 +1,35 @@
 {
-  "manifest_version" :2,
+  "manifest_version": 2,
+
   "name": "Web Profiling - Cigital",
-  "version": "1.0.1",
-  "description": "This extension will gather profiling and scoping information for this page",
-  
-  "background": {
-      "page":"WebProfiling/background.html"
+  "description": "This extension will gather scoping information for this page",
+  "version": "1.0",
+
+  "browser_action": {
+   "default_icon": "icon.png",
+   "default_popup": "popup.html"
+  },
+   "background": {
+    "page" : "background.html",
+    "persistent": true
   },
   
   "permissions": [
-    "tabs",
-	"notifications",
-	"http://*/*",
-	"https://*/*"
-  ],
+   "activeTab","http://*/","https://*/",
+   "tabs",
+   "webRequest",
+   "http://ipinfo.io/*"
+   ],
+   
+    "content_scripts" : [{
+  	"matches"	: ["<all_urls>"],
+  	"js"		: ["WebProfiling/js/retirejs/content.js"],
+    "run_at"  : "document_start"
+  }],
   
-  "browser_action": {
-    "default_title": "Inspect page",
-    "default_icon": "WebProfiling/img/icon.png",
-    "default_popup": "WebProfiling/popup.html"
-  },
-  
-  "icons": {
-    "16": "WebProfiling/img/icon.png",
-    "48": "WebProfiling/img/icon.png",
-    "128": "WebProfiling/img/icon.png"
+   "content_security_policy": "script-src 'self' https://maps.googleapis.com/ style-src 'self' 'unsafe-inline' chrome-extension-resource: ; object-src 'self'",
+   
+   "sandbox" : {
+    "pages" : [ "sandbox.html" ]
   }
 }

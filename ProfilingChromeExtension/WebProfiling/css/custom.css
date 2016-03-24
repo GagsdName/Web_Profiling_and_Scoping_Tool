@@ -1,9 +1,22 @@
 @CHARSET "UTF-8";
 
 body{
-	background-color:#D9D6F3;
-	width:400px;
+	background: #ebe7df;
+	width:510px;
 }
+
+table { width: 100%; margin-top: 0.5em;}
+.enabler { float: right; padding-top: 0.5em; }
+
+.vulnerable a:before { content: "["; margin-left: 0.5em; }
+.vulnerable a:after { content: "]"; }
+td { vertical-align: top; padding: 0.5em; }
+td td { vertical-align: top; padding: 0.5em; }
+tr:nth-child(2n+1) { background: #f0f0f0; }
+tr tr { background: none !important;}
+h1 { margin: 0;}
+td td:first-child { text-transform: capitalize; }
+
 /* Date picker related css : transmissionLogs.jsp */
 .jqstooltip {
 	position: absolute;
@@ -1071,6 +1084,28 @@ table.dataTable thead th, table.dataTable thead td {
 	background-color: #DD695B !important	
 }
 
+
+.wrap-string{
+	word-wrap: break-word;
+}
+
+label{
+	font-weight: normal;
+}
+
+.specific-questions{
+	margin: 0 0 15px 15px;
+    padding-left: 10px;
+    border-left: 1px solid #E0E0E0;
+}
+
+.box-header .box-title{
+	font-size:15px;
+}
+#headers{
+	    white-space: pre-line;
+		word-wrap: break-word;
+}
 /*********help doc css ends***********/
 
 @media print {

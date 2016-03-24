@@ -8,54 +8,27 @@
 	name='viewport'>
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="css/iCheck/minimal/_all.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/skins/_all-skins.min.css">
 <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
 <link href="css/custom.css" rel="stylesheet" type="text/css">
+
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.10.3.min.js"></script>
+<script type="text/javascript" src="js/plugins/iCheck/icheck.min.js"></script>
+<script type="text/javascript" src="js/googleapis.js"></script>
+<script type="text/javascript" src="js/gmaps.js"></script>
 <script type="text/javascript" src="js/custom/custom.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/custom/popupOnload.js"></script>
 
-
-<script>
-function testOpenPorts()	{
-
-	var hostUrl = $("#host").val()
-	var gameData = {
-			host : hostUrl
-		};
-
-	$.ajax({
-		type : "GET",
-		url : "http://localhost:8080/WPST_Web_App/rest/profiling_service/get_available_ports",
-		data : gameData,
-		timeout : 100000,
-		success : function(data) {
-			
-			console.log("SUCCESS");	
-			var test = data.openPorts;
-			console.log("Open Ports : "+test);
-						
-		},
-		error : function(e) {
-			console.log("ERROR: ", e);
-			
-		},
-		done : function(e) {
-			console.log("DONE");
-		}
-	});
-
-}
-</script>
 
 </head>
-<body>
 
+<body>
+	
 	<div class="content">
 		<div class="row">
 			<div class="col-sm-12">
-
 
 				<div class="nav-tabs-custom" style="cursor: move;">
 					<!-- Tabs within a box -->
@@ -64,12 +37,12 @@ function testOpenPorts()	{
 							aria-expanded="false">Passive</a></li>
 						<li class="tab"><a href="#active" data-toggle="tab"
 							aria-expanded="false">Active</a></li>
-						<li class="tab active"><a href="#user-input"
-							data-toggle="tab" aria-expanded="true">User Input</a></li>
+						<li class="tab active"><a href="#user-input" data-toggle="tab"
+							aria-expanded="true">User Input</a></li>
 						<li class="pull-left header"><i class="fa fa-inbox"></i> Web
 							Profiling</li>
 					</ul>
-
+					
 					<div class="tab-content no-padding">
 
 						<div class="chart tab-pane active" id="user-input"
@@ -78,118 +51,685 @@ function testOpenPorts()	{
 
 								<!-- /.box-header -->
 								<!-- form start -->
-								<form role=d"form">
+								<form role="form">
 									<div class="box-body">
-										<div class="form-group">
-
-											<label>Type of application :</label> <input type="text"
-												class="form-control" id="applicationType"
-												placeholder="Enter">
+									<div class = "box-group" id="accordion">
+										<div class="panel box box-primary">
+												<div class="box-header with-border">
+													<h4 class="box-title">
+													<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">
+														General Questions
+													</a>
+													</h4>
+												</div>
+											<div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+												
+												<div class="form-group">
+												
+													<label>What's the name of the application?</label> <input type="text"
+														class="form-control" id="txtName" 
+														placeholder="Enter">
+												</div>
+												<div class="form-group">
+													<label>Would this application be best described as a web application? web service? or thick-client application?</label> <input type="text"
+														class="form-control" id="txtDescription"
+														placeholder="Enter">
+												</div>
+												
+												<div class="form-group">
+													<label>Please provide a general overview of the application's features</label> <input
+														type="text" class="form-control" id="txtFeatures"
+														placeholder="Enter">
+												</div>
+												
+												<div class="form-group">
+													<label>Please provide general business use-cases for these features</label> <input type="text"
+														class="form-control" id="txtUseCases"
+														placeholder="Enter">
+												</div>
+												
+												<div class="form-group">
+													<label>Are all of these features considered "in-scope" for testing? If not, which features are out of scope?</label> <input type="text"
+														class="form-control" id="txtScope"
+														placeholder="Enter">
+												</div>
+												
+												<div class="form-group">
+													<label>Are there any other features (not discussed or otherwise) that are considered out of scope for testing?</label> <input type="text"
+														class="form-control" id="txtOutOfScopeFeatutes"
+														placeholder="Enter">
+												</div>
+												
+												<div class="form-group">
+													<label>Who are the primary stakeholders of this application?</label> <input type="text"
+														class="form-control" id="txtStakeholder"
+														placeholder="Enter">
+												</div>
+												
+												<div class="form-group">
+													<label>Are these stakeholders also points of contact  for troubleshooting technical issues with the application? If not, who can we contact?</label> <input type="text"
+														class="form-control" id="txtContact"
+														placeholder="Enter">
+												</div>
+												
+												<div class="form-group">
+													<label>Will we be testing the application in a production or non-production environment? <input type="radio" class="open-yn open" name= "environment"  value="prod">Production 
+													 <input type="radio" class="open-yn" name= "environment" value="nonProd">Non-Production
+													 </label>
+												</div>
+												<div class="specific-questions hide">
+													<div class="form-group-prod">
+														<label>Who is a point of contact that we can reach out to in case of an emergency?</label> <input type="text"
+															class="form-control" id="txtEmergency"
+															placeholder="Enter">
+													</div>
+													
+													<div class="form-group-prod">
+														<label>Some of our testing may result in the modification of data, is this okay?</label> 
+														<input type="radio" name="modResult">Yes 
+														<input type="radio" name="modResult">No
+													</div>
+													
+													<div class="form-group-prod">
+														<label>Does the production environment have any monitoring systems?</label> 
+														<input type="radio" name="monitoring">Yes 
+														<input type="radio" name="monitoring">No
+													</div>
+													
+													<div class="form-group-prod">
+														<label>Have they been configured properly to allow our testing?</label> 
+														<input type="radio" name="configureStatus">Yes 
+														<input type="radio" name="configureStatus">No
+													</div>
+												</div>
+												<div class="form-group">
+													<label>What type of backend database does the application utilize? (i.e. MySQL, MSSQL, DB2, Oracle)</label> <input type="text"
+														class="form-control" id="txtDatabase"
+														placeholder="Enter">
+												</div>
+												
+												<div class="form-group">
+													<label>What type of backend web server platform does the application use? (i.e. Websphere, Apache, Jetty, Nginx)</label> <input type="text"
+														class="form-control" id="txtWebServer"
+														placeholder="Enter">
+												</div>
+												
+												<div class="form-group">
+													<label>How many user roles are present within the application? (i.e. Admin/Superuser to normal end-user)</label> <input type="text"
+														class="form-control" id="txtNoOfRoles"
+														placeholder="Enter">
+												</div>
+												
+												<div class="form-group">
+													<label>Describe in brief how each user role interacts with the application</label> <input type="text"
+														class="form-control" id="txtRoleInteraction"
+														placeholder="Enter">
+												</div>
+												<div class="specific-questions">
+													<div class="form-group">
+														<label>Can you please provide at least two sets of credentials per user role?[Explanation: To properly test both vertical and horizontal privilege escalation]</label> <input type="text"
+															class="form-control" id="txtCredentials"
+															placeholder="Enter">
+													</div>
+												</div>
+												<div class="form-group">
+													<label>Will there be other activities running in parallel with our testing activities? </label> <input type="text"
+														class="form-control" id="txtActivities"
+														placeholder="Enter">
+												</div>
+												<div class="specific-questions">
+													<div class="form-group">
+														<label>Are there any windows of time where we shouldn't be testing the application? (i.e. Maintenance windows, QA testing, load testing, etc....)</label> <input type="text"
+															class="form-control" id="txtTimeWindows"
+															placeholder="Enter">
+													</div>
+												</div>
+												<div class="form-group">
+													<label>Is a VPN rwquired to access the application?</label> 
+													<input type="radio" name="vpn">Yes 
+													<input type="radio" name="vpn">No
+												</div>
+												<div class="form-group">
+													<label>Please provide the URL/endpoint that we will be testing against</label> <input type="text"
+														class="form-control" id="txtUrl"
+														placeholder="Enter">
+												</div>
+												
+												<div class="form-group">
+													<label>Is there any test data within the application?</label> 
+													<input type="radio" class="open-yn" name="vpn">Yes 
+													<input type="radio" class="open-yn open" name="vpn">No
+												</div>
+												<div class="specific-questions hide">
+													<div class="form-group">
+														<label>If not, can test data be loaded into the application? [Explanation: this will facilitate better testing and increase the quality of coverage we achieve with out automated and manual testing]</label> 
+														<input type="radio" name="loadTestData">Yes 
+														<input type="radio" name="loadTestData">No
+													</div>
+													<div class="specific-questions">
+														<div class="form-group">
+															<label>Is it okay if we add, modify, or delete records from the application?</label> 
+															<input type="radio" name="appRecords">Yes 
+															<input type="radio" name="appRecords">No
+														</div>
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<label>Does the application allow users to upload files for any reason?</label> 
+													<input type="radio" class="open-yn open" name="uploadFiles">Yes 
+													<input type="radio" class="open-yn" name="uploadFiles">No
+												</div>
+												<div class="specific-questions hide">
+													<div class="form-group">
+														<label>What type of file extensions are allowed by the application? (i.e. *.docx, *.pdf, *.html, *.jar)</label> <input type="text"
+															class="form-control" id="txtFileExtensions"
+															placeholder="Enter">
+													</div>
+													
+													<div class="form-group">
+														<label>Does the application only accept files of a specific format?</label> 
+														<input type="radio" class="open-yn open" name="fileFormat">Yes 
+														<input type="radio" class="open-yn" name="fileFormat">No
+													</div>
+													<div class="specific-questions hide">
+														<div class="form-group">
+															<label>If yes, can you provide a sample file that we can use for our testing?</label> <input type="text"
+																class="form-control" id="txtSampleFile"
+																placeholder="Enter">
+														</div>
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<label>Is there any sensitive information contained within the application?</label> 
+													<input type="radio" class="open-yn open" name="sensitiveInformation">Yes 
+													<input type="radio" class="open-yn" name="sensitiveInformation">No
+												</div>
+												<div class="specific-questions hide">
+													<div class="form-group">
+														<label>If yes, can you show where it's located in the application?</label> <input type="text"
+															class="form-control" id="txtSampleFile"
+															placeholder="Enter">
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<label>Is the applicaton externally or internally available?</label> 
+													<input type="radio" name="availability">External 
+													<input type="radio" name="availability">Internal
+												</div>
+												<div class="specific-questions">
+													<div class="form-group">
+														<label>Are there any IP restrictions in place? (applies to both internal and external)</label> <input type="text"
+															class="form-control" id="txtIpRestrictions"
+															placeholder="Enter">
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<label>What type of authentication is used? (i.e. Basic, NTLM, SSO, etc.)<input type="radio" class = "authType" id = "basic" name="authType">Basic 
+													<input type="radio" class = "authType" id = "ntlm" name="authType">NTLM
+													<input type="radio" class = "authType" id = "sso" name="authType">SSO 
+													
+												</div>
+												<div class="specific-questions hide auth-type-questions" >
+													<div class="form-group" >
+														<label>If Basic/NTLM, who will be providing the credentials?</label> <input type="text"
+															class="form-control" id="txtIpRestrictions"
+															placeholder="Enter">
+													</div>
+												</div>
+												<div class="specific-questions hide auth-type-questions">
+													<div class="form-group">
+														<label>If NTLM/SSO, who will be provisioning access to the application?</label> <input type="text"
+															class="form-control" id="txtAccess"
+															placeholder="Enter">
+													</div>
+												</div>
+												<div class="specific-questions hide auth-type-questions">
+													<div class="form-group">
+														<label>If SSO, will we be using "dummy" test accounts? Or accessor accounts?</label> 
+														<input type="radio" name="account">Dummy 
+														<input type="radio" name="account">Accessor
+														
+													</div>	
+												</div>
+												<div class="form-group">
+													<label>Does the application utilize multi-factor authentication?</label> 
+													<input type="radio" class="open-yn open" name="multifactor">Yes 
+													<input type="radio" class="open-yn" name="multifactor">No
+													
+												</div>
+												<div class="specific-questions hide">
+													<div class="form-group">
+														<label>Does the user have to go through MFA every time they authenticate</label> 
+														<input type="radio" name="mfa">Yes 
+														<input type="radio" name="mfa">No
+														
+													</div>
+													<div class="form-group">
+														<label>Does the application utilize email for MFA?</label> 
+														<input type="radio" class="open-yn open" name="utilizeemail">Yes 
+														<input type="radio" class="open-yn" name="utilizeemail">No
+														
+													</div>
+													<div class="specific-questions hide">
+														<div class="form-group">
+															<label>What is contained within the email?</label> 
+															<input type="text"
+																class="form-control" id="txtEmailContent"
+																placeholder="Enter">
+															
+														</div>
+													</div>
+													<div class="form-group">
+														<label>Does the application utilize a challenge/security question for MFA?</label> 
+														<input type="radio" class="open-yn open" name="challenge">Yes 
+														<input type="radio" class="open-yn" name="challenge">No
+														
+													</div>
+													<div class="specific-questions hide">
+														<div class="form-group">
+															<label>What is/are the answer(s)?</label> 
+															<input type="text"
+																class="form-control" id="txtChallengeAnswer"
+																placeholder="Enter">
+															
+														</div>
+													</div>
+													<div class="form-group">
+														<label>Does the application utilize SMS for MFA?</label> 
+														<input type="radio" name="sms">Yes 
+														<input type="radio" name="sms">No
+														
+													</div>
+													<div class="form-group">
+														<label>Does the application utilize phone calls for MFA?</label> 
+														<input type="radio" name="phonecalls">Yes 
+														<input type="radio" name="phonecalls">No
+														
+													</div>
+												</div>
+												<div class="form-group">
+													<label>Are there any workflows within the application that could potentially send an email to one or more users?</label> 
+													<input type="radio" class="open-yn open" name="workflows">Yes 
+													<input type="radio" class="open-yn" name="workflows">No
+													
+												</div>
+												<div class="specific-questions hide">
+													<div class="form-group">
+														<label>If yes, if email functionality disbled in the environment?</label> 
+														<input type="radio" class="open-yn" name="emailfunctionality">Yes 
+														<input type="radio" class="open-yn open" name="emailfunctionality">No
+														
+													</div>
+													<div class="specific-questions hide">
+														<div class="form-group">
+															<label>If no, can you show us the specific workflows that send these emails?</label> 
+															<input type="radio" name="emailworkflow">Yes 
+															<input type="radio" name="emailworkflow">No
+															
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label>Are there any features within the application that are "one-time" features?(i.e. a registration process that users go through once to register their computer with the application)</label> 
+													<input type="radio" name="onetimefeatures">Yes 
+													<input type="radio" name="onetimefeatures">No
+													
+												</div>
+												<div class="form-group">
+													<label>What language is the application built on? (i.e. ASP.NET, Java, Ruby on Rails, etc...)</label> 
+													<input type="text"
+														class="form-control" id="txtAppLanguage"
+														placeholder="Enter">
+													
+												</div>
+												<div class="form-group">
+													<label>What third party frame works does the application use? (i.e. jQuery)</label> 
+													<input type="text"
+														class="form-control" id="txtFramework"
+														placeholder="Enter">
+													
+												</div>
+												<div class="form-group">
+													<label>What the maximum number of concurrent users expected for the production eenvironment?</label> 
+													<input type="text"
+														class="form-control" id="txtConcurrentUsers"
+														placeholder="Enter">
+													
+												</div>
+												<div class="form-group">
+													<label>Is there a Web Application Firewall (WAF)/Intrusion Detection System(IDS) in place?</label> 
+													<input type="radio" name="firewall">Yes 
+													<input type="radio" name="firewall">No
+													
+												</div>
+												<div class="form-group">
+													<label>Is there a load balancer in place?</label> 
+													<input type="radio" class="open-yn open" name="loadbalancer">Yes 
+													<input type="radio" class="open-yn" name="loadbalancer">No
+													
+												</div>
+												<div class="specific-questions hide">
+													<div class="form-group">
+														<label>If yes: What type of load balancer?</label> 
+														<input type="text"
+															class="form-control" id="txtLoadbalancerType"
+															placeholder="Enter">
+														
+													</div>
+												</div>
+												<div class="form-group">
+													<label>Does the application tie into any third party systems?</label> 
+													<input type="radio" class="open-yn open" name="appthirdparty">Yes 
+													<input type="radio" class="open-yn" name="appthirdparty">No
+													
+												</div>
+												<div class="specific-questions hide">
+													<div class="form-group">
+														<label>If yes, what workflows specifically tie into these systems?</label> 
+														<input type="text"
+															class="form-control" id="txtWorkflowstied"
+															placeholder="Enter">
+														
+													</div>
+													<div class="specific-questions">
+														<div class="form-group">
+															<label>Are these workflows in scope?</label> 
+															<input type="radio" name="workflowscope">Yes 
+															<input type="radio" name="workflowscope">No
+															
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>	
+										<div class="panel box box-danger">
+											<div class="box-header with-border">
+													<h4 class="box-title">
+													<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" class="collapsed">
+														Web Applications Specific Questions
+													</a>
+													</h4>
+											</div>
+											
+											<div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+											
+												<div class="form-group">
+													<label>Is the application built for a specific browser?</label> 
+													<input type="radio" class="open-yn open" name="browser">Yes 
+													<input type="radio" class="open-yn" name="browser">No
+													
+												</div>
+												<div class="specific-questions hide">
+													<div class="form-group">
+														<label>If yes, which browser??</label> 
+														<input type="text"
+															class="form-control" id="txtBrowser"
+															placeholder="Enter">
+														
+													</div>
+												</div>
+												<div class="form-group">
+													<label>Does the application dynamically generate URLs?</label> 
+													<input type="radio" name="dynamicUrl">Yes 
+													<input type="radio" name="dynamicUrl">No
+													
+												</div>
+												<div class="form-group">
+													<label>Is the application optimized for search engines?</label> 
+													<input type="radio" name="optimized">Yes 
+													<input type="radio" name="optimized">No
+													
+												</div>
+											</div>
 										</div>
-										<div class="form-group">
-											<label>No. of user roles :</label> <input type="text"
-												class="form-control" id="userRoles" placeholder="Enter">
-										</div>
-										<div class="form-group">
-											<label>Environment for execution/deployment :</label> <input
-												type="text" class="form-control" id="environment"
-												placeholder="Enter">
-										</div>
-										<div class="form-group">
-											<label>Specific features :</label> <input type="text"
-												class="form-control" id="features" placeholder="Enter">
-										</div>
-										<div class="form-group">
-											<label>Title of Application :</label> <input type="text"
-												class="form-control" id="applicationTitle"
-												placeholder="Enter">
-										</div>
+										<div class="panel box box-primary">
+											<div class="box-header with-border">
+													<h4 class="box-title">
+													<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" class="collapsed">
+														Web Services Specific Questions
+													</a>
+													</h4>
+											</div>
+											
+											<div id="collapseThree" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+											
+												<div class="form-group">
+													<label>Is it SOAP based service? or REST?</label> 
+													<input type="radio" class="open-fs open-first" name="webservice">SOAP 
+													<input type="radio" class="open-fs open-second" name="webservice">REST
+													
+												</div>
+												<div class="specific-questions specific-questions-first hide">
+													<div class="form-group">
+														<label>Is there a WSDL? SOAPUI project?</label> 
+														<input type="text"
+															class="form-control" id="txtWebService"
+															placeholder="Enter">
+														
+													</div>
+													<div class="form-group">
+														<label>Sample requests and responses</label> 
+														<input type="text"
+															class="form-control" id="txtSampleQues"
+															placeholder="Enter">
+														
+													</div>
+												</div>
+												<div class="specific-questions specific-questions-second hide">
+													<div class="form-group">
+														<label>Need sample requests including content type(i.e. JSON vs XML)</label> 
+														<input type="text"
+															class="form-control" id="txtSampleQues"
+															placeholder="Enter">
+														
+													</div>
+													<div class="form-group">
+														<label>Which HTTP Methods are supported?</label> 
+														<input type="text"
+															class="form-control" id="txtHttpMethods"
+															placeholder="Enter">
+														
+													</div>
+												</div>
+												<div class="form-group">
+													<label>How many methods are in-scope for the assessment? [REST/SOAP]?</label> 
+													<input type="text"
+														class="form-control" id="txtMethodsInScope"
+														placeholder="Enter">
+													
+												</div>
+												<div class="form-group">
+													<label>Does the web service have an architecture diagram?</label> 
+													<input type="radio" class="open-yn open" name="architecture">Yes 
+													<input type="radio" class="open-yn" name="architecture">No
+													
+												</div>
+												<div class="specific-questions hide">
+													<div class="form-group">
+														<label>If yes, can you provide it?</label> 
+														<input type="radio" name="architecturediagram">Yes 
+														<input type="radio" name="architecturediagram">No
+														
+													</div>
+												</div>
+												<div class="form-group">
+													<label>What sort of front end is in use by the web service?</label> 
+													<input type="text"
+														class="form-control" id="txtFrontend"
+														placeholder="Enter">
+													
+												</div>
+												<div class="specific-questions">
+													<div class="form-group">
+														<label>Does the web service interact with any intermediary services?</label> 
+														<input type="radio" name="intermediaryservice">Yes 
+														<input type="radio" name="intermediaryservice">No
+														
+													</div>
+													<div class="form-group">
+														<label>Does the web service connect through an Object-relational mapping (ORM)?</label> 
+														<input type="radio" name="orm">Yes 
+														<input type="radio" name="orm">No
+														
+													</div>
+												</div>
+												<div class="form-group">
+													<label>Is there a particular workflow to access any methods in the service?</label> 
+													<input type="radio" name="workflowmethods">Yes 
+													<input type="radio" name="workflowmethods">No
+													
+												</div>
+												<div class="form-group">
+													<label>Is there any unique token used within the requests?</label> 
+													<input type="radio" name="uniquerequests">Yes 
+													<input type="radio" name="uniquerequests">No
+													
+												</div>
+												<div class="form-group">
+													<label>Are there any security headers within the request?</label> 
+													<input type="radio" name="securityheaders">Yes 
+													<input type="radio" name="securityheaders">No
+													
+												</div>
+												<div class="form-group">
+													<label>How many endpoints are there?</label> 
+													<input type="text"
+														class="form-control" id="txtEndpoints"
+														placeholder="Enter">
+													
+												</div>
+												<div class="specific-questions">
+													<div class="form-group">
+														<label>Can you please provide each endpoint URL?</label> 
+														<input type="text"
+															class="form-control" id="txtEndpointUrl"
+															placeholder="Enter">
+														
+													</div>
+												</div>
+												<div class="form-group">
+													<label>What version of SSL/TLS is supported by the backend servers?</label> 
+													<input type="text"
+														class="form-control" id="txtBackendService"
+														placeholder="Enter">
+													
+												</div>
+												<div class="form-group">
+													<label>Is there any certificates used to authenticate requests?</label> 
+													<input type="radio" name="authenticationcerti">Yes 
+													<input type="radio" name="authenticationcerti">No
+													
+												</div>
+											</div>
+										</div>	
+									</div>	
+										
+										
 										<div class="box-footer">
 											<button id="submit" type="button" class="btn btn-primary">Submit</button>
 										</div>
 								</form>
 							</div>
 						</div>
-					</div>
+						</div>
+						
+						<div class="chart tab-pane" id="active"
+							style="position: relative">
+							<div class="box box-primary">
 
-					<div class="chart tab-pane" id="active" style="position: relative">
-						<div class="box box-primary">
-
-							<!-- /.box-header -->
-							<!-- form start -->
-							<form role="form">
-								<div class="box-body">
-									<div class="form-group">
-										Host : <input type="text" id="host" /> <input type="button"
-											id="getOpenPorts" value="Get Open Ports"
-											onclick="testOpenPorts()" />
-
-									</div>
-									<button type="button" class="btn btn-default"
-										data-toggle="collapse" data-target="#demo">
-										<span class="glyphicon glyphicon-plus"></span>
+								<!-- /.box-header -->
+								<!-- form start -->
+								<form role="form">
+									<div class="box-body">
+										<div id="windowsLocation" class="form-group wrap-string">		
+										</div>
+										<div class="form-group">
+											<input type="button" class="btn btn-primary" id="getOpenPorts" value="Get Open Ports" />
+											
+										</div>
+										<div id="openPorts" class="form-group hide">
+										</div>
 										
-										</button> Click to configure crawler
-									<div id="demo" class="collapse">
-										<br><br>
-										<p>
-											Start on:<br> <input id="start" size=40>
-										</p>
-
-										<p>
-											Restrict to:<br> <input id="regex" size=40>
-										</p>
-										<p>
-											<input id="plusone" type="checkbox"> <label
-												for="plusone">Follow one link beyond restriction.</label>
-										</p>
-										<p>
-											<input id="inline" type="checkbox"> <label
-												for="inline">Check inline content. <small>(CSS,
-													images)</small></label>
-										</p>
-										<p>
-											<input id="scripts" type="checkbox"> <label
-												for="scripts">Check script content. <small>(JavaScript,
-													Flash)</small></label>
-										</p>
-										<p>
-											<input id="arguments" type="checkbox"> <label
-												for="arguments">Avoid links with arguments. <small>(e.g.&nbsp;page?foo=bar)</small></label>
-										</p>
-
-										<p>
-											<input type="button" value="Go" id="siteSpiderGo">
-										</p>
-									</div>
-								</div>
-							</form>
+										<div class="form-group">
+											
+											<input type="button" class="btn btn-primary" id="getHostInfo" value="Get Host Info" />
+											
+										</div>
+										<div id="hostInfo"  class="form-group hide">
+										</div>
+										<div id="map" class="hide" style="width: 300px; height: 300px;"></div>
+									</div>										
+								</form>
+								
+							</div>
+							
 						</div>
-					</div>
+						
+						
+						<div class="chart tab-pane" id="passive"
+							style="position: relative">
+							<div class="box box-primary">
 
-
-
-
-
-					<div class="chart tab-pane" id="passive" style="position: relative">
-						<div class="box box-primary">
-
-							<!-- /.box-header -->
-							<!-- form start -->
-							<form role="form">
-								<div class="box-body">
-									<div class="form-group">Work in progress.....</div>
-								</div>
-							</form>
+								<!-- /.box-header -->
+								<!-- form start -->
+								<form role="form">
+									<div class="box-body">
+										
+									<div class = "box-group" id="accordion-passive">
+										<div class="panel box box-primary">
+												<div class="box-header with-border">
+													<h4 class="box-title">
+													<a data-toggle="collapse" data-parent="#accordion-passive" href="#collapsevulnerability" aria-expanded="false" class="collapsed">
+														Vulnerabilities
+													</a>
+													</h4>
+												</div>
+												<div id="collapsevulnerability" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+											
+													<div class="box-body table-responsive no-padding">
+													<table class="table table-bordered responsive" id="results">
+													</table>
+													</div>
+													
+												</div>
+										</div>
+										<div class="panel box box-primary">
+												<div class="box-header with-border">
+													<h4 class="box-title">
+													<a data-toggle="collapse" data-parent="#accordion-passive" href="#collapseheaders" aria-expanded="false" class="collapsed">
+														Headers
+													</a>
+													</h4>
+												</div>
+												<div id="collapseheaders" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+													<div id="windowsLocation" class="form-group wrap-string">		
+													</div>
+													<div class="form-group">
+														<input type="button" class="btn btn-primary" id="getHeaders" value="Get Header Information" />
+														
+													</div>
+													<div id="headers" class="form-group hide">
+														asdfasdf
+														
+													</div>
+												</div>
+										</div>		
+									</div>			
+									</div>										
+								</form>
+							</div>
 						</div>
+						
 					</div>
-
-				</div>
+					</div>
+				</div> 	
 			</div>
+			
 		</div>
-	</div>
-
-	</div>
-
+	
 </body>
 </html>
