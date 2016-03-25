@@ -3,20 +3,29 @@
 
   "name": "Web Profiling - Cigital",
   "description": "This extension will gather scoping information for this page",
-  "version": "1.0",
+  "version": "1.0.1",
 
   "browser_action": {
+   "default_title": "Inspect page",
    "default_icon": "icon.png",
    "default_popup": "popup.html"
   },
+  
+  
+  
    "background": {
     "page" : "background.html",
     "persistent": true
   },
   
   "permissions": [
-   "activeTab","http://*/","https://*/",
    "tabs",
+   "notifications",
+   "http://*/*",
+   "https://*/*",
+   "activeTab",
+   "http://*/",
+   "https://*/",
    "webRequest",
    "http://ipinfo.io/*"
    ],

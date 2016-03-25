@@ -53,8 +53,10 @@ var currentRequest ={
     returnedURL:null,
     referrer:null
 };
-
-
+var string = ""; var obj, jsonString;
+var text = '{"crawledCouple": [';
+var referrer_string = "<ul class= 'treeView' > <ul class='collapsibleList' id ='newList'>";
+var flag = 0;
 /**
  * Save a reference to the popup's document object,
  * then initialize the popup's fields.
@@ -219,15 +221,18 @@ function setInnerSafely(msg) {
  * Cleanup after a spidering session.
  */
 function popupStop() {
+	if (flag != 0)text = text + ']}';
     started= false;
     pagesTodo = {};
     closeSpiderTab();
     spiderTab = null;
     resultsTab = null;
+	
     window.clearTimeout(httpRequestWatchDogPid);
     window.clearTimeout(newTabWatchDogPid);
     // Reenable the Go button.
     popupDoc.getElementById('siteSpiderGo').disabled = false;
+	//referrer_string = "";
 }
 
 /**
@@ -256,6 +261,7 @@ function spiderPage() {
         break;
     }
     if (!url) {
+		//	text = text + ']}';
         // Done.
         setStatus('Complete');
         popupStop();
@@ -263,7 +269,44 @@ function spiderPage() {
     }
     // Record page details.
     currentRequest.referrer=pagesTodo[url];
+	
     currentRequest.requestedURL =url;
+	
+	if ((string != currentRequest.referrer))
+	{
+		
+		if(flag == 0)
+		{
+			referrer_string = referrer_string + "<li class = 'collapsibleListOpen'> <font color = 'white'>" + currentRequest.referrer+ "</font><ul class='collapsibleList' style='display: block;'>";
+	    referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'white'>" + currentRequest.requestedURL + "</font></li>" ;
+		
+        string  =    currentRequest.referrer;
+		//referrer_string = referrer_string + "<li>" + url + "</li>" ; 
+		text = text + '{"Referrer" : "'+currentRequest.referrer+'", "RequestedURLs" :[' +'{"RequestedURL" :"'+currentRequest.requestedURL+'"}' ;
+		//obj = {Referrer: currentRequest.referrer, RequestedURL: currentRequest.requestedURL};
+		//jsonString = JSON.stringify(obj);
+		}
+		else
+		{
+			referrer_string = referrer_string + "</ul></li><li class = 'collapsibleListOpen'><font color = 'white'>" + currentRequest.referrer+ "</font><ul class='collapsibleList' style='display: block;'>";
+	    referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'white'>" + currentRequest.requestedURL + "</font></li>" ;
+		
+        string  =    currentRequest.referrer;
+		
+		text = text + ']},' +  '{"Referrer" : "'+currentRequest.referrer+'", "RequestedURLs" :[' +'{"RequestedURL":"'+currentRequest.requestedURL+'"}' ;
+		//obj = {Referrer: currentRequest.referrer, RequestedURL: currentRequest.requestedURL};
+		//jsonString = JSON.stringify(obj);
+		}	
+		
+		flag++;
+	}
+	else  {
+		referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'white'>" + currentRequest.requestedURL + "</font></li>" ;
+	text = text +',{"RequestedURL":"'+currentRequest.requestedURL+'"}';
+	}
+		
+	
+	string = currentRequest.referrer;
     delete pagesTodo[url];
     pagesDone[url] = true;
 
@@ -355,6 +398,7 @@ function httpRequestChange() {
 
         window.setTimeout(spiderPage, 1);
     }
+	
 }
 
 /**
@@ -464,16 +508,21 @@ function recordPage() {
         var codeclass = 'x0';
         currentRequest.returnedURL = "Error"
     } 
-    var requestedURL = '<a href="' + currentRequest.requestedURL + '" target="spiderpage" title="' + currentRequest.requestedURL + '">' + currentRequest.requestedURL + '</a>';
-    value ='<td>' + requestedURL + '</td>' +
-    '<td class="' + codeclass + '"><span title="' + currentRequest.returnedURL + '">' + currentRequest.returnedURL + '</span></td>' +
-    '<td><span title="' + currentRequest.referrer + '">' + currentRequest.referrer + '</span></td>';
+    var requestedURL = '<a href="' + currentRequest.requestedURL + '" target="spiderpage" title="' + currentRequest.requestedURL + '"> <font color=white>' + currentRequest.requestedURL + '</font></a>';
+    value ='<td><font color=white>' + requestedURL + '</font></td>' +
+    '<td class="' + codeclass + '"><span title="' + currentRequest.returnedURL + '"><font color=white>' + currentRequest.returnedURL + '</font></span></td>' +
+    '<td><span title="' + currentRequest.referrer + '"><font color=white>' + currentRequest.referrer + '</font></span></td>';
 
-    chrome.tabs.sendMessage(resultsTab.id, {
+
+	//referrer_string = referrer_string + "</ul>";
+    
+	chrome.tabs.sendMessage(resultsTab.id, {
         method:"custom",
         action:"insertResultBodyTR",
-        value:value
+        value:referrer_string
     });
+	//referrer_string = "";
+	//flag = 0;
 }
 
 /**

@@ -1,3 +1,10 @@
+function foo()
+{
+// make the list with the ID 'newList' collapsible
+CollapsibleLists.applyTo(document.getElementById('newList'));
+}
+
+
 function messageDispatch(request, sender, sendResponse) {
     var element = null;
     //what are we using
@@ -58,9 +65,11 @@ function pageLoaded() {
 
 function insertResultBodyTR(innerHTML){
     var tbody = document.getElementById('resultbody');
-    var tr = document.createElement('tr');
-    tr.innerHTML += innerHTML
-    tbody.appendChild(tr);
+	tbody.innerHTML = "";
+    var br = document.createElement('section');
+    br.innerHTML += innerHTML
+    tbody.appendChild(br);
+	foo();
 }
 
 window.addEventListener("load",pageLoaded);

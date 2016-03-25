@@ -1,0 +1,700 @@
+/*
+
+stylesheet.css
+
+Stylesheet for http://code.stephenmorley.org/
+
+Created by Stephen Morley - http://code.stephenmorley.org/ - and released under
+the terms of the CC0 1.0 Universal legal code:
+
+http://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+*/
+
+/* basic HTML elements ********************************************************/
+
+html{
+  height : 100%;
+}
+
+body{
+  position    : relative;
+  min-height  : 100%;
+  margin      : 0;
+  padding     : 0;
+  font-family : 'Open Sans',sans-serif;
+  line-height : 1.5;
+}
+
+a{
+  color           : rgb(128,192,64);
+  text-decoration : none;
+}
+
+a:hover{
+  text-decoration : underline;
+}
+
+a:visited{
+  color : rgb(96,144,48);
+}
+
+blockquote{
+  margin  : 0 1.5em 1.5em;
+  padding : 0;
+}
+
+code{
+  font-family : Consolas,'Courier New',Courier,monospace;
+}
+
+dd{
+  margin  : 0;
+  padding : 0 0 0 1.5em;
+}
+
+dfn{
+  font-style : italic;
+}
+
+dl{
+  margin  : 0 1.5em 1.5em;
+  padding : 0;
+}
+
+dl dl,
+dl ol,
+dl ul,
+ol dl,
+ol ol,
+ol ul,
+ul dl,
+ul ol,
+ul ul{
+  margin-right  : 0;
+  margin-bottom : 0;
+}
+
+dt{
+  margin     : 0;
+  padding    : 0;
+  font-style : italic;
+}
+
+form{
+  margin  : 0;
+  padding : 0;
+}
+
+h2{
+  font-size   : 1.5em;
+  margin      : -1.75em 0 0.5em;
+  padding     : 1.75em 0 0;
+  font-family : 'Patua One',sans-serif;
+  font-weight : normal;
+}
+
+h3{
+  font-size   : 1.25em;
+  margin      : -2.1em 0 0.6em;
+  padding     : 2.1em 0 0;
+  font-family : 'Patua One',sans-serif;
+  font-weight : normal;
+}
+
+input,
+textarea{
+  font-family : 'Open Sans',Arial,Helvetica,sans-serif;
+  font-size   : 1em;
+}
+
+li{
+  margin  : 0;
+  padding : 0;
+}
+
+p{
+  margin  : 0 0 1.5em;
+  padding : 0;
+}
+
+pre{
+  font-size   : 0.75em;
+  margin      : 0;
+  padding     : 0;
+  /* setting the font family stops Firefox changing the font size to 13px */
+  font-family : Consolas,'Courier New',Courier,monospace;
+  line-height : 1.333;
+}
+
+sub,
+sup{
+  font-size   : 0.625em;
+}
+
+table{
+  margin          : 0 auto 1.5em;
+  border-collapse : collapse;
+  border-spacing  : 0;
+}
+
+td,
+th{
+  font-weight    : normal;
+  vertical-align : top;
+  padding-left   : 0.375em;
+  padding-right  : 0.375em;
+}
+
+ul{
+  margin  : 0 1.5em 1.5em 2.5em;
+  padding : 0;
+}
+
+li code,
+p code{
+  display       : inline-block;
+  margin        : -1px 0;
+  padding       : 0px 4px;
+  border        : 1px solid rgb(224,224,224);
+  border-radius : 4px;
+  background    : rgb(240,240,240);
+  font-size     : 12px;
+}
+
+/* header *********************************************************************/
+
+h1{
+  font-size   : 3em;
+  max-width   : 24.666em;
+  margin      : 0 auto 0.5em;
+  padding     : 1em 0.333em 0;
+  font-family : 'Patua One',sans-serif;
+  line-height : 1em;
+}
+
+/* content ********************************************************************/
+
+#content{
+  position  : relative;
+  max-width : 56.5em;
+  margin    : 0 auto;
+  padding   : 0 18.5em 0 1em;
+}
+
+/* page navigation ************************************************************/
+
+#pageNavigation{
+  position : absolute;
+  top      : 7.5em;
+  left     : 0;
+  width    : 100%;
+  height   : 1px;
+}
+
+#pageNavigation.fixed{
+  position : fixed;
+  top      : 3em;
+}
+
+#pageNavigation div{
+  max-width : 74em;
+  margin    : 0 auto;
+  padding   : 0 1em;
+}
+
+#pageNavigation div div,
+#pageNavigation ul{
+  float : right;
+  clear : right;
+}
+
+#pageNavigation div div{
+  font-size   : 1.5em;
+  width       : 10.666em;
+  padding     : 0;
+  font-family : 'Patua One',sans-serif;
+  line-height : 1em;
+}
+
+#pageNavigation ul{
+  width   : 16em;
+  margin  : 0;
+  padding : 0;
+}
+
+#pageNavigation li{
+  margin          : 0.75em 0 0;
+  margin          : 0.43375em -0.5em -0.31625em;
+  padding         : 0;
+  list-style-type : none;
+}
+
+#pageNavigation a{
+  display         : block;
+  padding         : 0.25em 0.5em;
+  border          : 0.0625em solid white;
+  border-radius   : 0.25em;
+  color           : rgb(128,192,64);
+  font-family     : 'Patua One',sans-serif;
+  text-decoration : none;
+  transition      : all 0.5s;
+}
+
+#currentSection a{
+  border-color  : rgb(96,144,48);
+  background    : rgb(128,192,64);
+  color         : white;
+  text-shadow   : 0 0 0.125em rgba(0,0,0,0.25);
+}
+
+/* upperFooter ****************************************************************/
+
+#upperFooter{
+  max-width   : 74em;
+  margin      : 0 auto;
+  padding     : 0 1em 4.125em;
+  font-family : 'Patua One',sans-serif;
+}
+
+@media screen and (max-width:1230px){
+  #upperFooter{
+    padding-bottom: 5.625em;
+  }
+}
+
+#sharingButtons{
+  display        : inline-block;
+  width          : 16em;
+  padding-right  : 2.5em;
+  vertical-align : top;
+}
+
+#sharingButtons img{
+  width        : 32px;
+  margin-right : 0.75em;
+  cursor       : pointer;
+}
+
+#sharingButtons img:last-child{
+  margin : 0;
+}
+
+#recommendedReading{
+  display        : inline-block;
+  width          : 14em;
+  padding-right  : 2.5em;
+  vertical-align : top;
+}
+
+#recommendedReading a{
+  text-decoration : none;
+}
+
+#recommendedReading img{
+  float        : left;
+  margin-right : 0.75em;
+}
+
+#otherPages{
+  display        : inline-block;
+  vertical-align : top;
+}
+
+#otherPages ul{
+  margin  : 0;
+  padding : 0;
+}
+
+#otherPages li{
+  display : block;
+  margin  : 0 0 0.75em;
+  padding : 0;
+}
+
+#otherPages li:last-child{
+  margin : 0;
+}
+
+/* navigation *****************************************************************/
+
+#navigation{
+  position      : fixed;
+  top           : 0;
+  left          : 0;
+  z-index       : 100;
+  width         : 100%;
+  border-bottom : 1px solid rgb(96,144,48);
+  background    : rgb(128,192,64);
+  line-height   : 2em;
+  box-shadow    : 0 0 4px rgba(0,0,0,0.25);
+}
+
+#navigation ul{
+  max-width : 75em;
+  margin    : 0 auto;
+  padding   : 0;
+}
+
+#navigation li{
+  display         : inline-block;
+  vertical-align  : top;
+  margin          : 0;
+  padding         : 0;
+  list-style-type : none;
+}
+
+#navigation a,
+#navigation span{
+  display         : block;
+  padding         : 0 0.5em;
+  color           : white;
+  font-family     : 'Patua One',sans-serif;
+  text-shadow     : 0 0 0.125em rgba(0,0,0,0.25);
+  text-decoration : none;
+  transition      : background 0.25s;
+}
+
+#navigation a:hover,
+#navigation span:hover,
+#navigation .selected a,
+#navigation .selected span{
+  background : rgb(160,208,112);
+}
+
+#twitter{
+  float : right;
+}
+
+/* footer *********************************************************************/
+
+#footer{
+  position    : absolute;
+  bottom      : 0;
+  left        : 0;
+  width       : 100%;
+  border-top  : 1px solid rgb(96,144,48);
+  background  : rgb(128,192,64);
+  color       : white;
+  font-family : 'Patua One',sans-serif;
+  text-shadow : 0 0 0.125em rgba(0,0,0,0.25);
+  box-shadow  : 0 0 4px rgba(0,0,0,0.25);
+}
+
+#footer div{
+  max-width   : 74em;
+  margin      : 0 auto;
+  padding     : 0.5em 1em;
+}
+
+#footer a{
+  color           : rgb(229,242,217);
+  text-shadow     : 0 0 0.125em rgba(0,0,0,0.5);
+  text-decoration : none;
+}
+
+/* general classes ************************************************************/
+
+.navigationRow:last-child{
+  padding-bottom : 2.5em;
+}
+
+@media screen and (max-width:1230px){
+  .navigationRow:last-child{
+    padding-bottom : 4em;
+  }
+}
+
+.navigationRow a{
+  display        : inline-block;
+  width          : 18.5em;
+  height         : 3em;
+  padding        : 0 2em 1.5em 0;
+  vertical-align : top;
+}
+
+.navigationRow img{
+  display      : block;
+  float        : left;
+  margin-right : 1em;
+  border       : none;
+}
+
+.navigationRow span{
+  display        : table-cell;
+  height         : 48px;
+  vertical-align : middle;
+}
+
+.number{
+  text-align : right;
+}
+
+.imageContainer{
+  /* setting the position prevents headings from covering the scroll bar */
+  position   : relative;
+  overflow   : auto;
+  margin     : 0 0 1.5em;
+  text-align : center;
+}
+
+.codeListing{
+  margin : 0 0 1.5em 1.5em;
+}
+
+table .codeListing{
+  margin : 0;
+}
+
+.codeListing td,
+.codeListing th{
+  vertical-align : top;
+}
+
+.footnotes li{
+  margin-top  : -64px;
+  padding-top : 64px;
+}
+
+.formattedTable{
+  /* setting the position prevents headings from covering the last rows */
+  position : relative;
+}
+
+.formattedTable th,
+.formattedTable td{
+  border : 1px solid white;
+}
+
+.formattedTable th{
+  background  : rgb(128,192,64);
+  color       : white;
+  text-shadow : 0 0 2px rgb(96,144,48);
+}
+
+.formattedTable tr:nth-child(odd){
+  background : rgb(240,248,232);
+}
+
+.formattedTable tr:hover{
+  background : rgb(224,240,208);
+}
+
+.formattedTable tr:hover a{
+  color : rgb(96,144,48);
+}
+
+.formattedTable tr:hover a:visited{
+  color : rgb(64,96,32);
+}
+
+.buttonContainer{
+  text-align : center;
+}
+
+/* syntax highlighting ********************************************************/
+
+.codeListing td:first-child{
+  padding-left : 0;
+  border-right : 1px solid rgb(240,240,240);
+  color        : rgb(160,160,160);
+}
+
+.codeListing td:last-child{
+  padding-right : 0;
+}
+
+.codeListing .comment{
+  color      : #666;
+  font-style : italic;
+}
+
+.php .keyword{
+  color : #c06;
+}
+
+.php .literal{
+  color : #c60;
+}
+
+.php .function{
+  color : #6c0;
+}
+
+.php .userFunction,
+.php .userClass{
+  color : #0c6;
+}
+
+.php .variable{
+  color : #06c;
+}
+
+.php .constant{
+  color : #60c;
+}
+
+.javascript .keyword{
+  color : #c06;
+}
+
+.javascript .literal{
+  color : #c60;
+}
+
+.javascript .function,
+.javascript .builtIn{
+  color : #6c0;
+}
+
+.javascript .userFunction{
+  color : #0c6;
+}
+
+.javascript .variable,
+.javascript .property{
+  color : #06c;
+}
+
+.javascript .constant{
+  color : #60c;
+}
+
+.html .attribute{
+  color : #c06;
+}
+
+.html .value{
+  color : #c60;
+}
+
+.html .element{
+  color : #6c0;
+}
+
+.css .property{
+  color : #c06;
+}
+
+.css .value{
+  color : #c60;
+}
+
+.css .elementSelector{
+  color : #6c0;
+}
+
+.css .classSelector{
+  color : #06c;
+}
+
+.css .idSelector{
+  color : #60c;
+}
+
+.css .attributeSelector,
+.css .pseudoclassSelector,
+.css .pseudoelementSelector{
+  color : #0c6;
+}
+
+.java .keyword{
+  color : #c06;
+}
+
+.java .literal{
+  color : #c60;
+}
+
+.java .package,
+.java .class{
+  color : #6c0;
+}
+
+.java .method{
+  color : #0c6;
+}
+
+.java .variable{
+  color : #06c;
+}
+
+.java .constant{
+  color : #60c;
+}
+
+/* buttons ********************************************************************/
+
+button.standardButton{
+  background : transparent;
+  border     : 0;
+  margin     : 0;
+  padding    : 0;
+  font-size  : 1em;
+  cursor     : pointer;
+}
+
+button.standardButton::-moz-focus-inner{
+  padding : 0;
+  border  : 0;
+}
+
+button.standardButton span{
+  display       : block;
+  padding       : 0 0.5em;
+  border        : 0.0625em solid rgb(96,144,48);
+  border-radius : 0.25em;
+  background    : rgb(128,192,64);
+  color         : white;
+  font-family   : 'Patua One',Arial,Helvetica,sans-serif;
+  line-height   : 1.5;
+  text-shadow   : 0 0 0.125em rgba(0,0,0,0.25);
+}
+
+/* bookmarklets ***************************************************************/
+
+.bookmarklet{
+  text-align : center;
+}
+
+.bookmarklet a{
+  display         : inline-block;
+  margin-bottom   : 1.5em;
+  border          : 0.0625em solid rgb(96,144,48);
+  border-radius   : 0 0.25em 0.25em 0;
+  background      : rgb(128,192,64);
+  color           : white;
+  font-family     : 'Patua One',sans-serif;
+  line-height     : 2;
+  text-decoration : none;
+  text-shadow     : 0 0 0.125em rgba(0,0,0,0.25);
+}
+
+.bookmarklet span{
+  display     : block;
+  margin-left : -0.0625em;
+  padding     : 0 0.5em 0 1.5em;
+  background  : url('WebProfiling/img/bookmarklet.png') no-repeat left;
+}
+
+/* print styling **************************************************************/
+
+@media print{
+
+  h1{
+    padding : 0;
+  }
+
+  #content{
+    max-width : auto;
+    padding   : 0;
+  }
+
+  #upperFooter,
+  #pageNavigation,
+  #navigation,
+  #footer{
+    display : none;
+  }
+
+}

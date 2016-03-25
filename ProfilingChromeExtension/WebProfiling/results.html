@@ -1,10 +1,13 @@
 <html>
 <head>
 <title>Spider Results</title>
+<script type="text/javascript" src="js/custom/CollapsibleLists.js"></script>
 <script type="text/javascript" src="js/custom/resultsOnload.js"></script>
 
+<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 <style type="text/css">
   body {
+    background: #000000;
     font-family: sans-serif
   }
   #resultsTable {
@@ -15,7 +18,7 @@
   }
   #resultsTable th {
     text-align: left;
-    background-color: #d0d0d0;
+    background-color: #FFFFFF;
   }
   #resultsTable td, #resultsTable th {
     font-size: 9pt;
@@ -29,15 +32,88 @@
   }
   #resultsTable tr:hover {
     background: #ffa;
+	color: white;
   }
   #startingOn, #restrictTo {
     font-family: monospace;
   }
+  .collapsibleList li{
+  list-style-image:url('/WebProfiling/img/plus-icon.png');
+  cursor:auto;
+}
+
+li.collapsibleListOpen{
+  list-style-image:url('/WebProfiling/img/button-open.png');
+  cursor:pointer;
+}
+
+li.collapsibleListClosed{
+  list-style-image:url('/WebProfiling/img/button-closed.png');
+  cursor:pointer;
+}
+section { 
+    display: block;
+}
+
+      .treeView{
+        -moz-user-select:none;
+        position:relative;
+      }
+
+      .treeView ul{
+        margin:0 0 0 -1.5em;
+        padding:0 0 0 1.5em;
+      }
+
+      .treeView ul ul{
+        background:url('/WebProfiling/img/list-item-contents.png') repeat-y left;
+      }
+
+      .treeView li.lastChild > ul{
+        background-image:none;
+      }
+
+      .treeView li{
+        margin:0;
+        padding:0;
+        background:url('/WebProfiling/img/list-item-root.png') no-repeat top left;
+        list-style-position:inside;
+        list-style-image:url('/WebProfiling/img/button.png');
+        cursor:auto;
+      }
+
+      .treeView li.collapsibleListOpen{
+        list-style-image:url('/WebProfiling/img/button-open.png');
+        cursor:pointer;
+      }
+
+      .treeView li.collapsibleListClosed{
+        list-style-image:url('/WebProfiling/img/button-closed.png');
+        cursor:pointer;
+      }
+
+      .treeView li li{
+        background-image:url('/WebProfiling/img/list-item.png');
+        padding-left:1.5em;
+      }
+
+      .treeView li.lastChild{
+        background-image:url('/WebProfiling/img/list-item-last.png');
+      }
+
+      
+
+      .treeView li.collapsibleListOpen.lastChild{
+        background-image:url('/WebProfiling/img/list-item-last-open.png');
+		
+		
+      }
 </style>
+
 </head>
-<body>
-<img src="icon128.png" align="right"/>
-<h1>Site Spider Results</h1>
+<body onload="foo()"  >
+<img src="img/icon128.png" align="right"/>
+<h1><font color = "white">Site Spider Results</font></h1>
 
 <form>
 <input type="button" id="pauseSpider" value="Pause"/>
@@ -46,39 +122,28 @@
 
 <table>
   <tr>
-    <td>Starting on:</td>
+    <td><font color = "white">Starting on:</font></td>
     <td id="startingOn"></td>
   </tr>
   <tr>
-    <td>Restrict to:</td>
+    <td><font color = "white">Restrict to:</font></td>
     <td id="restrictTo"></td>
   </tr>
   <tr>
-    <td>Queue:</td>
-    <td id="queue">0</td>
+    <td><font color = "white">Queue:</font></td>
+    <td id="queue"><font color = "white">0</font></td>
   </tr>
   <tr>
-    <td>Status:</td>
-    <td id="status">Initializing...</td>
+    <td><font color = "white">Status:</font></td>
+    <td id="status"><font color = "white">Initializing...</font></td>
   </tr>
 </table>
 
 
-<table id="resultsTable">
-  <colgroup>
-    <col style="width: 32%">
-    <col style="width: 32%">
-    <col style="width: 32%">
-  </colgroup>
-  <thead>
-    <tr>
-      <th class="nocase">Requested URL</th>
-      <th class="nocase">Returned URL</th>
-      <th class="nocase">Referrer</th>
-    </tr>
-  </thead>
-  <tbody id="resultbody">
-  </tbody>
-</table>
+
+<section id="resultbody" >
+
+</section>
+  
 </body>
 </html>
