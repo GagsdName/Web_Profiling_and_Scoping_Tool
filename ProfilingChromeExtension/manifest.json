@@ -27,7 +27,8 @@
    "http://*/",
    "https://*/",
    "webRequest",
-   "http://ipinfo.io/*"
+   "http://ipinfo.io/*",
+   "cookies"
    ],
    
     "content_scripts" : [{
