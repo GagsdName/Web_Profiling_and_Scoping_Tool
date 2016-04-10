@@ -934,10 +934,77 @@
 											<div id="collapseactivejson" class="panel-collapse collapse"
 												aria-expanded="false" style="height: 0px;">
 
-												<div class="form-group port-json">asdfasdf</div>
-												<div class="form-group host-json">asdfasdf</div>
+												<div class="box-body">
+
+													<div class="nav-tabs-custom" style="cursor: move;">
+														<!-- Tabs within a box -->
+														<ul class="nav nav-tabs ui-sortable-handle jsontabs">
 
 
+
+															<li class="tab active"><a href="#porttabjson"
+																data-toggle="tab" aria-expanded="true">Ports</a></li>
+															<li class="tab"><a href="#hosttabjson"
+																data-toggle="tab" aria-expanded="false">DNS</a></li>
+															<li class="tab"><a href="#cookietabjson"
+																data-toggle="tab" aria-expanded="false">Cookies</a></li>
+															<li class="tab"><a href="#crawlertabjson"
+																data-toggle="tab" aria-expanded="false">Crawler</a></li>
+														</ul>
+
+														<div class="tab-content no-padding">
+															<div class="chart tab-pane active" id="porttabjson"
+																style="position: relative;">
+																<div class="box box-primary">
+																	<!-- /.box-header -->
+																	<!-- form start -->
+																	<form role="form">
+																		<div class="box-body">
+
+																			<div class="form-group port-json">Ports</div>
+																		</div>
+																	</form>
+																</div>
+															</div>
+
+															<div class="chart tab-pane" id="hosttabjson"
+																style="position: relative;">
+																<div class="box box-primary">
+
+																	<form role="form">
+																		<div class="box-body">
+																			<div class="form-group host-json">Host</div>
+																		</div>
+																	</form>
+																</div>
+															</div>
+
+															<div class="chart tab-pane" id="cookietabjson"
+																style="position: relative;">
+																<div class="box box-primary">
+
+																	<form role="form">
+																		<div class="box-body">
+																			<div class="form-group cookie-json">Cookie</div>
+																		</div>
+																	</form>
+																</div>
+															</div>
+
+															<div class="chart tab-pane" id="crawlertabjson"
+																style="position: relative;">
+																<div class="box box-primary">
+
+																	<form role="form">
+																		<div class="box-body">
+																			<div class="form-group crawler-json">Crawler</div>
+																		</div>
+																	</form>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
 											</div>
 
 										</div>
@@ -952,11 +1019,52 @@
 											</div>
 											<div id="collapsepassivejson" class="panel-collapse collapse"
 												aria-expanded="false" style="height: 0px;">
+												<div class="box-body">
 
-												<div class="form-group vulnerability-json">asdfasdf</div>
-												<div class="form-group header-json">asdfasdf</div>
+													<div class="nav-tabs-custom" style="cursor: move;">
+
+														<ul class="nav nav-tabs ui-sortable-handle jsontabs">
 
 
+
+															<li class="tab active"><a href="#vultabjson"
+																data-toggle="tab" aria-expanded="true">Vulnerability</a></li>
+															<li class="tab"><a href="#headtabjson"
+																data-toggle="tab" aria-expanded="false">Headers</a></li>
+
+														</ul>
+
+														<div class="tab-content no-padding">
+															<div class="chart tab-pane active" id="vultabjson"
+																style="position: relative;">
+																<div class="box box-primary">
+																	<!-- /.box-header -->
+																	<!-- form start -->
+																	<form role="form">
+																		<div class="box-body">
+
+																			<div class="form-group vulnerability-json">
+																				Vulnerability</div>
+																		</div>
+																	</form>
+																</div>
+															</div>
+
+															<div class="chart tab-pane" id="headtabjson"
+																style="position: relative;">
+																<div class="box box-primary">
+																	<!-- /.box-header -->
+																	<!-- form start -->
+																	<form role="form">
+																		<div class="box-body">
+																			<div class="form-group header-json">Header</div>
+																		</div>
+																	</form>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
 											</div>
 
 										</div>
