@@ -66,12 +66,12 @@ $(document).ready(
 
 											if ($(this).next('input').is(
 													'input:text')) {
-												map[$(this).text()] = $(this)
+												map[$(this).text().replace(/\n|\t/g, '')] = $(this)
 														.next('input').val();
 
 											} else if ($(this).next('input')
 													.is('input:radio')) {
-												map[$(this).text()] = $(this)
+												map[$(this).text().replace(/\n|\t/g, '')] = $(this)
 														.next('input:checked')
 														.val();
 
@@ -116,7 +116,7 @@ function testOpenPorts() {
 
 	var hostUrl = $("#host").val()
 	var gameData = {
-		host : hostUrl;
+		host : hostUrl
 	};
 	$("#openPorts").addClass('hide');
 
