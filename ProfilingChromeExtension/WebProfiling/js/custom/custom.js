@@ -116,7 +116,7 @@ function testOpenPorts() {
 
 	var hostUrl = $("#host").val()
 	var gameData = {
-		host : 'www.facebook.com'
+		host : hostUrl;
 	};
 	$("#openPorts").addClass('hide');
 

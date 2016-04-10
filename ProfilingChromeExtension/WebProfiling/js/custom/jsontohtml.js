@@ -1,6 +1,22 @@
-function jsonOutput(jsonTag, obj) {
+var entityMap = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': '&quot;',
+    "'": '&#39;',
+    "/": '&#x2F;'
+  };
+
+  function escapeHtml(string) {
+    return String(string).replace(/[&<>"'\/]/g, function (s) {
+      return entityMap[s];
+    });
+  }
+function jsonOutput(jsonTag, obj) 
+{
 	str = JSON.stringify(obj, undefined, 2);
 	str = syntaxHighlight(str);
+	
 	jsonTag.html(str);
 	$(".add").mousedown(function(){
 		var spaces = $(this).text();
