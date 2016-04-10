@@ -80,11 +80,8 @@ $(document).ready(
 
 										})
 
-						quesAnsJson = JSON.stringify(map, null, '\t');
-						console.log(quesAnsJson);
-
-						$('.form-json').removeClass('hide');
-						$('.form-json').html(quesAnsJson);
+										$('.form-json').removeClass('hide');
+										jsonOutput($('.form-json'),map);
 					});
 			// Amruta - stop
 
@@ -237,14 +234,6 @@ function queryForResults() {
 			console.log(response);
 		});
 	});
-}
-
-function unique(ar) {
-	var r = [];
-	ar.forEach(function(e) { 
-		if (r.indexOf(e) == -1) r.push(e);
-	});
-	return r;
 }
 
 function show(retireJsResult) {
