@@ -303,7 +303,8 @@ function show(retireJsResult) {
 				});
 			})
 		}
-	})
+	});
+	jsonOutput($(".vulnerability-json"), res);
 }
 
 function td(tr) {
