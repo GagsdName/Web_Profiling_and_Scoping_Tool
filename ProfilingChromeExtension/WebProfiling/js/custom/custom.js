@@ -239,16 +239,29 @@ function queryForResults() {
 	});
 }
 
-function show(results) {
-	document.getElementById("results").innerHTML = "";
-	console.log(results);
-	results.forEach(function(rs) {
+function unique(ar) {
+	var r = [];
+	ar.forEach(function(e) { 
+		if (r.indexOf(e) == -1) r.push(e);
+	});
+	return r;
+}
+
+function show(retireJsResult) {
+	$("#results").html("");
+	console.log("results" + retireJsResult);
+	retireJsResult.forEach(function(rs) {
+		console.log("rs" + rs);
 		rs.results.forEach(function(r) {
+			console.log("r" + r);
 			r.url = rs.url;
 			r.vulnerable = r.vulnerabilities && r.vulnerabilities.length > 0;
 		});
 	});
-	var res = results.reduce(function(x, y) {
+	var res = retireJsResult.reduce(function(x, y) {
+		if(y.results.length > 1){
+			y.results = y.results[0];
+		}
 		return x.concat(y.results);
 	}, []);
 	res
