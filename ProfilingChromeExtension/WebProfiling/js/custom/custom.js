@@ -66,12 +66,12 @@ $(document).ready(
 
 											if ($(this).next('input').is(
 													'input:text')) {
-												map[$(this).text().replace(/\n|\t/g, '')] = $(this)
+												map[$(this).text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this)
 														.next('input').val();
 
 											} else if ($(this).next('input')
 													.is('input:radio')) {
-												map[$(this).text().replace(/\n|\t/g, '')] = $(this)
+												map[$(this).text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this)
 														.next('input:checked')
 														.val();
 
@@ -162,13 +162,18 @@ function getHostInfo() {
 				success : function(data) {
 
 					console.log("SUCCESS");
-
+					dnsMap = {};
 					var result = "Host Info<br /> Domain : " + data.domain
 							+ "<br /> IP Address : " + data.ip;
+					dnsMap["domain"]= data.domain;
+					dnsMap["ip"]= data.ip;
 					$.getJSON("http://ipinfo.io/" + data.ip,
 							function(response) {
 								var lats = response.loc.split(',')[0];
 								var lngs = response.loc.split(',')[1];
+								dnsMap["country"]= response.country;
+								dnsMap["region"]= response.region;
+								dnsMap["city"]= response.city;
 								result += "<br/> Country : " + response.country
 										+ "<br/> Region : " + response.region
 										+ "<br/> City : " + response.city;
@@ -177,6 +182,8 @@ function getHostInfo() {
 								 * map = new GMaps({ el: '#map', lat: lats,
 								 * //latitude lng: lngs //longitude });
 								 */
+								
+								jsonOutput($(".host-json"), dnsMap);
 								map = new GMaps({
 									div : '#map',
 									zoom : 15,

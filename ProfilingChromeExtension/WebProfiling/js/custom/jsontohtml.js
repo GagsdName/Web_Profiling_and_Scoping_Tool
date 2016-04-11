@@ -21,17 +21,17 @@ function jsonOutput(jsonTag, obj)
 	$(".add").mousedown(function(){
 		var spaces = $(this).text();
 		spaces = spaces.substr(0,spaces.indexOf('"'));
-		$(this).nextAll('.add:first').before('<div class="newly-added">'+spaces+'<input class="key form-control" type="text" placeholder="Enter">:<input type="text" class="value form-control" placeholder="Enter"><input type="button" class="btn btn-primary add-new" value="Add"/>,</div');
+		$(this).nextAll('.add:first').before('<div class="newly-added">'
+				+spaces+'<input class="key form-control" type="text" placeholder="Enter">:<input type="text" class="value form-control" placeholder="Enter"><input type="button" class="btn btn-primary add-new" value="Add"/><input type="button" class="btn btn-primary remove-new" value="Remove"/>,</div');
+		
+		$(".remove-new").click(function(){
+			$(this).closest('div').remove();
+		});
 		
 		$(".add-new").click(function(){
 			$(this).closest('div').find('.key').replaceWith('"'+$(this).closest('div').find('.key').val()+'"');
 			$(this).closest('div').find('.value').replaceWith(' "'+$(this).closest('div').find('.value').val()+'"');
-			$(this).val("Remove");
-			$(this).removeClass("add-new");
-			$(this).addClass("remove");
-			$(".remove").click(function(){
-				$(this).closest('div').remove();
-			});
+			$(this).remove();
 		});
 		
 	});
