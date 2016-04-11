@@ -22,16 +22,17 @@
 <script type="text/javascript" src="js/jquery-ui-1.10.3.min.js"></script>
 <script type="text/javascript" src="js/googleapis.js"></script>
 <script type="text/javascript" src="js/gmaps.js"></script>
+<script type="text/javascript" src="js/custom/jsontohtml.js"></script>
 <script type="text/javascript" src="js/custom/custom.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/custom/popupOnload.js"></script>
+
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-tour.min.css" rel="stylesheet">
 
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-tour.min.js"></script>
-
 </head>
 
 <body>
@@ -112,7 +113,7 @@
 
 													<div class="form-group">
 														<label class="question">Are all of these features
-															considered "in-scope" for testing? If not, which features
+															considered 'in-scope' for testing? If not, which features
 															are out of scope?</label> <input type="text" class="form-control"
 															id="txtScope" placeholder="Enter">
 													</div>
@@ -568,7 +569,7 @@
 													</div>
 													<div class="specific-questions hide">
 														<div class="form-group">
-															<label class="question">If yes, which browser??</label> <input
+															<label class="question">If yes, which browser?</label> <input
 																type="text" class="form-control" id="txtBrowser"
 																placeholder="Enter">
 
@@ -731,7 +732,7 @@
 
 													</div>
 													<div class="form-group">
-														<label class="question">Is there any certificates
+														<label class="question">Are there any certificates
 															used to authenticate requests?</label> <input type="radio"
 															name="authenticationcerti" value="Yes">Yes <input
 															type="radio" name="authenticationcerti" value="No">No
@@ -758,9 +759,24 @@
 							<!-- form start -->
 							<form role="form">
 								<div class="box-body">
-									<div id="windowsLocation" class="form-group wrap-string">
-									</div>
 									<div class="box-group" id="accordion-active">
+
+										<div class="panel box box-primary">
+											<div class="box-header with-border">
+												<h4 class="box-title">
+													<a data-toggle="collapse" data-parent="#accordion-active"
+														href="#collapseurl" aria-expanded="false"
+														class="collapsed"> Active URL </a>
+												</h4>
+											</div>
+											<div id="collapseurl" class="panel-collapse collapse"
+												aria-expanded="false" style="height: 0px;">
+												<div class="form-group">
+													<div id="windowsLocation" class="form-group wrap-string">
+													</div>
+												</div>
+											</div>
+										</div>
 										<div class="panel box box-primary">
 											<div class="box-header with-border">
 												<h4 class="box-title">
@@ -798,307 +814,310 @@
 													style="width: 300px; height: 300px;"></div>
 											</div>
 										</div>
-									</div>
-								</div>
 
-								<div class="form-group">
 
-									<input type="button" class="btn btn-primary" id="getCookieInfo"
-										value="Get Cookie" /> <input type="checkbox" id="login"
-										name="login" value="login"> Logged In<br>
-								</div>
 
-								<button type="button" class="btn btn-default"
-										data-toggle="collapse" data-target="#demo" id="spiderButton" onclick="tour_formOnload()">
-										<span class="glyphicon glyphicon-plus"></span>
-										
-</button> Click to configure crawler 
-									<div id="demo" class="collapse" id="spiderCollapsible" >
-										<br><br>
-										<p>
-											Start on:<br> <input id="start" size=40 id="startOn">
-										</p>
+										<div class="form-group">
 
-										<p>
-											Restrict to:<br> <input id="regex" size=40>
-										</p>
-										<p>
-											<input id="plusone" type="checkbox"> <label
-												for="plusone">Follow one link beyond restriction.</label>
-										</p>
-										<p>
-											<input id="inline" type="checkbox"> <label
-												for="inline">Check inline content. <small>(CSS,
-													images)</small></label>
-										</p>
-										<p>
-											<input id="scripts" type="checkbox"> <label
-												for="scripts">Check script content. <small>(JavaScript,
-													Flash)</small></label>
-										</p>
-										<p>
-											<input id="arguments" type="checkbox"> <label
-												for="arguments">Avoid links with arguments. <small>(e.g.&nbsp;page?foo=bar)</small></label>
-										</p>
-
-										<p>
-											<input type="button" value="Go" id="siteSpiderGo">
-										</p>
-									</div>
-							</form>
-
-						</div>
-
-					</div>
-					<!-- Amruta  stop -->
-
-					<div class="chart tab-pane" id="passive" style="position: relative">
-						<div class="box box-primary">
-
-							<!-- /.box-header -->
-							<!-- form start -->
-							<form role="form">
-								<div class="box-body">
-
-									<div class="box-group" id="accordion-passive">
-										<div class="panel box box-primary">
-											<div class="box-header with-border">
-												<h4 class="box-title">
-													<a data-toggle="collapse" data-parent="#accordion-passive"
-														href="#collapsevulnerability" aria-expanded="false"
-														class="collapsed"> Vulnerabilities </a>
-												</h4>
-											</div>
-											<div id="collapsevulnerability"
-												class="panel-collapse collapse" aria-expanded="false"
-												style="height: 0px;">
-
-												<div class="box-body table-responsive no-padding">
-													<table class="table table-bordered responsive" id="results">
-													</table>
-												</div>
-
-											</div>
+											<input type="button" class="btn btn-primary"
+												id="getCookieInfo" value="Get Cookie" /> <input
+												type="checkbox" id="login" name="login" value="login">
+											Logged In<br>
 										</div>
-										<div class="panel box box-primary">
-											<div class="box-header with-border">
-												<h4 class="box-title">
-													<a data-toggle="collapse" data-parent="#accordion-passive"
-														href="#collapseheaders" aria-expanded="false"
-														class="collapsed"> Headers </a>
-												</h4>
-											</div>
-											<div id="collapseheaders" class="panel-collapse collapse"
-												aria-expanded="false" style="height: 0px;">
-												<div id="windowsLocation" class="form-group wrap-string">
-												</div>
-												<div class="form-group">
-													<input type="button" class="btn btn-primary"
-														id="getHeaders" value="Get Header Information" />
 
-												</div>
-												<div id="headers" class="form-group hide">asdfasdf</div>
-											</div>
+										<button type="button" class="btn btn-default"
+											data-toggle="collapse" data-target="#demo">
+											<span class="glyphicon glyphicon-plus"></span>
+
+										</button>
+										Click to configure crawler
+										<div id="demo" class="collapse">
+											<br> <br>
+											<p>
+												Start on:<br> <input id="start" size=40>
+											</p>
+
+											<p>
+												Restrict to:<br> <input id="regex" size=40>
+											</p>
+											<p>
+												<input id="plusone" type="checkbox"> <label
+													for="plusone">Follow one link beyond restriction.</label>
+											</p>
+											<p>
+												<input id="inline" type="checkbox"> <label
+													for="inline">Check inline content. <small>(CSS,
+														images)</small></label>
+											</p>
+											<p>
+												<input id="scripts" type="checkbox"> <label
+													for="scripts">Check script content. <small>(JavaScript,
+														Flash)</small></label>
+											</p>
+											<p>
+												<input id="arguments" type="checkbox"> <label
+													for="arguments">Avoid links with arguments. <small>(e.g.&nbsp;page?foo=bar)</small></label>
+											</p>
+
+											<p>
+												<input type="button" value="Go" id="siteSpiderGo">
+											</p>
 										</div>
 									</div>
-								</div>
 							</form>
 						</div>
 					</div>
-					<!-- Amruta  start -->
-					<div class="chart tab-pane " id="json" style="position: relative">
-						<div class="box box-primary">
 
-							<!-- /.box-header -->
-							<!-- form start -->
-							<form role="form">
-								<div class="box-body">
+				</div>
+				<!-- Amruta  stop -->
 
-									<div class="box-group" id="accordion-json">
-										<div class="panel box box-primary">
-											<div class="box-header with-border">
-												<h4 class="box-title">
-													<a data-toggle="collapse" data-parent="#accordion-json"
-														href="#collapseformjson" aria-expanded="false"
-														class="collapsed"> User Input Form JSON </a>
-												</h4>
+				<div class="chart tab-pane" id="passive" style="position: relative">
+					<div class="box box-primary">
+
+						<!-- /.box-header -->
+						<!-- form start -->
+						<form role="form">
+							<div class="box-body">
+
+								<div class="box-group" id="accordion-passive">
+									<div class="panel box box-primary">
+										<div class="box-header with-border">
+											<h4 class="box-title">
+												<a data-toggle="collapse" data-parent="#accordion-passive"
+													href="#collapsevulnerability" aria-expanded="false"
+													class="collapsed"> Vulnerabilities </a>
+											</h4>
+										</div>
+										<div id="collapsevulnerability"
+											class="panel-collapse collapse" aria-expanded="false"
+											style="height: 0px;">
+
+											<div class="box-body table-responsive no-padding">
+												<table class="table table-bordered responsive" id="results">
+												</table>
 											</div>
-											<div id="collapseformjson" class="panel-collapse collapse"
-												aria-expanded="false" style="height: 0px;">
 
-												<pre class="form-group form-json hide">
+										</div>
+									</div>
+									<div class="panel box box-primary">
+										<div class="box-header with-border">
+											<h4 class="box-title">
+												<a data-toggle="collapse" data-parent="#accordion-passive"
+													href="#collapseheaders" aria-expanded="false"
+													class="collapsed"> Headers </a>
+											</h4>
+										</div>
+										<div id="collapseheaders" class="panel-collapse collapse"
+											aria-expanded="false" style="height: 0px;">
+											<div id="windowsLocation" class="form-group wrap-string">
+											</div>
+											<div class="form-group">
+												<input type="button" class="btn btn-primary" id="getHeaders"
+													value="Get Header Information" />
+
+											</div>
+											<div id="headers" class="form-group hide">asdfasdf</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- Amruta  start -->
+				<div class="chart tab-pane " id="json" style="position: relative">
+					<div class="box box-primary">
+
+						<!-- /.box-header -->
+						<!-- form start -->
+						<form role="form">
+							<div class="box-body">
+
+								<div class="box-group" id="accordion-json">
+									<div class="panel box box-primary">
+										<div class="box-header with-border">
+											<h4 class="box-title">
+												<a data-toggle="collapse" data-parent="#accordion-json"
+													href="#collapseformjson" aria-expanded="false"
+													class="collapsed"> User Input Form JSON </a>
+											</h4>
+										</div>
+										<div id="collapseformjson" class="panel-collapse collapse"
+											aria-expanded="false" style="height: 0px;">
+
+											<pre class="form-group form-json hide">
 														asdfasdf
 														
 													</pre>
 
-											</div>
 										</div>
-										<div class="panel box box-primary">
-											<div class="box-header with-border">
-												<h4 class="box-title">
-													<a data-toggle="collapse" data-parent="#accordion-json"
-														href="#collapseactivejson" aria-expanded="false"
-														class="collapsed"> Active Tab JSON </a>
-												</h4>
-											</div>
-											<div id="collapseactivejson" class="panel-collapse collapse"
-												aria-expanded="false" style="height: 0px;">
+									</div>
+									<div class="panel box box-primary">
+										<div class="box-header with-border">
+											<h4 class="box-title">
+												<a data-toggle="collapse" data-parent="#accordion-json"
+													href="#collapseactivejson" aria-expanded="false"
+													class="collapsed"> Active Tab JSON </a>
+											</h4>
+										</div>
+										<div id="collapseactivejson" class="panel-collapse collapse"
+											aria-expanded="false" style="height: 0px;">
 
-												<div class="box-body">
+											<div class="box-body">
 
-													<div class="nav-tabs-custom" style="cursor: move;">
-														<!-- Tabs within a box -->
-														<ul class="nav nav-tabs ui-sortable-handle jsontabs">
+												<div class="nav-tabs-custom" style="cursor: move;">
+													<!-- Tabs within a box -->
+													<ul class="nav nav-tabs ui-sortable-handle jsontabs">
 
 
 
-															<li class="tab active"><a href="#porttabjson"
-																data-toggle="tab" aria-expanded="true">Ports</a></li>
-															<li class="tab"><a href="#hosttabjson"
-																data-toggle="tab" aria-expanded="false">DNS</a></li>
-															<li class="tab"><a href="#cookietabjson"
-																data-toggle="tab" aria-expanded="false">Cookies</a></li>
-															<li class="tab"><a href="#crawlertabjson"
-																data-toggle="tab" aria-expanded="false">Crawler</a></li>
-														</ul>
+														<li class="tab active"><a href="#porttabjson"
+															data-toggle="tab" aria-expanded="true">Ports</a></li>
+														<li class="tab"><a href="#hosttabjson"
+															data-toggle="tab" aria-expanded="false">DNS</a></li>
+														<li class="tab"><a href="#cookietabjson"
+															data-toggle="tab" aria-expanded="false">Cookies</a></li>
+														<li class="tab"><a href="#crawlertabjson"
+															data-toggle="tab" aria-expanded="false">Crawler</a></li>
+													</ul>
 
-														<div class="tab-content no-padding">
-															<div class="chart tab-pane active" id="porttabjson"
-																style="position: relative;">
-																<div class="box box-primary">
-																	<!-- /.box-header -->
-																	<!-- form start -->
-																	<form role="form">
-																		<div class="box-body">
+													<div class="tab-content no-padding">
+														<div class="chart tab-pane active" id="porttabjson"
+															style="position: relative;">
+															<div class="box box-primary">
+																<!-- /.box-header -->
+																<!-- form start -->
+																<form role="form">
+																	<div class="box-body">
 
-																			<pre class="form-group port-json">
+																		<pre class="form-group port-json">
 																			Ports
 																		</pre>
-																		</div>
-																	</form>
-																</div>
+																	</div>
+																</form>
 															</div>
+														</div>
 
-															<div class="chart tab-pane" id="hosttabjson"
-																style="position: relative;">
-																<div class="box box-primary">
+														<div class="chart tab-pane" id="hosttabjson"
+															style="position: relative;">
+															<div class="box box-primary">
 
-																	<form role="form">
-																		<div class="box-body">
-																			<pre class="form-group host-json">
+																<form role="form">
+																	<div class="box-body">
+																		<pre class="form-group host-json">
 																	Host
 																</pre>
-																		</div>
-																	</form>
-																</div>
+																	</div>
+																</form>
 															</div>
+														</div>
 
-															<div class="chart tab-pane" id="cookietabjson"
-																style="position: relative;">
-																<div class="box box-primary">
+														<div class="chart tab-pane" id="cookietabjson"
+															style="position: relative;">
+															<div class="box box-primary">
 
-																	<form role="form">
-																		<div class="box-body">
-																			<pre class="form-group cookie-json">
+																<form role="form">
+																	<div class="box-body">
+																		<pre class="form-group cookie-json">
 																	Cookie
 																</pre>
-																		</div>
-																	</form>
-																</div>
+																	</div>
+																</form>
 															</div>
+														</div>
 
-															<div class="chart tab-pane" id="crawlertabjson"
-																style="position: relative;">
-																<div class="box box-primary">
+														<div class="chart tab-pane" id="crawlertabjson"
+															style="position: relative;">
+															<div class="box box-primary">
 
-																	<form role="form">
-																		<div class="box-body">
-																			<pre class="form-group crawler-json">
+																<form role="form">
+																	<div class="box-body">
+																		<pre class="form-group crawler-json">
 																	Crawler
 																</pre>
-																		</div>
-																	</form>
-																</div>
+																	</div>
+																</form>
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
-
 										</div>
 
-										<div class="panel box box-primary">
-											<div class="box-header with-border">
-												<h4 class="box-title">
-													<a data-toggle="collapse" data-parent="#accordion-json"
-														href="#collapsepassivejson" aria-expanded="false"
-														class="collapsed"> Passive Tab JSON </a>
-												</h4>
-											</div>
-											<div id="collapsepassivejson" class="panel-collapse collapse"
-												aria-expanded="false" style="height: 0px;">
-												<div class="box-body">
+									</div>
 
-													<div class="nav-tabs-custom" style="cursor: move;">
+									<div class="panel box box-primary">
+										<div class="box-header with-border">
+											<h4 class="box-title">
+												<a data-toggle="collapse" data-parent="#accordion-json"
+													href="#collapsepassivejson" aria-expanded="false"
+													class="collapsed"> Passive Tab JSON </a>
+											</h4>
+										</div>
+										<div id="collapsepassivejson" class="panel-collapse collapse"
+											aria-expanded="false" style="height: 0px;">
+											<div class="box-body">
 
-														<ul class="nav nav-tabs ui-sortable-handle jsontabs">
+												<div class="nav-tabs-custom" style="cursor: move;">
+
+													<ul class="nav nav-tabs ui-sortable-handle jsontabs">
 
 
 
-															<li class="tab active"><a href="#vultabjson"
-																data-toggle="tab" aria-expanded="true">Vulnerability</a></li>
-															<li class="tab"><a href="#headtabjson"
-																data-toggle="tab" aria-expanded="false">Headers</a></li>
+														<li class="tab active"><a href="#vultabjson"
+															data-toggle="tab" aria-expanded="true">Vulnerability</a></li>
+														<li class="tab"><a href="#headtabjson"
+															data-toggle="tab" aria-expanded="false">Headers</a></li>
 
-														</ul>
+													</ul>
 
-														<div class="tab-content no-padding">
-															<div class="chart tab-pane active" id="vultabjson"
-																style="position: relative;">
-																<div class="box box-primary">
-																	<!-- /.box-header -->
-																	<!-- form start -->
-																	<form role="form">
-																		<div class="box-body">
+													<div class="tab-content no-padding">
+														<div class="chart tab-pane active" id="vultabjson"
+															style="position: relative;">
+															<div class="box box-primary">
+																<!-- /.box-header -->
+																<!-- form start -->
+																<form role="form">
+																	<div class="box-body">
 
-																			<pre class="form-group vulnerability-json">
+																		<pre class="form-group vulnerability-json">
 																			Vulnerability
 																		</pre>
-																		</div>
-																	</form>
-																</div>
+																	</div>
+																</form>
 															</div>
+														</div>
 
-															<div class="chart tab-pane" id="headtabjson"
-																style="position: relative;">
-																<div class="box box-primary">
-																	<!-- /.box-header -->
-																	<!-- form start -->
-																	<form role="form">
-																		<div class="box-body">
-																			<pre class="form-group header-json">
+														<div class="chart tab-pane" id="headtabjson"
+															style="position: relative;">
+															<div class="box box-primary">
+																<!-- /.box-header -->
+																<!-- form start -->
+																<form role="form">
+																	<div class="box-body">
+																		<pre class="form-group header-json">
 																			Header
 																			
 																		</pre>
-																		</div>
-																	</form>
-																</div>
+																	</div>
+																</form>
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
-
 										</div>
+
 									</div>
 								</div>
-							</form>
-						</div>
+							</div>
+						</form>
 					</div>
-					<!-- Amruta  stop -->
 				</div>
+				<!-- Amruta  stop -->
 			</div>
 		</div>
+	</div>
 	</div>
 	</div>
 </body>
