@@ -1,9 +1,37 @@
+
 function foo()
-{
+{ 
 // make the list with the ID 'newList' collapsible
 CollapsibleLists.applyTo(document.getElementById('newList'));
+var helpButton = document.getElementById('help');
+	helpButton.onclick=function(){
+	tour_onload();
+	};
+
 }
 
+function tour_onload(){
+// Instance the tour
+//document.getElementById("pauseSpider").click();
+alert("Yeah");
+	
+	var tour1 = new Tour({
+  steps: [
+  {
+    element: "#startingOn",
+    title: "Title of my step",
+    content: "Content of my step"
+  }
+]});
+
+// Initialize the tour
+tour1.init(true);
+
+// Start the tour
+	tour1.start(true);
+	
+
+}
 
 function messageDispatch(request, sender, sendResponse) {
     var element = null;
@@ -45,12 +73,16 @@ function clickStop() {
 }
 
 function clickPause() {
-    if( document.getElementById("pauseSpider").value == "Pause" ){
+    
+	
+	if( document.getElementById("pauseSpider").value == "Pause" ){
         document.getElementById("pauseSpider").value="Resume";
     }
     else{
         document.getElementById("pauseSpider").value="Pause";
     }
+
+
     chrome.runtime.sendMessage({
         pause: document.getElementById("pauseSpider").value
     });

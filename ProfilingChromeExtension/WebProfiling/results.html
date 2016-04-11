@@ -4,10 +4,17 @@
 <script type="text/javascript" src="js/custom/CollapsibleLists.js"></script>
 <script type="text/javascript" src="js/custom/resultsOnload.js"></script>
 
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-tour.min.css" rel="stylesheet">
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-tour.min.js"></script>
+
 <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 <style type="text/css">
   body {
-    background: #000000;
+   
     font-family: sans-serif
   }
   #resultsTable {
@@ -113,29 +120,30 @@ section {
 </head>
 <body onload="foo()"  >
 <img src="img/icon128.png" align="right"/>
-<h1><font color = "white">Site Spider Results</font></h1>
+<h1><font >Site Spider Results</font></h1>
 
 <form>
-<input type="button" id="pauseSpider" value="Pause"/>
+<input type="button" id="pauseSpider" value="Pause" />
 <input type="button" id="stopSpider" value="Stop"/>
+<input type="button" id="help" value="Help" onclick="tour_onload()"/>
 </form>
 
 <table>
   <tr>
-    <td><font color = "white">Starting on:</font></td>
+    <td><font> Starting on:</font></td>
     <td id="startingOn"></td>
   </tr>
   <tr>
-    <td><font color = "white">Restrict to:</font></td>
+    <td><font >Restrict to:</font></td>
     <td id="restrictTo"></td>
   </tr>
   <tr>
-    <td><font color = "white">Queue:</font></td>
+    <td><font color = "black">Queue:</font></td>
     <td id="queue"><font color = "white">0</font></td>
   </tr>
   <tr>
-    <td><font color = "white">Status:</font></td>
-    <td id="status"><font color = "white">Initializing...</font></td>
+    <td><font color = "black">Status:</font></td>
+    <td id="status"><font color = "black">Initializing...</font></td>
   </tr>
 </table>
 

@@ -277,8 +277,8 @@ function spiderPage() {
 		
 		if(flag == 0)
 		{
-			referrer_string = referrer_string + "<li class = 'collapsibleListOpen'> <font color = 'white'>" + currentRequest.referrer+ "</font><ul class='collapsibleList' style='display: block;'>";
-	    referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'white'>" + currentRequest.requestedURL + "</font></li>" ;
+			referrer_string = referrer_string + "<li class = 'collapsibleListOpen'> <font color = 'black'>" + currentRequest.referrer+ "</font><ul class='collapsibleList' style='display: block;'>";
+	    referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'black'>" + currentRequest.requestedURL + "</font></li>" ;
 		
         string  =    currentRequest.referrer;
 		//referrer_string = referrer_string + "<li>" + url + "</li>" ; 
@@ -288,8 +288,8 @@ function spiderPage() {
 		}
 		else
 		{
-			referrer_string = referrer_string + "</ul></li><li class = 'collapsibleListOpen'><font color = 'white'>" + currentRequest.referrer+ "</font><ul class='collapsibleList' style='display: block;'>";
-	    referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'white'>" + currentRequest.requestedURL + "</font></li>" ;
+			referrer_string = referrer_string + "</ul></li><li class = 'collapsibleListOpen'><font color = 'black'>" + currentRequest.referrer+ "</font><ul class='collapsibleList' style='display: block;'>";
+	    referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'black'>" + currentRequest.requestedURL + "</font></li>" ;
 		
         string  =    currentRequest.referrer;
 		
@@ -301,7 +301,7 @@ function spiderPage() {
 		flag++;
 	}
 	else  {
-		referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'white'>" + currentRequest.requestedURL + "</font></li>" ;
+		referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'black'>" + currentRequest.requestedURL + "</font></li>" ;
 	text = text +',{"RequestedURL":"'+currentRequest.requestedURL+'"}';
 	}
 		
