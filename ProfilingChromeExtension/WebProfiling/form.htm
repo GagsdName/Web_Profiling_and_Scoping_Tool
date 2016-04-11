@@ -12,12 +12,7 @@
 	href="css/skins/_all-skins.min.css">
 <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
 <link href="css/custom.css" rel="stylesheet" type="text/css">
-<style>
-#demo {
-   
-    margin: 0cm 0.2cm 0.2cm 0.2cm;
-}
-</style>
+
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.10.3.min.js"></script>
 <script type="text/javascript" src="js/googleapis.js"></script>
@@ -27,12 +22,14 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/custom/popupOnload.js"></script>
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
+
 <link href="css/bootstrap-tour.min.css" rel="stylesheet">
 
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-tour.min.js"></script>
+
+
 </head>
 
 <body>
@@ -113,7 +110,7 @@
 
 													<div class="form-group">
 														<label class="question">Are all of these features
-															considered 'in-scope' for testing? If not, which features
+															considered "in-scope" for testing? If not, which features
 															are out of scope?</label> <input type="text" class="form-control"
 															id="txtScope" placeholder="Enter">
 													</div>
@@ -569,7 +566,7 @@
 													</div>
 													<div class="specific-questions hide">
 														<div class="form-group">
-															<label class="question">If yes, which browser?</label> <input
+															<label class="question">If yes, which browser??</label> <input
 																type="text" class="form-control" id="txtBrowser"
 																placeholder="Enter">
 
@@ -787,6 +784,8 @@
 											</div>
 											<div id="collapseports" class="panel-collapse collapse"
 												aria-expanded="false" style="height: 0px;">
+												<div class="form-group"></div>
+													
 												<div class="form-group">
 													<input type="button" class="btn btn-primary"
 														id="getOpenPorts" value="Get Open Ports" />
@@ -805,6 +804,7 @@
 											</div>
 											<div id="collapsehost" class="panel-collapse collapse"
 												aria-expanded="false" style="height: 0px;">
+												<div class="form-group"></div>
 												<div class="form-group">
 													<input type="button" class="btn btn-primary"
 														id="getHostInfo" value="Get Host Info" />
@@ -815,19 +815,42 @@
 											</div>
 										</div>
 
+										<div class="panel box box-primary">
+											<div class="box-header with-border">
+												<h4 class="box-title">
+													<a data-toggle="collapse" data-parent="#accordion-active"
+														href="#collapsecookie" aria-expanded="false"
+														class="collapsed"> Cookie Information </a>
+												</h4>
+											</div>
+											<div id="collapsecookie" class="panel-collapse collapse"
+												aria-expanded="false" style="height: 0px;">
+													<div class="form-group"></div>
+													<div class="form-group">
+												
+														<input type="button" class="btn btn-primary"
+															id="getCookieInfo" value="Get Cookie" /> <input
+															type="checkbox" id="login" name="login" value="login">
+														Logged In<br>
+													</div>
 
-
-										<div class="form-group">
-
-											<input type="button" class="btn btn-primary"
-												id="getCookieInfo" value="Get Cookie" /> <input
-												type="checkbox" id="login" name="login" value="login">
-											Logged In<br>
+											</div>
 										</div>
-
+										<div class="panel box box-primary">
+											<div class="box-header with-border">
+												<h4 class="box-title">
+													<a data-toggle="collapse" data-parent="#accordion-active"
+														href="#collapsecrawler" aria-expanded="false"
+														class="collapsed"> Web Crawler</a>
+												</h4>
+											</div>
+											<div id="collapsecrawler" class="panel-collapse collapse"
+												aria-expanded="false" style="height: 0px;">
+													<div class="form-group"></div>
+													<div class="form-group">
 										<button type="button" class="btn btn-default"
-											data-toggle="collapse" data-target="#demo">
-											<span class="glyphicon glyphicon-plus"></span>
+														data-toggle="collapse" data-target="#demo">
+														<span class="glyphicon glyphicon-plus"></span>
 
 										</button>
 										Click to configure crawler
@@ -862,6 +885,9 @@
 											<p>
 												<input type="button" value="Go" id="siteSpiderGo">
 											</p>
+										</div>
+										</div>
+										</div>
 										</div>
 									</div>
 							</form>
