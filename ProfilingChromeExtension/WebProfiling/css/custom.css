@@ -306,9 +306,7 @@ table {
 .popupLink:hover{
 	color: #367fa9;
 }
-.box.box-danger {
-	border-top-color: #367fa9;
-}
+
 #page-alert{
 	z-index: 1000 !important;
 	top: 120px;

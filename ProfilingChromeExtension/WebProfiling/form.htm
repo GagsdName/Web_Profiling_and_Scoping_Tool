@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css"
 	href="css/skins/_all-skins.min.css">
 <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+<link href="css/bootstrap-tour.min.css" rel="stylesheet">
 <link href="css/custom.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -18,16 +19,12 @@
 <script type="text/javascript" src="js/googleapis.js"></script>
 <script type="text/javascript" src="js/gmaps.js"></script>
 <script type="text/javascript" src="js/custom/jsontohtml.js"></script>
-<script type="text/javascript" src="js/custom/custom.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/custom/popupOnload.js"></script>
-
-
-<link href="css/bootstrap-tour.min.css" rel="stylesheet">
-
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-tour.min.js"></script>
+<script type="text/javascript" src="js/custom/custom.js"></script>
+
+
 
 
 </head>
@@ -543,7 +540,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="panel box box-danger">
+											<div class="panel box box-primary">
 												<div class="box-header with-border">
 													<h4 class="box-title">
 														<a data-toggle="collapse" data-parent="#accordion"
@@ -816,6 +813,7 @@
 										</div>
 
 										<div class="panel box box-primary">
+										
 											<div class="box-header with-border">
 												<h4 class="box-title">
 													<a data-toggle="collapse" data-parent="#accordion-active"
@@ -835,6 +833,7 @@
 													</div>
 
 											</div>
+											
 										</div>
 										<div class="panel box box-primary">
 											<div class="box-header with-border">
@@ -846,48 +845,47 @@
 											</div>
 											<div id="collapsecrawler" class="panel-collapse collapse"
 												aria-expanded="false" style="height: 0px;">
-													<div class="form-group"></div>
 													<div class="form-group">
-										<button type="button" class="btn btn-default"
-														data-toggle="collapse" data-target="#demo">
-														<span class="glyphicon glyphicon-plus"></span>
+													<!--<button type="button" class="btn btn-sm btn-primary"
+																	data-toggle="collapse" data-target="#demo">
+																	<span class="glyphicon glyphicon-plus"></span>
 
-										</button>
-										Click to configure crawler
-										<div id="demo" class="collapse">
-											<br> <br>
-											<p>
-												Start on:<br> <input id="start" size=40>
-											</p>
+													</button>
+													Click to configure crawler-->
+													<div id="demo">
+														<br>
+														<p>
+															Start on:<br> <input id="start" class="form-control" size=40>
+														</p>
 
-											<p>
-												Restrict to:<br> <input id="regex" size=40>
-											</p>
-											<p>
-												<input id="plusone" type="checkbox"> <label
-													for="plusone">Follow one link beyond restriction.</label>
-											</p>
-											<p>
-												<input id="inline" type="checkbox"> <label
-													for="inline">Check inline content. <small>(CSS,
-														images)</small></label>
-											</p>
-											<p>
-												<input id="scripts" type="checkbox"> <label
-													for="scripts">Check script content. <small>(JavaScript,
-														Flash)</small></label>
-											</p>
-											<p>
-												<input id="arguments" type="checkbox"> <label
-													for="arguments">Avoid links with arguments. <small>(e.g.&nbsp;page?foo=bar)</small></label>
-											</p>
+														<p>
+															Restrict to:<br> <input id="regex" class="form-control" size=40>
+														</p>
+														<p>
+															<input id="plusone" class="form-group" type="checkbox"> <label
+																for="plusone">Follow one link beyond restriction.</label>
+														</p>
+														<p>
+															<input id="inline" class="form-group" type="checkbox"> <label
+																for="inline">Check inline content. <small>(CSS,
+																	images)</small></label>
+														</p>
+														<p>
+															<input id="scripts" class="form-group" type="checkbox"> <label
+																for="scripts">Check script content. <small>(JavaScript,
+																	Flash)</small></label>
+														</p>
+														<p>
+															<input id="arguments" class="form-group" type="checkbox"> <label
+																for="arguments">Avoid links with arguments. <small>(e.g.&nbsp;page?foo=bar)</small></label>
+														</p>
 
-											<p>
-												<input type="button" value="Go" id="siteSpiderGo">
-											</p>
-										</div>
-										</div>
-										</div>
+														<p>
+															<input type="button" class="btn btn-primary"value="Go" id="siteSpiderGo">
+														</p>
+													</div>
+													</div>
+											</div>
 										</div>
 									</div>
 							</form>
