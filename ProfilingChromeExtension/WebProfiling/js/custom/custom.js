@@ -151,6 +151,7 @@ function getHostInfo() {
 	var sData = {
 		location : windowsLocation
 	};
+	$(".message-host").addClass("hide");
 	$("#hostInfo").addClass('hide');
 
 	$
@@ -201,6 +202,9 @@ function getHostInfo() {
 					$("#hostInfo").removeClass('hide');
 				},
 				error : function(e) {
+					$(".message-host").html("Error fetching DNS information. Error Status : " + e.status);
+					$(".message-host").addClass("error");
+					$(".message-host").removeClass("hide");
 					console.log("ERROR: ", e);
 
 				},
