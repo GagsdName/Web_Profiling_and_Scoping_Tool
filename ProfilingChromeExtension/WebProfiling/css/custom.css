@@ -4,6 +4,11 @@
 .custom-box-border{
 	border-top: 1px #22262D solid !important;
 }
+
+pre{
+	border-radius:0px; 	
+}
+
 .nav-tabs-custom{
 
 background-color: #2c323c;

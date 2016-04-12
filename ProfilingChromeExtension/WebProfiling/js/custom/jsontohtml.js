@@ -22,7 +22,7 @@ function jsonOutput(jsonTag, obj)
 		var spaces = $(this).text();
 		spaces = spaces.substr(0,spaces.indexOf('"'));
 		$(this).nextAll('.add:first').before('<div class="newly-added">'
-				+spaces+'<input class="key form-control" type="text" placeholder="Enter">:<input type="text" class="value form-control" placeholder="Enter"><input type="button" class="btn btn-primary add-new" value="Add"/><input type="button" class="btn btn-primary remove-new" value="Remove"/>,</div');
+				+spaces+'<input class="key form-control" type="text" placeholder="Enter">:<input type="text" class="value form-control" placeholder="Enter"><button type="button" class="btn btn-sm btn-primary add-new"><i class="fa fa-check"></i></button><button type="button" class="btn btn-sm btn-danger remove-new margin-10"><i class="fa fa-close"></i></button>,</div');
 		
 		$(".remove-new").click(function(){
 			$(this).closest('div').remove();
