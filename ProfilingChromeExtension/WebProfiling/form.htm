@@ -786,7 +786,7 @@
 											<div id="collapseports" class="panel-collapse collapse"
 												aria-expanded="false" style="height: 0px;">
 												<div class="form-group"></div>
-													
+
 												<div class="form-group">
 													<input type="button" class="btn btn-primary"
 														id="getOpenPorts" value="Get Open Ports" />
@@ -809,7 +809,7 @@
 												<div class="form-group">
 													<input type="button" class="btn btn-primary"
 														id="getHostInfo" value="Get Host Info" />
-												<div class="message-host hide"></div>
+													<div class="message-host hide"></div>
 												</div>
 												<div id="hostInfo" class="form-group hide"></div>
 												<div id="map" class="hide"
@@ -818,7 +818,7 @@
 										</div>
 
 										<div class="panel box box-primary">
-										
+
 											<div class="box-header with-border">
 												<h4 class="box-title">
 													<a data-toggle="collapse" data-parent="#accordion-active"
@@ -828,17 +828,17 @@
 											</div>
 											<div id="collapsecookie" class="panel-collapse collapse"
 												aria-expanded="false" style="height: 0px;">
-													<div class="form-group"></div>
-													<div class="form-group">
-												
-														<input type="button" class="btn btn-primary"
-															id="getCookieInfo" value="Get Cookie" /> <input
-															type="checkbox" id="login" name="login" value="login">
-														Logged In<br>
-													</div>
+												<div class="form-group"></div>
+												<div class="form-group">
+
+													<input type="button" class="btn btn-primary"
+														id="getCookieInfo" value="Get Cookie" /> <input
+														type="checkbox" id="login" name="login" value="login">
+													Logged In<br>
+												</div>
 
 											</div>
-											
+
 										</div>
 										<div class="panel box box-primary">
 											<div class="box-header with-border">
@@ -850,7 +850,7 @@
 											</div>
 											<div id="collapsecrawler" class="panel-collapse collapse"
 												aria-expanded="false" style="height: 0px;">
-													<div class="form-group">
+												<div class="form-group">
 													<!--<button type="button" class="btn btn-sm btn-primary"
 																	data-toggle="collapse" data-target="#demo">
 																	<span class="glyphicon glyphicon-plus"></span>
@@ -860,36 +860,42 @@
 													<div id="demo">
 														<br>
 														<p>
-															Start on:<br> <input id="start" class="form-control" size=40>
+															Start on:<br> <input id="start" class="form-control"
+																size=40>
 														</p>
 
 														<p>
-															Restrict to:<br> <input id="regex" class="form-control" size=40>
+															Restrict to:<br> <input id="regex"
+																class="form-control" size=40>
 														</p>
 														<p>
-															<input id="plusone" class="form-group" type="checkbox"> <label
-																for="plusone">Follow one link beyond restriction.</label>
+															<input id="plusone" class="form-group" type="checkbox">
+															<label for="plusone">Follow one link beyond
+																restriction.</label>
 														</p>
 														<p>
-															<input id="inline" class="form-group" type="checkbox"> <label
-																for="inline">Check inline content. <small>(CSS,
+															<input id="inline" class="form-group" type="checkbox">
+															<label for="inline">Check inline content. <small>(CSS,
 																	images)</small></label>
 														</p>
 														<p>
-															<input id="scripts" class="form-group" type="checkbox"> <label
-																for="scripts">Check script content. <small>(JavaScript,
+															<input id="scripts" class="form-group" type="checkbox">
+															<label for="scripts">Check script content. <small>(JavaScript,
 																	Flash)</small></label>
 														</p>
 														<p>
-															<input id="arguments" class="form-group" type="checkbox"> <label
-																for="arguments">Avoid links with arguments. <small>(e.g.&nbsp;page?foo=bar)</small></label>
+															<input id="arguments" class="form-group" type="checkbox">
+															<label for="arguments">Avoid links with
+																arguments. <small>(e.g.&nbsp;page?foo=bar)</small>
+															</label>
 														</p>
 
 														<p>
-															<input type="button" class="btn btn-primary"value="Go" id="siteSpiderGo">
+															<input type="button" class="btn btn-primary" value="Go"
+																id="siteSpiderGo">
 														</p>
 													</div>
-													</div>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -948,6 +954,26 @@
 											<div id="headers" class="form-group hide">asdfasdf</div>
 										</div>
 									</div>
+									<div class="panel box box-primary">
+										<div class="box-header with-border">
+											<h4 class="box-title">
+												<a data-toggle="collapse" data-parent="#accordion-passive"
+													href="#collapsewap" aria-expanded="false" class="collapsed">
+													Technologies Used </a>
+											</h4>
+										</div>
+										<div id="collapsewap" class="panel-collapse collapse"
+											aria-expanded="false" style="height: 0px;">
+											<div id="windowsLocation" class="form-group wrap-string">
+											</div>
+
+											<table class="table table-bordered responsive"
+												id="WapResults">
+												<tr id="wapAppsRow"></tr>
+											</table>
+										</div>
+									</div>
+
 								</div>
 							</div>
 						</form>
@@ -1095,8 +1121,6 @@
 
 														<li class="tab active"><a href="#vultabjson"
 															data-toggle="tab" aria-expanded="true">Vulnerability</a></li>
-														<li class="tab"><a href="#waptabjson"
-															data-toggle="tab" aria-expanded="true">Applications Used</a></li>
 														<li class="tab"><a href="#headtabjson"
 															data-toggle="tab" aria-expanded="false">Headers</a></li>
 
@@ -1118,25 +1142,7 @@
 																</form>
 															</div>
 														</div>
-														
-														<div class="chart tab-pane" id="waptabjson"
-															style="position: relative;">
-															<div class="box custom-box-border box-primary">
-																<!-- /.box-header -->
-																<!-- form start -->
-																<form role="form">
-																	<div class="box-body table-responsive no-padding">
-	
-																		<table class="table table-bordered responsive" id="WapResults">
-																			<tr id="wapAppsRow"></tr>
-																		</table>
-																		<pre class="form-group wap-json">
-																			Technologies Used
-																		</pre>
-																	</div>
-																</form>
-															</div>
-														</div>
+
 
 														<div class="chart tab-pane" id="headtabjson"
 															style="position: relative;">
@@ -1170,9 +1176,10 @@
 	</div>
 	</div>
 	</div>
-	
+
 	<div align='center'>
-	<input align='center' type="button" class="btn btn-primary" id="getJsonData" value="Download JSON" />
+		<input align='center' type="button" class="btn btn-primary"
+			id="getJsonData" value="Download JSON" />
 	</div>
 </body>
 </html>
