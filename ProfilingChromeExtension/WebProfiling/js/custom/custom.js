@@ -101,7 +101,7 @@ $(document).ready(
 				getHostInfo()
 			});
 
-			$("#getHeaders").click(function() {
+			$(".getHeaders").click(function() {
 				getHeaders()
 			});
 			$("#getJsonData").click(function(){

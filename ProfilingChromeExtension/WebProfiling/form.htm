@@ -742,7 +742,7 @@
 
 
 										<div class="box-footer">
-											<button id="submit" type="button" class="btn btn-primary"><i class="fa fa-tasks"></i>Submit</button>
+											<button id="submit" type="button" class="btn btn-sm btn-primary"><i class="fa fa-tasks"></i> Submit</button>
 										</div>
 								</form>
 							</div>
@@ -788,7 +788,7 @@
 												<div class="form-group"></div>
 
 												<div class="form-group">
-													<input type="button" class="btn btn-primary"
+													<input type="button" class="btn btn-sm btn-primary"
 														id="getOpenPorts" value="Get Open Ports" />
 
 												</div>
@@ -807,7 +807,7 @@
 												aria-expanded="false" style="height: 0px;">
 												<div class="form-group"></div>
 												<div class="form-group">
-													<input type="button" class="btn btn-primary"
+													<input type="button" class="btn btn-sm btn-primary"
 														id="getHostInfo" value="Get Host Info" />
 													<div class="message-host hide"></div>
 												</div>
@@ -831,7 +831,7 @@
 												<div class="form-group"></div>
 												<div class="form-group">
 
-													<input type="button" class="btn btn-primary"
+													<input type="button" class="btn btn-sm btn-primary"
 														id="getCookieInfo" value="Get Cookie" /> <input
 														type="checkbox" id="login" name="login" value="login">
 													Logged In<br>
@@ -891,7 +891,7 @@
 														</p>
 
 														<p>
-															<input type="button" class="btn btn-primary" value="Go"
+															<input type="button" class="btn btn-sm btn-primary" value="Go"
 																id="siteSpiderGo">
 														</p>
 													</div>
@@ -939,19 +939,15 @@
 											<h4 class="box-title">
 												<a data-toggle="collapse" data-parent="#accordion-passive"
 													href="#collapseheaders" aria-expanded="false"
-													class="collapsed"> Headers </a>
+													class="collapsed getHeaders"> Headers </a>
 											</h4>
 										</div>
 										<div id="collapseheaders" class="panel-collapse collapse"
 											aria-expanded="false" style="height: 0px;">
 											<div id="windowsLocation" class="form-group wrap-string">
 											</div>
-											<div class="form-group">
-												<input type="button" class="btn btn-primary" id="getHeaders"
-													value="Get Header Information" />
-
-											</div>
-											<div id="headers" class="form-group hide">asdfasdf</div>
+											
+											<div id="headers" class="form-group hide"></div>
 										</div>
 									</div>
 									<div class="panel box box-primary">
@@ -1001,7 +997,7 @@
 											aria-expanded="false" style="height: 0px;">
 
 											<pre class="form-group form-json hide">
-														asdfasdf
+														
 														
 													</pre>
 
@@ -1046,7 +1042,7 @@
 																	<div class="box-body">
 
 																		<pre class="form-group port-json">
-																			Ports
+																			Yet to fetch data.
 																		</pre>
 																	</div>
 																</form>
@@ -1060,7 +1056,7 @@
 																<form role="form">
 																	<div class="box-body">
 																		<pre class="form-group host-json">
-																	Host
+																	Yet to fetch data.
 																</pre>
 																	</div>
 																</form>
@@ -1074,7 +1070,7 @@
 																<form role="form">
 																	<div class="box-body">
 																		<pre class="form-group cookie-json">
-																	Cookie
+																	Yet to fetch data.
 																</pre>
 																	</div>
 																</form>
@@ -1088,7 +1084,7 @@
 																<form role="form">
 																	<div class="box-body">
 																		<pre class="form-group crawler-json">
-																	Crawler
+																	Yet to fetch data.
 																</pre>
 																	</div>
 																</form>
@@ -1121,7 +1117,7 @@
 
 														<li class="tab active"><a href="#vultabjson"
 															data-toggle="tab" aria-expanded="true">Vulnerability</a></li>
-														<li class="tab"><a href="#headtabjson"
+														<li class="tab"><a href="#headtabjson" class="getHeaders"
 															data-toggle="tab" aria-expanded="false">Headers</a></li>
 
 													</ul>
@@ -1136,7 +1132,7 @@
 																	<div class="box-body">
 
 																		<pre class="form-group vulnerability-json">
-																			Vulnerability
+																			Yet to fetch data.
 																		</pre>
 																	</div>
 																</form>
@@ -1152,8 +1148,7 @@
 																<form role="form">
 																	<div class="box-body">
 																		<pre class="form-group header-json">
-																			Header
-																			
+																			Yet to fetch data.																			
 																		</pre>
 																	</div>
 																</form>
@@ -1177,7 +1172,7 @@
 
 	<div class="row">
 		<div class="col-sm-12" align="center">
-			<button type="button" class="btn btn-primary"
+			<button type="button" class="btn btn-sm btn-primary"
 				id="getJsonData"><i class="fa fa-download"></i>
 				Download JSON
 				</button>
