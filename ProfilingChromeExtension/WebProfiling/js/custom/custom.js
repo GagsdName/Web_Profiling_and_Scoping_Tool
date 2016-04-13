@@ -278,7 +278,7 @@ function getHeaders() {
 	headerInfo['info'] = parseResponseHeaders(respheaders);
 	$("#headers").html(respheaders);
 	$("#headers").removeClass('hide');
-
+	jsonOutput($(".header-json"), headerInfo['info']); 
 }
 
 function parseResponseHeaders(headerStr) {
