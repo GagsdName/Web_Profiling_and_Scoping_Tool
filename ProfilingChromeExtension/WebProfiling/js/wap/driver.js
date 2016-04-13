@@ -192,8 +192,8 @@ chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT}
 
 
 			
-				console.clear();
-				console.log("***********Applications used by: "+url);
+				//console.clear();
+				//console.log("***********Applications used by: "+url);
 			if ( tabCache[tab.id] == null ) {
 				tabCache[tab.id] = {
 					count: 0,
@@ -234,12 +234,12 @@ chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT}
 			var wapTabs = document.getElementById("WapResults");
 			var tabInner = "";
 			for(var i = 0; i < appList.length; i++)	{
-				console.log(appList[i]);
+				//console.log(appList[i]);
 				tabInner += "<tr></tr><td>"+ (i + 1) + ". " +appList[i] +".</td></tr>";
 			}
 
 			wapTabs.innerHTML = tabInner;
-			console.log("************************************");
+			//console.log("************************************");
 		},
 
 		/**
