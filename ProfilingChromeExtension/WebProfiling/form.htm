@@ -18,6 +18,10 @@
 <script type="text/javascript" src="js/jquery-ui-1.10.3.min.js"></script>
 <script type="text/javascript" src="js/googleapis.js"></script>
 <script type="text/javascript" src="js/gmaps.js"></script>
+<script src="js/wap/wappalyzer.js"></script>
+<script src="js/wap/defaults.js"></script>
+<script src="js/wap/driver.js"></script>
+<script type="text/javascript" src="js/jsonUtility/jsonUtility.js"></script>
 <script type="text/javascript" src="js/custom/jsontohtml.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/custom/popupOnload.js"></script>
@@ -1091,6 +1095,8 @@
 
 														<li class="tab active"><a href="#vultabjson"
 															data-toggle="tab" aria-expanded="true">Vulnerability</a></li>
+														<li class="tab"><a href="#waptabjson"
+															data-toggle="tab" aria-expanded="true">Applications Used</a></li>
 														<li class="tab"><a href="#headtabjson"
 															data-toggle="tab" aria-expanded="false">Headers</a></li>
 
@@ -1107,6 +1113,25 @@
 
 																		<pre class="form-group vulnerability-json">
 																			Vulnerability
+																		</pre>
+																	</div>
+																</form>
+															</div>
+														</div>
+														
+														<div class="chart tab-pane" id="waptabjson"
+															style="position: relative;">
+															<div class="box custom-box-border box-primary">
+																<!-- /.box-header -->
+																<!-- form start -->
+																<form role="form">
+																	<div class="box-body table-responsive no-padding">
+	
+																		<table class="table table-bordered responsive" id="WapResults">
+																			<tr id="wapAppsRow"></tr>
+																		</table>
+																		<pre class="form-group wap-json">
+																			Technologies Used
 																		</pre>
 																	</div>
 																</form>
@@ -1144,6 +1169,10 @@
 		</div>
 	</div>
 	</div>
+	</div>
+	
+	<div align='center'>
+	<input align='center' type="button" class="btn btn-primary" id="getJsonData" value="Download JSON" />
 	</div>
 </body>
 </html>

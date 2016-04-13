@@ -4,7 +4,7 @@
   "name": "Web Profiling - Cigital",
   "description": "This extension will gather scoping information for this page",
   "version": "1.0.1",
-
+  
   "browser_action": {
    "default_title": "Inspect page",
    "default_icon": "icon.png",
@@ -35,8 +35,21 @@
   	"matches"	: ["<all_urls>"],
   	"js"		: ["WebProfiling/js/retirejs/content.js"],
     "run_at"  : "document_start"
-  }],
+  }, {
+			"matches": [ "http://*/*", "https://*/*" ],
+			"js": [ "WebProfiling/js/wap/content.js" ],
+			"run_at": "document_idle"
+		}, {
+			"matches": [ "http://*/*", "https://*/*" ],
+			"js": [ "WebProfiling/js/wap/iframe.js" ],
+			"run_at": "document_start",
+			"all_frames": true
+		}],
   
+  "web_accessible_resources": [
+		"WebProfiling/js/wap/inject.js"
+	],
+	
    "content_security_policy": "script-src 'self' https://maps.googleapis.com/ style-src 'self' 'unsafe-inline' chrome-extension-resource: ; object-src 'self'",
    
    "sandbox" : {

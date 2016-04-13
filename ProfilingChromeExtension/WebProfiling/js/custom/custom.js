@@ -3,6 +3,14 @@ var windowsLocation = "";
 var map = new Object();
 var quesAnsJson;
 
+var activeProgress = {};
+activeProgress['portscan'] = false;
+activeProgress['hostinfo'] = false;
+activeProgress['crawlerscan'] = false;
+
+var activeScanStat = false;
+
+
 $(document).ready(
 		function() {
 
@@ -96,6 +104,23 @@ $(document).ready(
 			$("#getHeaders").click(function() {
 				getHeaders()
 			});
+			$("#getJsonData").click(function(){
+				download_json()
+
+			});
+			$("#startActiveScan").click(function(){
+
+				if(!activeScanStat)	{
+					activeScanStat = true;
+					$("#startActiveScan").prop('value', 'Pause');
+					activeProcess()
+					$("#btnAddProfile").prop('value', 'Star Active Scan');
+				}else {
+					$("#startActiveScan").prop('value', 'Start');
+			//activeProcess()
+			//$("#btnAddProfile").prop('value', '');
+				}
+			});
 
 			chrome.tabs.query({
 				'active' : true,
@@ -111,6 +136,26 @@ $(document).ready(
 
 			queryForResults();
 		});
+		
+function activeProcess()	{
+
+	if(!activeProgress['hostinfo'])	{
+
+		getHostInfo();
+		activeProgress['hostinfo'] = true;
+
+	}
+	if(!activeProgress['portscan'])	{
+
+		testOpenPorts();
+		activeProgress['portscan'] = true;
+	}
+	/*if(!activeProgress['crawlerscan'])	{
+
+	}*/
+
+}
+
 
 function testOpenPorts() {
 
@@ -130,7 +175,7 @@ function testOpenPorts() {
 
 					console.log("SUCCESS");
 					var test = data.openPorts;
-
+					portInfo["open_ports"] = test;
 					$("#openPorts").html("Open Ports : " + test);
 					$("#openPorts").removeClass('hide');
 				},
@@ -165,7 +210,8 @@ function getHostInfo() {
 					console.log("SUCCESS");
 					dnsMap = {};
 					var result = "Host Info<br /> Domain : " + data.domain
-							+ "<br /> IP Address : " + data.ip;
+							+ "<br /> IP Address : " + data.ip;				
+					
 					dnsMap["domain"]= data.domain;
 					dnsMap["ip"]= data.ip;
 					$.getJSON("http://ipinfo.io/" + data.ip,
@@ -175,6 +221,7 @@ function getHostInfo() {
 								dnsMap["country"]= response.country;
 								dnsMap["region"]= response.region;
 								dnsMap["city"]= response.city;
+								hostInfo = dnsMap;
 								result += "<br/> Country : " + response.country
 										+ "<br/> Region : " + response.region
 										+ "<br/> City : " + response.city;
@@ -228,10 +275,33 @@ function getHeaders() {
 	req.send(null);
 
 	var respheaders = req.getAllResponseHeaders().toLowerCase();
+	headerInfo['info'] = parseResponseHeaders(respheaders);
 	$("#headers").html(respheaders);
 	$("#headers").removeClass('hide');
 
 }
+
+function parseResponseHeaders(headerStr) {
+	var headers = {};
+	if (!headerStr) {
+		return headers;
+	}
+	var headerPairs = headerStr.split('\u000d\u000a');
+	for (var i = 0; i < headerPairs.length; i++) {
+		var headerPair = headerPairs[i];
+		// Can't use split() here because it does the wrong thing
+		// if the header value has the string ": " in it.
+		var index = headerPair.indexOf('\u003a\u0020');
+		if (index > 0) {
+			var key = headerPair.substring(0, index);
+			var val = headerPair.substring(index + 2);
+
+			headers[key] = val;
+		}
+	}
+	return headers;
+}
+
 
 function queryForResults() {
 	chrome.tabs.query({
@@ -250,6 +320,13 @@ function queryForResults() {
 function show(retireJsResult) {
 	$("#results").html("");
 	console.log("results" + retireJsResult);
+	
+	if (null != results) {
+		console.log("**************"+JSON.stringify(results));
+		retirejsop = results;
+		vulnerabilityInfo = results;
+	}
+	
 	retireJsResult.forEach(function(rs) {
 		console.log("rs" + rs);
 		rs.results.forEach(function(r) {
