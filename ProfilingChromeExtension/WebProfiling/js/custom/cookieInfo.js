@@ -5,10 +5,15 @@ function cookieInfo() {
 	if(cookieElement !== null){
 		document.getElementById("getCookieInfo").addEventListener("click",getCookieInfo);	
 	}else{
-		localStorage.clear();
-		console.log("Local Storage cleared");
-		getCookieInfo();
+		var loginInfo = document.getElementById("login");
+		loginInfo.addEventListener("click",clearLocalStorage);
 	}
+}
+
+function clearLocalStorage(){
+	localStorage.clear();
+	console.log("Local Storage cleared");
+	getCookieInfo();
 }
 
 function getCookieInfo(){
@@ -37,7 +42,6 @@ function getCookieInfo(){
 				}
             });
     });
-	console.log(cookieInfoJSON);
 }
   
 window.addEventListener("load",cookieInfo);
