@@ -46,10 +46,10 @@ function tour_formOnload(){
     content: "Crawl any script tags on the page"
   }, 
   {
-    element: "#start",
+    element: "#arguments",
     title: "Avoid Arguments",
-	prev: -1,
-	next: 1,
+	prev: 4,
+	next: 0,
     content: "Avoid Links with Arguments"
   }
 ]});
