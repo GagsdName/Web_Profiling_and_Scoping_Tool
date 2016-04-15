@@ -2,6 +2,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="shortcut icon" href="img/wb-icon.ico">
+
 <title>Web Profiling & Scoping</title>
 <meta
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
@@ -30,12 +31,12 @@
 <script type="text/javascript" src="js/custom/cookieInfo.js"></script>
 
 
+
 </head>
 
 <body>
-	
+
 	<div class="content">
-	
 		<div class="row">
 			<div class="col-sm-12">
 
@@ -48,6 +49,7 @@
 						<li class="tab"><a href="#json" data-toggle="tab"
 							aria-expanded="false">JSON</a></li>
 						<!-- Amruta stop -->
+
 						<li class="tab"><a href="#passive" data-toggle="tab"
 							aria-expanded="false">Passive</a></li>
 						<li class="tab"><a href="#active" data-toggle="tab"
@@ -61,17 +63,15 @@
 					</ul>
 
 					<div class="tab-content no-padding">
-
+<
 						<div class="chart tab-pane active" id="user-input"
 							style="position: relative;">
-
 							<div class="box custom-box-border box-primary">
 
 								<!-- /.box-header -->
 								<!-- form start -->
 								<form role="form">
 									<div class="box-body">
-
 										<div class="box-group" id="accordion">
 											<div class="panel box box-primary">
 												<div class="box-header with-border">
@@ -743,10 +743,7 @@
 
 
 										<div class="box-footer">
-											<button id="submit" type="button"
-												class="btn btn-sm btn-primary">
-												<i class="fa fa-tasks"></i> Submit
-											</button>
+											<button id="submit" type="button" class="btn btn-sm btn-primary"><i class="fa fa-tasks"></i> Submit</button>
 										</div>
 								</form>
 							</div>
@@ -763,6 +760,22 @@
 								<div class="box-body">
 									<div class="box-group" id="accordion-active">
 
+										<div class="panel box box-primary">
+											<div class="box-header with-border">
+												<h4 class="box-title">
+													<a data-toggle="collapse" data-parent="#accordion-active"
+														href="#collapseurl" aria-expanded="false"
+														class="collapsed"> Active URL </a>
+												</h4>
+											</div>
+											<div id="collapseurl" class="panel-collapse collapse"
+												aria-expanded="false" style="height: 0px;">
+												<div class="form-group">
+													<div id="windowsLocation" class="form-group wrap-string">
+													</div>
+												</div>
+											</div>
+										</div>
 										<div class="panel box box-primary">
 											<div class="box-header with-border">
 												<h4 class="box-title">
@@ -879,8 +892,8 @@
 														</p>
 
 														<p>
-															<input type="button" class="btn btn-sm btn-primary"
-																value="Go" id="siteSpiderGo">
+															<input type="button" class="btn btn-sm btn-primary" value="Go"
+																id="siteSpiderGo">
 														</p>
 													</div>
 												</div>
@@ -932,7 +945,9 @@
 										</div>
 										<div id="collapseheaders" class="panel-collapse collapse"
 											aria-expanded="false" style="height: 0px;">
-
+											<div id="windowsLocation" class="form-group wrap-string">
+											</div>
+											
 											<div id="headers" class="form-group hide"></div>
 										</div>
 									</div>
@@ -946,6 +961,8 @@
 										</div>
 										<div id="collapsewap" class="panel-collapse collapse"
 											aria-expanded="false" style="height: 0px;">
+											<div id="windowsLocation" class="form-group wrap-string">
+											</div>
 
 											<table class="table table-bordered responsive"
 												id="WapResults">
@@ -959,8 +976,6 @@
 						</form>
 					</div>
 				</div>
-
-
 				<!-- Amruta  start -->
 				<div class="chart tab-pane " id="json" style="position: relative">
 					<div class="box custom-box-border box-primary">
@@ -976,7 +991,7 @@
 											<h4 class="box-title">
 												<a data-toggle="collapse" data-parent="#accordion-json"
 													href="#collapseformjson" aria-expanded="false"
-													class="collapsed"> User Input </a>
+													class="collapsed"> User Input Form JSON </a>
 											</h4>
 										</div>
 										<div id="collapseformjson" class="panel-collapse collapse"
@@ -994,7 +1009,7 @@
 											<h4 class="box-title">
 												<a data-toggle="collapse" data-parent="#accordion-json"
 													href="#collapseactivejson" aria-expanded="false"
-													class="collapsed"> Active Functions</a>
+													class="collapsed"> Active Tab JSON </a>
 											</h4>
 										</div>
 										<div id="collapseactivejson" class="panel-collapse collapse"
@@ -1088,7 +1103,7 @@
 											<h4 class="box-title">
 												<a data-toggle="collapse" data-parent="#accordion-json"
 													href="#collapsepassivejson" aria-expanded="false"
-													class="collapsed"> Passive Functions </a>
+													class="collapsed"> Passive Tab JSON </a>
 											</h4>
 										</div>
 										<div id="collapsepassivejson" class="panel-collapse collapse"
@@ -1103,9 +1118,8 @@
 
 														<li class="tab active"><a href="#vultabjson"
 															data-toggle="tab" aria-expanded="true">Vulnerability</a></li>
-														<li class="tab"><a href="#headtabjson"
-															class="getHeaders" data-toggle="tab"
-															aria-expanded="false">Headers</a></li>
+														<li class="tab"><a href="#headtabjson" class="getHeaders"
+															data-toggle="tab" aria-expanded="false">Headers</a></li>
 
 													</ul>
 
@@ -1156,27 +1170,15 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="col-sm-12" align="center">
-			<button type="button" class="btn btn-sm btn-primary" id="getJsonData">
-				<i class="fa fa-download"></i> Download JSON
-			</button>
-			<a id="jsonDownloadLink"></a>
+			<button type="button" class="btn btn-sm btn-primary"
+				id="getJsonData"><i class="fa fa-download"></i>
+				Download JSON
+				</button>
+				<a id="jsonDownloadLink"></a>
 		</div>
 	</div>
-	<div class="row-fluid content-footer">
-			<div class="col-sm-12">
-
-				Current URL:
-
-				<div id="windowsLocation" class="form-group wrap-string"></div>
-
-			</div>
-		</div>
-
-	</div>
-	</div>
-
 </body>
 </html>
