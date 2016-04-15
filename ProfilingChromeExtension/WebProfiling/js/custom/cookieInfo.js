@@ -12,18 +12,15 @@ function cookieInfo() {
 
 function clearLocalStorage(){
 	localStorage.clear();
-	console.log("Local Storage cleared");
 	getCookieInfo();
 }
 
 function getCookieInfo(){
 	var element = {};
 	if(localStorage.getItem("cookieInfo") !== null){
-		console.log("Local storage available");
 		element.login = true;
 		cookieInfoJSON['Cookies before login'] = JSON.parse(localStorage.getItem("cookieInfo"));
 	}else{
-		console.log("Local storage not available");
 		element.login = false;
 	}
     chrome.tabs.query({"status":"complete","windowId":chrome.windows.WINDOW_ID_CURRENT,"active":true}, function(tab){
@@ -34,12 +31,12 @@ function getCookieInfo(){
 					allCookieInfo.push(cookie[i]);
 				}
 				element.cookies = allCookieInfo;
-				console.log(element);
 				localStorage.setItem("cookieInfo",JSON.stringify(element));
-				console.log(localStorage.getItem("cookieInfo"));
 				if(element.login == true){
 					cookieInfoJSON['Cookies after login'] = element;
+					jsonOutput($(".cookie-json"), cookieInfoJSON);
 				}
+				
             });
     });
 }
