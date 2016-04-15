@@ -104,6 +104,8 @@ $(document).ready(
 			$(".getHeaders").click(function() {
 				getHeaders()
 			});
+		
+			
 			$("#getJsonData").click(function(){
 				download_json()
 
@@ -280,6 +282,8 @@ function getHeaders() {
 	$("#headers").removeClass('hide');
 	jsonOutput($(".header-json"), headerInfo['info']); 
 }
+
+
 
 function parseResponseHeaders(headerStr) {
 	var headers = {};

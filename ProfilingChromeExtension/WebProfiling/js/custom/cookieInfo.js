@@ -1,5 +1,5 @@
 var cookieInfoJSON = {};
-
+var cookies = [];
 function cookieInfo() {
 	var cookieElement = document.getElementById("getCookieInfo");
 	if(cookieElement !== null){
@@ -10,6 +10,8 @@ function cookieInfo() {
 	}
 }
 
+
+
 function clearLocalStorage(){
 	localStorage.clear();
 	getCookieInfo();
@@ -19,7 +21,9 @@ function getCookieInfo(){
 	var element = {};
 	if(localStorage.getItem("cookieInfo") !== null){
 		element.login = true;
+		cookies.push(localStorage.getItem("cookieInfo"));
 		cookieInfoJSON['Cookies before login'] = JSON.parse(localStorage.getItem("cookieInfo"));
+		
 	}else{
 		element.login = false;
 	}
@@ -31,14 +35,21 @@ function getCookieInfo(){
 					allCookieInfo.push(cookie[i]);
 				}
 				element.cookies = allCookieInfo;
+				
 				localStorage.setItem("cookieInfo",JSON.stringify(element));
 				if(element.login == true){
+					cookies.push(JSON.stringify(element));
 					cookieInfoJSON['Cookies after login'] = element;
 					jsonOutput($(".cookie-json"), cookieInfoJSON);
+					
 				}
-				
+				 	$("#cookieInfo").addClass('hide');
+					$("#cookieInfo").html(cookies[0] + "</br></br>" + cookies[1]);
+					$("#cookieInfo").removeClass('hide');
             });
+           
     });
+    
 }
   
 window.addEventListener("load",cookieInfo);
