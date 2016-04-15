@@ -1,6 +1,6 @@
 var windowsLocation = "";
 // Amruta - start
-var map = new Object();
+var userInputMap = new Object();
 var quesAnsJson;
 
 var activeProgress = {};
@@ -74,12 +74,12 @@ $(document).ready(
 
 											if ($(this).next('input').is(
 													'input:text')) {
-												map[$(this).text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this)
+												userInputMap[$(this).text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this)
 														.next('input').val();
 
 											} else if ($(this).next('input')
 													.is('input:radio')) {
-												map[$(this).text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this)
+												userInputMap[$(this).text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this)
 														.next('input:checked')
 														.val();
 
@@ -89,7 +89,7 @@ $(document).ready(
 										})
 
 										$('.form-json').removeClass('hide');
-										jsonOutput($('.form-json'),map);
+										jsonOutput($('.form-json'),userInputMap);
 					});
 			// Amruta - stop
 
@@ -104,7 +104,6 @@ $(document).ready(
 			$(".getHeaders").click(function() {
 				getHeaders()
 			});
-		
 			
 			$("#getJsonData").click(function(){
 				download_json()
