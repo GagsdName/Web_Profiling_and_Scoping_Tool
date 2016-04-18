@@ -316,8 +316,10 @@ function queryForResults() {
 		chrome.tabs.sendMessage(tabs[0].id, {
 			getDetected : 1
 		}, function(response) {
-			show(response);
-			console.log(response);
+			if(response != undefined){
+				show(response);
+				//console.log(response);
+			}
 		});
 	});
 }
