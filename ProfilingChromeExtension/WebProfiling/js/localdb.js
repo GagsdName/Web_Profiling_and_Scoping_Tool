@@ -198,8 +198,6 @@ function clearUserInput() {
 			$(this).nextAll('input').each(function(){
 			    $(this).attr('checked',false);
 			});
-		}
-		;
-
+		};
 	})
 }
