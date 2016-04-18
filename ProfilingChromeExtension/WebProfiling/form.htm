@@ -819,12 +819,14 @@
 												aria-expanded="false" style="height: 0px;">
 												<div class="form-group"></div>
 												<div class="row">
-												<div class="col-sm-12">
+													<div class="col-sm-12">
 
-													<input type="button" class="btn btn-sm btn-primary cookie-info"
-														id="getCookieInfo" value="Get Cookie" /> </br>
-														<div id="cookieInfo" style="overflow-x:scroll" class="form-group wrap-text hide"></div>
-												</div>
+														<input type="button"
+															class="btn btn-sm btn-primary cookie-info"
+															id="getCookieInfo" value="Get Cookie" /> </br>
+														<div id="cookieInfo" style="overflow-x: scroll"
+															class="form-group wrap-text hide"></div>
+													</div>
 												</div>
 											</div>
 
@@ -833,8 +835,10 @@
 											<div class="box-header with-border">
 												<h4 class="box-title">
 													<a data-toggle="collapse" data-parent="#accordion-active"
-														href="#collapsecrawler" onclick="tour_formOnload(); return false;" aria-expanded="false"
-														class="collapsed" id="spiderButton"> Web Crawler</a>
+														href="#collapsecrawler"
+														onclick="tour_formOnload(); return false;"
+														aria-expanded="false" class="collapsed" id="spiderButton">
+														Web Crawler</a>
 												</h4>
 											</div>
 											<div id="collapsecrawler" class="panel-collapse collapse"
@@ -1162,12 +1166,35 @@
 		<div class="col-sm-12" align="center">
 			<button type="button" class="btn btn-sm btn-primary" id="getJsonData">
 				<i class="fa fa-download"></i> Download JSON
-			</button>			
+			</button>
 			<a id="jsonDownloadLink"></a>
-			<button type="button" class="btn btn-sm btn-primary" id="clearLocalDB">
+
+			<button type="button" class="btn btn-sm btn-primary"
+				data-toggle="modal" data-target="#myModal">
 				<i class="fa fa-download"></i> Clear
 			</button>
-			<button type="button" class="btn btn-sm btn-primary" id="updateLocalDB">
+
+
+			<!-- Modal -->
+			<div class="modal fade bs-example-modal-sm" id="myModal"
+				tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog modal-sm" role="document">
+					<div class="modal-content">
+
+						<div class="modal-body">Do you want to clear all data?</div>
+						<div class="modal-footer">
+
+							<button type="button" id="clearLocalDB" data-dismiss="modal"
+								class="btn btn-primary">Yes</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">No</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<button type="button" class="btn btn-sm btn-primary"
+				id="updateLocalDB">
 				<i class="fa fa-download"></i> Update
 			</button>
 		</div>
