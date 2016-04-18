@@ -11,11 +11,6 @@ $(function() {
 				localdb.dropTables();
 				clearUserInput();
 			});
-
-			$('#updateLocalDB').on('click', function() {
-				localdb.updateSetting();
-			});
-
 		},
 
 		initDatabase : function() {

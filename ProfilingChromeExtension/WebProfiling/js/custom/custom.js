@@ -14,9 +14,18 @@ var activeScanStat = false;
 $(document).ready(
 		function() {
 			localdb.selectAll();
+			initializeUserInputMap();
+			 $("input:text").change(function (){
+				 userInputMap[$(this).closest("div").find(".question").text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this).val();
+				 localdb.updateSetting();
+				 
+			 });
+			 
+			 
+			 
 			$("input:radio").click(
 					function() {
-
+						
 						if ($(this).hasClass("open-fs")) {
 							if ($(this).hasClass("open-first")) {
 								$(this).closest('.form-group').next()
@@ -62,36 +71,18 @@ $(document).ready(
 							}
 
 						}
+						
+						userInputMap[$(this).closest("div").find(".question").text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this).val();
+						localdb.updateSetting();
 
 					});
 			// Amruta - stop
 			// Amruta - start
 			$("#submit").click(
 					function() {
-						$('.form-group').find('.question')
-								.each(
-										function() {
 
-											if ($(this).next('input').is(
-													'input:text')) {
-												userInputMap[$(this).text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this)
-														.next('input').val();
-
-											} else if ($(this).next('input')
-													.is('input:radio')) {
-												currQues = $(this).text().replace(/\t/g, '').replace(/\n/g, ' ');
-												$(this).nextAll('input').each(function(){
-												    if ($(this).is(':checked'))  {
-												    	userInputMap[currQues] = $(this).val();
-												    }
-												});
-											}
-											;
-
-										})
-
-										$('.form-json').removeClass('hide');
-										jsonOutput($('.form-json'),userInputMap);
+						$('.form-json').removeClass('hide');
+						jsonOutput($('.form-json'),userInputMap);
 					});
 			// Amruta - stop
 
@@ -411,4 +402,28 @@ function sendMessage(message, data, callback) {
 	}, function(response) {
 		callback && callback(response)
 	});
+}
+
+function initializeUserInputMap(){
+	
+	$('.form-group').find('.question')
+	.each(
+			function() {
+
+				if ($(this).next('input').is(
+						'input:text')) {
+					userInputMap[$(this).text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this)
+							.next('input').val();
+
+				} else if ($(this).next('input')
+						.is('input:radio')) {
+					currQues = $(this).text().replace(/\t/g, '').replace(/\n/g, ' ');
+					$(this).nextAll('input').each(function(){
+					    if ($(this).is(':checked'))  {
+					    	userInputMap[currQues] = $(this).val();
+					    }
+					});
+				};
+
+			});
 }
