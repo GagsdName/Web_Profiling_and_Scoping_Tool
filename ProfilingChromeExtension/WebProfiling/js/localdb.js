@@ -200,8 +200,9 @@ function clearUserInput() {
 			$(this).next('input').val("");
 
 		} else if ($(this).next('input').is('input:radio')) {
-			$(this).next('input:checked').val("");
-
+			$(this).nextAll('input').each(function(){
+			    $(this).attr('checked',false);
+			});
 		}
 		;
 
