@@ -13,7 +13,7 @@ var activeScanStat = false;
 
 $(document).ready(
 		function() {
-
+			localdb.selectAll();
 			$("input:radio").click(
 					function() {
 
@@ -68,7 +68,7 @@ $(document).ready(
 			// Amruta - start
 			$("#submit").click(
 					function() {
-						$('.form-group').find('label')
+						$('.form-group').find('.question')
 								.each(
 										function() {
 
@@ -79,10 +79,12 @@ $(document).ready(
 
 											} else if ($(this).next('input')
 													.is('input:radio')) {
-												userInputMap[$(this).text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this)
-														.next('input:checked')
-														.val();
-
+												currQues = $(this).text().replace(/\t/g, '').replace(/\n/g, ' ');
+												$(this).nextAll('input').each(function(){
+												    if ($(this).is(':checked'))  {
+												    	userInputMap[currQues] = $(this).val();
+												    }
+												});
 											}
 											;
 

@@ -26,6 +26,7 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/custom/popupOnload.js"></script>
 <script src="js/bootstrap-tour.min.js"></script>
+<script type="text/javascript" src="js/localdb.js"></script>
 <script type="text/javascript" src="js/custom/custom.js"></script>
 <script type="text/javascript" src="js/custom/cookieInfo.js"></script>
 
@@ -39,7 +40,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 
-				<div class="nav-tabs-custom" style="cursor: move;">
+				<div class="nav-tabs-custom">
 					<!-- Tabs within a box -->
 					<ul class="nav nav-tabs pull-right ui-sortable-handle">
 
@@ -1161,8 +1162,14 @@
 		<div class="col-sm-12" align="center">
 			<button type="button" class="btn btn-sm btn-primary" id="getJsonData">
 				<i class="fa fa-download"></i> Download JSON
-			</button>
+			</button>			
 			<a id="jsonDownloadLink"></a>
+			<button type="button" class="btn btn-sm btn-primary" id="clearLocalDB">
+				<i class="fa fa-download"></i> Clear
+			</button>
+			<button type="button" class="btn btn-sm btn-primary" id="updateLocalDB">
+				<i class="fa fa-download"></i> Update
+			</button>
 		</div>
 	</div>
 	<div class="row-fluid content-footer">

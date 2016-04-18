@@ -7,7 +7,6 @@ function pageLoaded() {
 	};
 	}
 function tour_formOnload(){
-//alert("yha bhi ");
 	var tour = new Tour({
   steps: [
   {
