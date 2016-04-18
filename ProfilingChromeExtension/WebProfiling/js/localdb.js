@@ -1,5 +1,4 @@
 var localdb;
-var isFirstTime = false;
 $(function() {
 
 	localdb = {
