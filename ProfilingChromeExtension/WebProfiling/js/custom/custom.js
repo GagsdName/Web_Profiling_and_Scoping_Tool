@@ -12,16 +12,16 @@ var activeScanStat = false;
 
 
 $(document).ready(
-		function() {
+		function() {			
+			
 			localdb.selectAll();
 			initializeUserInputMap();
+			
 			 $("input:text").change(function (){
 				 userInputMap[$(this).closest("div").find(".question").text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this).val();
 				 localdb.updateSetting();
 				 
 			 });
-			 
-			 
 			 
 			$("input:radio").click(
 					function() {

@@ -1,4 +1,5 @@
 var localdb;
+var isFirstTime = false;
 $(function() {
 
 	localdb = {
@@ -100,13 +101,12 @@ $(function() {
 
 				row = results.rows.item(i);
 				usrInMap = $.parseJSON(row['jsonString']);
-				console.log(usrInMap);
-
-				//				var objKeys = $.map(usrInMap, function(value, key) {
-				//					map[key] = value;
-				//				});
-				prePopulateUserInput(usrInMap);
-
+				if(usrInMap != undefined && usrInMap != "none"){
+					userInputMap = usrInMap;
+					console.log(usrInMap);
+					prePopulateUserInput(usrInMap);
+				}
+				
 			}
 		},
 
