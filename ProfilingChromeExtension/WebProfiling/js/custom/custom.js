@@ -99,7 +99,13 @@ $(document).ready(
 			});
 			
 			$("#getJsonData").click(function(){
-				download_json()
+				if($.trim($("#txtName").val()) == ""){
+					$(".message-global").text("  *Please enter application name.");
+					$(".message-global").removeClass("hide");
+					setTimeout(hideGlobalMessage,3000);
+					return false;
+				}
+				download_json($.trim($("#txtName").val()).replace(/ /g, '_'));
 
 			});
 			$("#startActiveScan").click(function(){
@@ -428,4 +434,8 @@ function initializeUserInputMap(){
 				};
 
 			});
+}
+
+function hideGlobalMessage(){
+	$(".message-global").addClass("hide");
 }

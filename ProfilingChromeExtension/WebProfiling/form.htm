@@ -4,7 +4,7 @@
 <link rel="shortcut icon" href="img/wb-icon.ico">
 <title>Web Profiling & Scoping</title>
 <meta
-	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
+	content='width=device-width, height=400px, initial-scale=1, maximum-scale=1, user-scalable=no'
 	name='viewport'>
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -81,6 +81,7 @@
 															href="#collapseOne" aria-expanded="false"
 															class="collapsed"> General Questions </a>
 													</h4>
+													<span class="message-global error hide"></span>
 												</div>
 												<div id="collapseOne" class="panel-collapse collapse"
 													aria-expanded="false" style="height: 0px;">
@@ -1161,7 +1162,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<div class="row">
 		<div class="col-sm-12" align="center">
 			<button type="button" class="btn btn-sm btn-primary" id="getJsonData">
@@ -1170,13 +1171,13 @@
 			<a id="jsonDownloadLink"></a>
 
 			<button type="button" class="btn btn-sm btn-primary"
-				data-toggle="modal" data-target="#myModal">
+				data-toggle="modal" data-target="#clearModal">
 				<i class="glyphicon glyphicon-refresh"></i> Clear
 			</button>
 
 
-			<!-- Modal -->
-			<div class="modal fade bs-example-modal-sm" id="myModal"
+			<!-- Modal For Clear -->
+			<div class="modal fade bs-example-modal-sm" id="clearModal"
 				tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				<div class="modal-dialog modal-sm" role="document">
 					<div class="modal-content">
@@ -1192,7 +1193,7 @@
 					</div>
 				</div>
 			</div>
-
+			
 		</div>
 	</div>
 	<div class="row-fluid content-footer">

@@ -32,7 +32,7 @@ function reset() {
 
 }
 
-function download_json() {
+function download_json(fileName) {
 
     //var wapData = document.getElementsByName("wapJson").value;
     console.log("APP List"+JSON.stringify(appList));
@@ -43,7 +43,7 @@ function download_json() {
     var downloadLink = document.getElementById('jsonDownloadLink');
 
     downloadLink.href = 'data:' + data;
-    downloadLink.download = 'WPST.json';
+    downloadLink.download = fileName+".json";
 
     downloadLink.click();
 
