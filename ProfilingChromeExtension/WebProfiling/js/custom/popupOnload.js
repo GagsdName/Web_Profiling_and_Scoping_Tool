@@ -1,13 +1,11 @@
+var tour;
 function pageLoaded() {
     document.getElementById("siteSpiderGo").addEventListener("click",clickGo);
     chrome.extension.getBackgroundPage().popupLoaded(document);
-	var spiderbutton = document.getElementById('spiderButton');
-	spiderButton.onclick=function(){
-	tour_formOnload();
-	};
+	
 	}
 function tour_formOnload(){
-	var tour = new Tour({
+	tour = new Tour({
   steps: [
   {
     element: "#start",

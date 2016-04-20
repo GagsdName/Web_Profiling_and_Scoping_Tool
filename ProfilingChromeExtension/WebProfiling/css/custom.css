@@ -1,5 +1,11 @@
 @CHARSET "UTF-8";
 /*Amruta*/
+html{
+    height: 400px;
+    max-height: 400px;
+    width: 100%;
+    overflow: scroll;
+}
 .custom-box-border {
 	border-top: 1px #22262D solid !important;
 }
