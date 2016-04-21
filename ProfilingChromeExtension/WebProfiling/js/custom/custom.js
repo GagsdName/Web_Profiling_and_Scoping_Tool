@@ -164,6 +164,7 @@ $(document).ready(
 			$("#siteSpiderStop").click(function(){
 				if( $("#siteSpiderStop").val() == "Stop" ){
 					$("#siteSpiderStop").val("Stopped");
+					$("#siteSpiderPause").addClass("hide");
 			    }
 			    chrome.runtime.sendMessage({
 			        stop: $("#siteSpiderStop").val()
