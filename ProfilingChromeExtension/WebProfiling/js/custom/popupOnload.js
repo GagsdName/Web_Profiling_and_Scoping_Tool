@@ -60,7 +60,10 @@ tour.init(true);
 }
 function clickGo() {
     chrome.extension.getBackgroundPage().popupGo();
-    window.close();
+    $("#siteSpiderStop").removeClass('hide');
+    $("#siteSpiderPause").removeClass('hide');
+    $("#siteSpiderStop").val('Stop');
+    $("#siteSpiderPause").val('Pause');
 }
   
 window.addEventListener("load",pageLoaded);

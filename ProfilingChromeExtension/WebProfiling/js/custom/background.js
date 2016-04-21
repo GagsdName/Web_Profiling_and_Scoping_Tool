@@ -199,7 +199,7 @@ function popupGo() {
     }
 
     // Open a tab for the results.
-    chrome.tabs.create({
+    chrome.tabs.create({'selected' : false,
         url: 'WebProfiling/results.html'
     }, resultsLoadCallback_);
 }
@@ -423,7 +423,7 @@ chrome.extension.onMessage.addListener(
         }
         if ('stop' in request) {
             if(started){
-                if (request.stop =="Stopping"){
+                if (request.stop =="Stopped"){
                     setStatus("Stopped");
                     chrome.tabs.sendMessage(resultsTab.id, {
                         method:"getElementById",

@@ -11,9 +11,6 @@ var helpButton = document.getElementById('help');
 }
 
 function tour_onload(){
-// Instance the tour
-//document.getElementById("pauseSpider").click();
-alert("Yeah");
 	
 	var tour1 = new Tour({
   steps: [
@@ -65,7 +62,7 @@ function messageDispatch(request, sender, sendResponse) {
 }
 function clickStop() {
     if( document.getElementById("stopSpider").value == "Stop" ){
-        document.getElementById("stopSpider").value="Stopping";
+        document.getElementById("stopSpider").value="Stopped";
     }
     chrome.runtime.sendMessage({
         stop: document.getElementById("stopSpider").value

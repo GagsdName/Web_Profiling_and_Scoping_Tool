@@ -12,7 +12,8 @@ var activeScanStat = false;
 
 
 $(document).ready(
-		function() {			
+		function() {
+			
 			$("body").click(function(evt){
 				if(evt.target.id == "crawlerPanel" || evt.target.id == "activeTab" || evt.target.class == "tour-tour")
 			          return;
@@ -23,8 +24,10 @@ $(document).ready(
 					tour.end();
 				}
 			});
+			
 			localdb.selectAll();
 			initializeUserInputMap();
+			
 			$("#startTourInfo").click(function(e){
 				tour_formOnload(); 
 			});
@@ -157,6 +160,26 @@ $(document).ready(
 			// json - add data
 
 			queryForResults();
+			
+			$("#siteSpiderStop").click(function(){
+				if( $("#siteSpiderStop").val() == "Stop" ){
+					$("#siteSpiderStop").val("Stopped");
+			    }
+			    chrome.runtime.sendMessage({
+			        stop: $("#siteSpiderStop").val()
+			    });
+			});
+			$("#siteSpiderPause").click(function(){
+				if( $("#siteSpiderPause").val() == "Pause" ){
+					$("#siteSpiderPause").val("Resume");
+			    }else{
+			    	$("#siteSpiderPause").val("Pause");
+			    }
+			    chrome.runtime.sendMessage({
+			        pause: $("#siteSpiderPause").val()
+			    });
+			});
+			 
 		});
 		
 function activeProcess()	{
