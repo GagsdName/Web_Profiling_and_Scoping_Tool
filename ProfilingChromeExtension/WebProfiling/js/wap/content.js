@@ -36,7 +36,7 @@
 				script = document.createElement('script');
 
 				script.setAttribute('id', 'wappalyzerEnvDetection');
-				script.setAttribute('src', chrome.extension.getURL('js/wap/inject.js'));
+				script.setAttribute('src', chrome.extension.getURL('js/inject.js'));
 
 				container.addEventListener('wappalyzerEvent', (function(event) {
 					var environmentVars = event.target.childNodes[0].nodeValue;

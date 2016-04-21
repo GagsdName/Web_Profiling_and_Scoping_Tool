@@ -33,7 +33,7 @@
    
     "content_scripts" : [{
   	"matches"	: ["<all_urls>"],
-  	"js"		: ["WebProfiling/js/retirejs/content.js"],
+  	"js"		: ["WebProfiling/js/wap/content.js"],
     "run_at"  : "document_start"
   }, {
 			"matches": [ "http://*/*", "https://*/*" ],

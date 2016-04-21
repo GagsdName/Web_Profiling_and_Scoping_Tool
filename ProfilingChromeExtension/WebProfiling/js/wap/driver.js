@@ -2,17 +2,6 @@
  * Chrome driver
  */
 
-var appList = [];
-var currentURL;
-
-chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
-	function(tabs){
-		console.log(tabs[0].url);
-		currentURL = tabs[0].url.replace(/#.*$/, '');
-
-
-	}
-);
 (function() {
 	if ( wappalyzer == null ) {
 		return;
@@ -30,7 +19,7 @@ chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT}
 		 * Log messages to console
 		 */
 		log: function(args) {
-			//console.log(args.message);
+			console.log(args.message);
 		},
 
 		/**
@@ -66,7 +55,7 @@ chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT}
 					for ( option in defaults ) {
 						localStorage[option] = defaults[option];
 					}
-				} else if ( version !== localStorage['version'] && parseInt(localStorage['upgradeMessage'], 10) ) {
+				} else if ( version !== localStorage['version'] && localStorage['upgradeMessage'] ) {
 					upgraded = true;
 				}
 
@@ -160,13 +149,13 @@ chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT}
 			}, { urls: [ 'http://*/*', 'https://*/*' ], types: [ 'main_frame' ] }, [ 'responseHeaders' ]);
 
 			if ( firstRun ) {
-				//w.driver.goToURL({ url: w.config.websiteURL + 'installed', medium: 'install' });
+				w.driver.goToURL({ url: w.config.websiteURL + 'installed', medium: 'install' });
 
 				firstRun = false;
 			}
 
 			if ( upgraded ) {
-				//w.driver.goToURL({ url: w.config.websiteURL + 'upgraded', medium: 'upgrade', background: true });
+				w.driver.goToURL({ url: w.config.websiteURL + 'upgraded', medium: 'upgrade', background: true });
 
 				upgraded = false;
 			}
@@ -182,18 +171,10 @@ chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT}
 		 * Display apps
 		 */
 		displayApps: function() {
-			
-			appList = [];
 			var
-				//url   = tab.url.replace(/#.*$/, ''),
-				url   = currentURL.replace(/#.*$/, ''),
+				url   = tab.url.replace(/#.*$/, ''),
 				count = w.detected[url] ? Object.keys(w.detected[url]).length.toString() : '0';
 
-
-
-			
-				//console.clear();
-				//console.log("***********Applications used by: "+url);
 			if ( tabCache[tab.id] == null ) {
 				tabCache[tab.id] = {
 					count: 0,
@@ -204,23 +185,15 @@ chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT}
 			tabCache[tab.id].count        = count;
 			tabCache[tab.id].appsDetected = w.detected[url];
 
-			
-
 			if ( count > 0 ) {
 				// Find the main application to display
 				var i, appName, found = false;
 
 				w.driver.categoryOrder.forEach(function(match) {
 					for ( appName in w.detected[url] ) {
-						//chrome.extension.getBackgroundPage().console.log('foo');
-						appList.pushIfNotExist(appName, function(e) { 
-							return e === appName; 
-						});
 						w.apps[appName].cats.forEach(function(cat) {
-							//console.log(appName);
 							if ( cat == match && !found ) {
-								//chrome.pageAction.setIcon({ tabId: tab.id, path: 'images/icons/' + w.apps[appName].icon });
-									
+								chrome.pageAction.setIcon({ tabId: tab.id, path: 'images/icons/' + w.apps[appName].icon });
 
 								found = true;
 							}
@@ -228,18 +201,8 @@ chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT}
 					}
 				});
 
-				//chrome.pageAction.show(tab.id);
+				chrome.pageAction.show(tab.id);
 			};
-
-			var wapTabs = document.getElementById("WapResults");
-			var tabInner = "";
-			for(var i = 0; i < appList.length; i++)	{
-				//console.log(appList[i]);
-				tabInner += "<tr></tr><td>"+ (i + 1) + ". " +appList[i] +".</td></tr>";
-			}
-
-			wapTabs.innerHTML = tabInner;
-			//console.log("************************************");
 		},
 
 		/**
@@ -328,15 +291,3 @@ chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT}
 
 	w.init();
 }());
-
-Array.prototype.pushIfNotExist = function(element, comparer) { 
-    if (!this.inArray(comparer)) {
-        this.push(element);
-    }
-}; 
-Array.prototype.inArray = function(comparer) { 
-    for(var i=0; i < this.length; i++) { 
-        if(comparer(this[i])) return true; 
-    }
-    return false; 
-}; 
