@@ -15,6 +15,10 @@ html{
 	bottom: 0px;
 	position: relative;
 }
+.message{
+	    height: 20px;
+	    padding-left: 15px;
+}
 
 pre {
 	border-radius: 0px;
