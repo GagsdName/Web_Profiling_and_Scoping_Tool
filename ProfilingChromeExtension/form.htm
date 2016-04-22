@@ -40,8 +40,7 @@
 	src="WebProfiling/js/custom/popupOnload.js"></script>
 <script type="text/javascript" src="WebProfiling/js/localdb.js"></script>
 <script type="text/javascript" src="WebProfiling/js/custom/custom.js"></script>
-<script type="text/javascript"
-	src="WebProfiling/js/custom/cookieInfo.js"></script>
+<script type="text/javascript" src="WebProfiling/js/custom/cookieInfo.js"></script>
 
 
 </head>
@@ -821,31 +820,6 @@
 											</div>
 										</div>
 
-										<div class="panel box box-primary">
-
-											<div class="box-header with-border">
-												<h4 class="box-title">
-													<a data-toggle="collapse" data-parent="#accordion-active"
-														href="#collapsecookie" aria-expanded="false"
-														class="collapsed"> Cookie Information </a>
-												</h4>
-											</div>
-											<div id="collapsecookie" class="panel-collapse collapse"
-												aria-expanded="false" style="height: 0px;">
-												<div class="form-group"></div>
-												<div class="row">
-													<div class="col-sm-12">
-
-														<input type="button"
-															class="btn btn-sm btn-primary cookie-info"
-															id="getCookieInfo" value="Get Cookie" /> </br>
-														<div id="cookieInfo" style="overflow-x: scroll"
-															class="form-group wrap-text hide"></div>
-													</div>
-												</div>
-											</div>
-
-										</div>
 										<div class="panel box box-primary" id="crawlerPanel">
 											<div class="box-header with-border">
 												<h4 class="box-title">
@@ -979,6 +953,26 @@
 										</div>
 									</div>
 									<div class="panel box box-primary">
+
+											<div class="box-header with-border">
+												<h4 class="box-title">
+													<a data-toggle="collapse" data-parent="#accordion-active"
+														href="#collapsecookie" aria-expanded="false"
+														class="collapsed"> Cookie Information </a>
+												</h4>
+											</div>
+											<div id="collapsecookie" class="panel-collapse collapse"
+												aria-expanded="false" style="height: 0px;">
+												<div class="form-group"></div>
+												<div class="row">
+													<div class="col-sm-12">
+														<div id="cookieInfo" style="overflow-x: scroll"
+															class="form-group wrap-text hide"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									<div class="panel box box-primary">
 										<div class="box-header with-border">
 											<h4 class="box-title">
 												<a data-toggle="collapse" data-parent="#accordion-passive"
@@ -1049,8 +1043,6 @@
 															data-toggle="tab" aria-expanded="true">Ports</a></li>
 														<li class="tab"><a href="#hosttabjson"
 															data-toggle="tab" aria-expanded="false">DNS</a></li>
-														<li class="tab"><a href="#cookietabjson"
-															data-toggle="tab" aria-expanded="false">Cookies</a></li>
 														<li class="tab"><a href="#crawlertabjson"
 															data-toggle="tab" aria-expanded="false">Crawler</a></li>
 													</ul>
@@ -1078,19 +1070,6 @@
 																<form role="form">
 																	<div class="box-body">
 																		<pre class="form-group host-json">Yet to fetch data.
-																</pre>
-																	</div>
-																</form>
-															</div>
-														</div>
-
-														<div class="chart tab-pane" id="cookietabjson"
-															style="position: relative;">
-															<div class="box custom-box-border box-primary">
-
-																<form role="form">
-																	<div class="box-body">
-																		<pre class="form-group cookie-json">Yet to fetch data.
 																</pre>
 																	</div>
 																</form>
@@ -1139,7 +1118,8 @@
 														<li class="tab"><a href="#headtabjson"
 															class="getHeaders" data-toggle="tab"
 															aria-expanded="false">Headers</a></li>
-
+														<li class="tab"><a href="#cookietabjson"
+															data-toggle="tab" aria-expanded="false">Cookies</a></li>
 													</ul>
 
 													<div class="tab-content no-padding">
@@ -1158,7 +1138,19 @@
 															</div>
 														</div>
 
+														<div class="chart tab-pane" id="cookietabjson"
+															style="position: relative;">
+															<div class="box custom-box-border box-primary">
 
+																<form role="form">
+																	<div class="box-body">
+																		<pre class="form-group cookie-json">Yet to fetch data.
+																</pre>
+																	</div>
+																</form>
+															</div>
+														</div>
+														
 														<div class="chart tab-pane" id="headtabjson"
 															style="position: relative;">
 															<div class="box custom-box-border box-primary">
