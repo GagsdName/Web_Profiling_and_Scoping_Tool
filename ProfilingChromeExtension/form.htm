@@ -16,15 +16,20 @@
 	type="text/css" />
 <link href="WebProfiling/css/custom.css" rel="stylesheet"
 	type="text/css">
+<link href="WebProfiling/css/loadanim.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript" src="WebProfiling/js/jquery.min.js"></script>
 <script type="text/javascript"
 	src="WebProfiling/js/jquery-ui-1.10.3.min.js"></script>
 <script type="text/javascript" src="WebProfiling/js/googleapis.js"></script>
 <script type="text/javascript" src="WebProfiling/js/gmaps.js"></script>
+
 <script src="WebProfiling/js/wap/ga.js"></script>
-		<script src="WebProfiling/js/wap/popup.js"></script>
-		<script src="WebProfiling/js/wap/i18n.js"></script>
+<script src="WebProfiling/js/wap/popup.js"></script>
+<script src="WebProfiling/js/wap/i18n.js"></script>
+
+<script src="WebProfiling/js/loadanim.js"></script>
+
 <script type="text/javascript"
 	src="WebProfiling/js/jsonUtility/jsonUtility.js"></script>
 <script type="text/javascript"
@@ -772,33 +777,13 @@
 							<form role="form">
 								<div class="box-body">
 									<div class="box-group" id="accordion-active">
-
-										<div class="panel box box-primary">
-											<div class="box-header with-border">
-												<h4 class="box-title">
-													<a data-toggle="collapse" data-parent="#accordion-active"
-														href="#collapseports" aria-expanded="false"
-														class="collapsed"> Port-Scanner </a>
-												</h4>
-											</div>
-											<div id="collapseports" class="panel-collapse collapse"
-												aria-expanded="false" style="height: 0px;">
-												<div class="form-group"></div>
-
-												<div class="form-group">
-													<input type="button" class="btn btn-sm btn-primary"
-														id="getOpenPorts" value="Get Open Ports" />
-
-												</div>
-												<div id="openPorts" class="form-group hide"></div>
-											</div>
-										</div>
+										
 										<div class="panel box box-primary">
 											<div class="box-header with-border">
 												<h4 class="box-title">
 													<a data-toggle="collapse" data-parent="#accordion-active"
 														href="#collapsehost" aria-expanded="false"
-														class="collapsed"> Host Information </a>
+														class="collapsed"> Host Information </a> <img class='hosttick' style="display:none;" src="WebProfiling/img/tick.png">
 												</h4>
 											</div>
 											<div id="collapsehost" class="panel-collapse collapse"
@@ -812,6 +797,27 @@
 												<div id="hostInfo" class="form-group hide"></div>
 												<div id="map" class="hide"
 													style="width: 300px; height: 300px;"></div>
+											</div>
+										</div>
+										
+										<div class="panel box box-primary">
+											<div class="box-header with-border">
+												<h4 class="box-title">
+													<a data-toggle="collapse" data-parent="#accordion-active"
+														href="#collapseports" aria-expanded="false"
+														class="collapsed"> Port-Scanner </a> <img id='porttick' class='porttick'  style="display:none;" src="WebProfiling/img/tick.png">
+												</h4>
+											</div>
+											<div id="collapseports" class="panel-collapse collapse"
+												aria-expanded="false" style="height: 0px;">
+												<div class="form-group"></div>
+
+												<div class="form-group">
+													<input type="button" class="btn btn-sm btn-primary"
+														id="getOpenPorts" value="Get Open Ports" />
+
+												</div>
+												<div id="openPorts" class="form-group hide"></div>
 											</div>
 										</div>
 
@@ -845,7 +851,7 @@
 												<h4 class="box-title">
 													<a data-toggle="collapse" data-parent="#accordion-active"
 														href="#collapsecrawler" aria-expanded="false"
-														class="collapsed" id="spiderButton"> Web Crawler</a>
+														class="collapsed" id="spiderButton"> Web Crawler</a> <img class='crawltick' style="display:none;" src="WebProfiling/img/tick.png">
 												</h4>
 											</div>
 											<div id="collapsecrawler" class="panel-collapse collapse"
@@ -906,6 +912,22 @@
 												</div>
 											</div>
 										</div>
+									</div>
+									
+									<div class="form-group">
+											
+											<input type="button" class="btn btn-primary float-left" id="startActiveScan" value="Star Active Scan" />
+											<span style="display:none;" id='activeMsg'><font color='white'>Active Scan is in Prgoress...</font></span>
+											<div align='center' class="containeranim" style="display:none;">											
+												<div class="contentanim">
+													<div class="circle"></div>
+													<div class="circle1"></div>
+												</div>
+											</div>
+											
+											
+
+
 									</div>
 							</form>
 						</div>

@@ -138,10 +138,26 @@ $(document).ready(
 				if(!activeScanStat)	{
 					activeScanStat = true;
 					$("#startActiveScan").prop('value', 'Pause');
-					activeProcess()
-					$("#btnAddProfile").prop('value', 'Star Active Scan');
+					$('#activeMsg').show();
+					$('.containeranim').show();
+					
+					activeProcess();
+					
+					$( "#siteSpiderGo" ).trigger( "click" );
+		           
+				   
+					
+					
 				}else {
-					$("#startActiveScan").prop('value', 'Start');
+					$("#startActiveScan").prop('value', 'Restart');
+					activeScanStat = false;
+					$('#activeMsg').hide();
+					$('.containeranim').hide();
+					$( "#siteSpiderPause" ).trigger( "click" );
+					//clickPause();
+					
+					//After pause & play
+					
 			//activeProcess()
 			//$("#btnAddProfile").prop('value', '');
 				}
@@ -189,13 +205,16 @@ function activeProcess()	{
 
 		getHostInfo();
 		activeProgress['hostinfo'] = true;
+		
 
-	}
+	}	
 	if(!activeProgress['portscan'])	{
 
 		testOpenPorts();
 		activeProgress['portscan'] = true;
+		
 	}
+	
 	/*if(!activeProgress['crawlerscan'])	{
 
 	}*/
@@ -207,7 +226,7 @@ function testOpenPorts() {
 
 	var hostUrl = $("#host").val()
 	var gameData = {
-		host : hostUrl
+		host : windowsLocation
 	};
 	$("#openPorts").addClass('hide');
 
@@ -219,11 +238,17 @@ function testOpenPorts() {
 				timeout : 100000,
 				success : function(data) {
 
-					console.log("SUCCESS");
+					
+					$('.porttick').show();;					
+					$('#activeMsg').hide();
+					$('.containeranim').hide();
+					
 					var test = data.openPorts;
 					portInfo["open_ports"] = test;
 					$("#openPorts").html("Open Ports : " + test);
 					$("#openPorts").removeClass('hide');
+					
+					activeScanStat = false;
 				},
 				error : function(e) {
 					console.log("ERROR: ", e);
@@ -253,7 +278,9 @@ function getHostInfo() {
 				timeout : 100000,
 				success : function(data) {
 
-					console.log("SUCCESS");
+					
+					$('.hosttick').show();
+					
 					dnsMap = {};
 					var result = "Host Info<br /> Domain : " + data.domain
 							+ "<br /> IP Address : " + data.ip;				
@@ -268,6 +295,7 @@ function getHostInfo() {
 								dnsMap["region"]= response.region;
 								dnsMap["city"]= response.city;
 								hostInfo = dnsMap;
+								finalJsonOutput['hostInfo'] = dnsMap;
 								result += "<br/> Country : " + response.country
 										+ "<br/> Region : " + response.region
 										+ "<br/> City : " + response.city;
@@ -293,6 +321,7 @@ function getHostInfo() {
 					$("#map").removeClass('hide');
 					$("#hostInfo").html(result);
 					$("#hostInfo").removeClass('hide');
+					
 				},
 				error : function(e) {
 					$(".message-host").html("Error fetching DNS information. Error Status : " + e.status);

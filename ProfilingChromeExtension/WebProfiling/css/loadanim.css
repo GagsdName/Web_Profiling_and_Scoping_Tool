@@ -1,0 +1,90 @@
+
+.containeranim {width: 50px; margin: 0 0; overflow: hidden; float:right;}
+.contentanim {width:50px; margin:0 0;}
+.contentBaranim {width:90px; margin:0 auto; padding-top:50px; padding-bottom:50px;}
+
+/* STOP ANIMATION */
+
+.stop {
+	-webkit-animation-play-state:paused;
+	-moz-animation-play-state:paused;
+}
+
+
+/* Second Loadin Circle */
+
+.circle {
+	background-color: rgba(0,0,0,0);
+	border:5px solid rgba(0,183,229,0.9);
+	opacity:.9;
+	border-right:5px solid rgba(0,0,0,0);
+	border-left:5px solid rgba(0,0,0,0);
+	border-radius:50px;
+	box-shadow: 0 0 35px #2187e7;
+	width:35px;
+	height:35px;
+	margin:0 auto;
+	-moz-animation:spinPulse 1s infinite ease-in-out;
+	-webkit-animation:spinPulse 1s infinite linear;
+}
+.circle1 {	
+	background-color: rgba(0,0,0,0);
+	border:5px solid rgba(0,183,229,0.9);
+	opacity:.9;
+	border-left:5px solid rgba(0,0,0,0);
+	border-right:5px solid rgba(0,0,0,0);
+	border-radius:50px;
+	box-shadow: 0 0 15px #2187e7; 
+	width:25px;
+	height:25px;
+	margin:0 auto;
+	position:relative;
+	top:-30px;
+	-moz-animation:spinoffPulse 1s infinite linear;
+	-webkit-animation:spinoffPulse 1s infinite linear;
+}
+
+@-moz-keyframes spinPulse {
+	0% { -moz-transform:rotate(160deg); opacity:0; box-shadow:0 0 1px #2187e7;}
+	50% { -moz-transform:rotate(145deg); opacity:1; }
+	100% { -moz-transform:rotate(-320deg); opacity:0; }
+}
+@-moz-keyframes spinoffPulse {
+	0% { -moz-transform:rotate(0deg); }
+	100% { -moz-transform:rotate(360deg);  }
+}
+@-webkit-keyframes spinPulse {
+	0% { -webkit-transform:rotate(160deg); opacity:0; box-shadow:0 0 1px #2187e7; }
+	50% { -webkit-transform:rotate(145deg); opacity:1;}
+	100% { -webkit-transform:rotate(-320deg); opacity:0; }
+}
+@-webkit-keyframes spinoffPulse {
+	0% { -webkit-transform:rotate(0deg); }
+	100% { -webkit-transform:rotate(360deg); }
+}
+
+
+/* Trigger button for javascript */
+
+.trigger, .triggerFull, .triggerBar {
+	background: #000000;
+	background: -moz-linear-gradient(top, #161616 0%, #000000 100%);
+	background: -webkit-linear-gradient(top, #161616 0%,#000000 100%);
+	border-left:1px solid #111; border-top:1px solid #111; border-right:1px solid #333; border-bottom:1px solid #333; 
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 0.8em;
+	text-decoration: none;
+	text-transform: lowercase;
+	text-align: center;
+	color: #fff;
+	padding: 10px;
+	border-radius: 3px;
+	display: block;
+	margin: 0 auto;
+	width: 140px;
+}
+		
+.trigger:hover, .triggerFull:hover, .triggerBar:hover {
+	background: -moz-linear-gradient(top, #202020 0%, #161616 100%);
+	background: -webkit-linear-gradient(top, #202020 0%, #161616 100%);
+}
