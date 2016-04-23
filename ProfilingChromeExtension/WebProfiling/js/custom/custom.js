@@ -119,9 +119,9 @@ $(document).ready(
 				getHostInfo()
 			});
 
-			$(".getHeaders").click(function() {
+			/*$(".getHeaders").click(function() {
 				getHeaders()
-			});
+			});*/
 			
 			$("#getJsonData").click(function(){
 				if($.trim($("#txtName").val()) == ""){
@@ -336,7 +336,7 @@ function getHostInfo() {
 			});
 
 }
-
+/*
 function getHeaders() {
 
 	var hostUrl = $("#host").val()
@@ -378,7 +378,7 @@ function parseResponseHeaders(headerStr) {
 	}
 	return headers;
 }
-
+*/
 
 function queryForResults() {
 	chrome.tabs.query({
