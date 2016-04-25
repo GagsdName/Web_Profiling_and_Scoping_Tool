@@ -197,7 +197,31 @@ $(document).ready(
 			    });
 			});
 			 
-		});
+			$("#importJsonData").change(function () {
+				var file = $('#importJsonData').prop('files')[0];
+			    if (file) {
+			        // create reader
+			        var reader = new FileReader();
+			        reader.readAsText(file);
+			        reader.onload = function(e) {
+			        importedData = JSON.parse(e.target.result);
+			        importedUserInput = importedData["user-input"];
+			        userInputMap = importedUserInput;
+			        localdb.updateSetting();
+			        localdb.selectAll();
+			        };
+			    }
+			});
+			
+		$("input[name='loginInfo']").change(function(){
+			if($('#userLoggedIn').is(':checked')){
+				getWithLoginInfo();
+			}else{
+				getWithoutLoginInfo();
+			}
+			
+		})
+	});
 		
 function activeProcess()	{
 

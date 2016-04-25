@@ -1197,13 +1197,13 @@
 				<i class="glyphicon glyphicon-refresh"></i> Clear
 			</button>
 			
-			<div class="form-group">
-				<form name="loginInfo">
-				<label class="question"><font color="white"><br>Have you logged in the application?</font></label>
-				&nbsp;&nbsp;<input type="radio" name ="loginInfo" id="userLoggedIn" value="Yes" class="open-yn open"><font color="white">Yes</font>
-				&nbsp;&nbsp;<input type="radio" name ="loginInfo" id="userNotLoggedIn" value="No" class="open-yn"><font color="white">No</font>
-				</form>
+			<div class="form-group user-login-question">
+				<label><br>Have you logged in the application?</label>
+				&nbsp;&nbsp;<input type="radio" name ="loginInfo" id="userLoggedIn" value="Yes" class="open-yn open">Yes
+				&nbsp;&nbsp;<input type="radio" name ="loginInfo" id="userNotLoggedIn" value="No" class="open-yn">No
 			</div>
+			
+			<input type="file" value="Import" class="btn btn-sm btn-primary" id="importJsonData"/>
 			
 			<!-- Modal For Clear -->
 			<div class="modal fade bs-example-modal-sm" id="clearModal"

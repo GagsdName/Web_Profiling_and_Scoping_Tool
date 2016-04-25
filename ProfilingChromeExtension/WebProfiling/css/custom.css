@@ -6,6 +6,23 @@ html{
     width: 100%;
     overflow: scroll;
 }
+
+.detected-app{
+	margin-top: 10px;	
+}
+
+.detected-app img{
+	height: 32px;	
+}
+
+.user-login-question{
+	color: #FFF;
+}
+
+.detected-app .label{
+	font-size: 12px;	
+}
+
 .custom-box-border {
 	border-top: 1px #22262D solid !important;
 }
