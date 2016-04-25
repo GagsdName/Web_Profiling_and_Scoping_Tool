@@ -1,7 +1,15 @@
-var cookieInfoJSON = {};
-var cookies = [];
-var headers = [];
-var element = {};
+/*
+Author: Pranav Pande
+File Description: This file contains code for storing header and cookie information
+*/
+
+
+var cookieInfoJSON = {}; //For storing cookie info in JSON format
+var cookies = []; //For showing cookie info on the Passive tab
+var headers = []; //For showing header info on the Passive tab
+var element = {}; 
+
+//Function to listen on Login information popup
 function cookieAndHeaderInfo() {
 	document.getElementById("loginTrue").addEventListener("click",getWithLoginInfo);	
 	document.getElementById("loginFalse").addEventListener("click",getWithoutLoginInfo);
@@ -24,11 +32,13 @@ function getWithoutLoginInfo(){
 function getCookieInfo(){
 	
     if(element.login == true){
+		//if user is logged in retrieve cookies before login
 		cookies.push(localStorage.getItem("cookieInfo"));
 		cookieInfoJSON["Cookies before login"] = JSON.parse(localStorage.getItem("cookieInfo"));
 	}
     chrome.tabs.query({"status":"complete","windowId":chrome.windows.WINDOW_ID_CURRENT,"active":true}, function(tab){
             chrome.cookies.getAll({"url":tab[0].url},function(cookie){
+				//get all cookies related to current tab
 				element.length = cookie.length;
 				allCookieInfo = [];
 				for(i=0;i<cookie.length;i++){
@@ -42,6 +52,7 @@ function getCookieInfo(){
 					$("#cookieInfo").html(cookies[0] + "</br></br>" + cookies[1]);
 					$("#cookieInfo").removeClass('hide');
 				}else{
+					//if user is not looged in then store the currently fetched cookies into local storage
 					localStorage.setItem("cookieInfo",JSON.stringify(element));
 					cookies.push(JSON.stringify(element));
 					cookieInfoJSON["Cookies before login"] = element;
@@ -60,6 +71,7 @@ function getCookieInfo(){
 function getHeaders() {
 
 	if(element.login == true){
+		//if user is logged in retrieve header information before login
 		headers.push(localStorage.getItem("headerInfo"));
 		headerInfo['header before login'] = JSON.parse(localStorage.getItem("headerInfo"));
 	}
@@ -82,6 +94,7 @@ function getHeaders() {
 		$("#headers").removeClass('hide');
 	}else{
 		headerInfo['header before login'] = parsedResHeader;
+		//if user is not looged in then store the currently fetched header information into local storage
 		localStorage.setItem("headerInfo",JSON.stringify(parsedResHeader));
 		headers.push(JSON.stringify(parsedResHeader));
 		$("#headers").html(headers);
