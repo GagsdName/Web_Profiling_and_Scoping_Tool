@@ -1196,8 +1196,15 @@
 				data-toggle="modal" data-target="#clearModal">
 				<i class="glyphicon glyphicon-refresh"></i> Clear
 			</button>
-
-
+			
+			<div class="form-group">
+				<form name="loginInfo">
+				<label class="question"><font color="white"><br>Have you logged in the application?</font></label>
+				&nbsp;&nbsp;<input type="radio" name ="loginInfo" id="userLoggedIn" value="Yes" class="open-yn open"><font color="white">Yes</font>
+				&nbsp;&nbsp;<input type="radio" name ="loginInfo" id="userNotLoggedIn" value="No" class="open-yn"><font color="white">No</font>
+				</form>
+			</div>
+			
 			<!-- Modal For Clear -->
 			<div class="modal fade bs-example-modal-sm" id="clearModal"
 				tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
