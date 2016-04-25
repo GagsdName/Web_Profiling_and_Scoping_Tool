@@ -10,11 +10,11 @@ var headers = []; //For showing header info on the Passive tab
 var element = {}; 
 
 //Function to listen on Login information popup
-function cookieAndHeaderInfo() {
-	document.getElementById("loginTrue").addEventListener("click",getWithLoginInfo);	
-	document.getElementById("loginFalse").addEventListener("click",getWithoutLoginInfo);
-	document.getElementById("loginNotPossible").addEventListener("click",getWithoutLoginInfo);
-}
+//function cookieAndHeaderInfo() {
+//	document.getElementById("loginTrue").addEventListener("click",getWithLoginInfo);	
+//	document.getElementById("loginFalse").addEventListener("click",getWithoutLoginInfo);
+//	document.getElementById("loginNotPossible").addEventListener("click",getWithoutLoginInfo);
+//}
 
 function getWithLoginInfo(){
 	element.login = true;
@@ -24,7 +24,7 @@ function getWithLoginInfo(){
 
 function getWithoutLoginInfo(){
 	element.login = false;
-	localStorage.clear();
+//	localStorage.clear();	
 	getCookieInfo();
 	getHeaders();
 }
@@ -126,4 +126,4 @@ function parseResponseHeaders(headerStr) {
 	return headers;
 }
   
-window.addEventListener("load",cookieAndHeaderInfo);
+//window.addEventListener("load",cookieAndHeaderInfo);

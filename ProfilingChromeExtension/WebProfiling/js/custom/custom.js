@@ -175,7 +175,7 @@ $(document).ready(
 
 			// json - add data
 
-			queryForResults();
+			queryForRetireJS();
 			
 			$("#siteSpiderStop").click(function(){
 				if( $("#siteSpiderStop").val() == "Stop" ){
@@ -380,7 +380,7 @@ function parseResponseHeaders(headerStr) {
 }
 */
 
-function queryForResults() {
+function queryForRetireJS() {
 	chrome.tabs.query({
 		active : true,
 		currentWindow : true
@@ -389,14 +389,13 @@ function queryForResults() {
 			getDetected : 1
 		}, function(response) {
 			if(response != undefined){
-				show(response);
-				//console.log(response);
+				showRetireJsOP(response);
 			}
 		});
 	});
 }
 
-function show(retireJsResult) {
+function showRetireJsOP(retireJsResult) {
 	$("#results").html("");
 	console.log("results" + retireJsResult);
 	
