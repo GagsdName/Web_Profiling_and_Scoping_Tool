@@ -79,10 +79,15 @@ function convertHTMLtoJson(curEle, tab){
     }
     catch(err)
     {
-    	$(".message-global").text("  *Enter valid json data in " + tab + " tab.");
-		$(".message-global").removeClass("hide");
-//		setTimeout(hideGlobalMessage,3000);
-    	return false;
+    	if($.trim(json) != ""){
+	    	$(".message-global").text("  *Enter valid json data in " + tab + " tab.");
+			$(".message-global").removeClass("hide");
+			setTimeout(hideGlobalMessage,3000);
+			return false;
+    	}else{
+    		return [];
+    	}
+    	
     }
 	return json; 
 }
