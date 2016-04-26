@@ -15,15 +15,15 @@ var entityMap = {
 function jsonOutput(jsonTag, obj) 
 {
 	
-	jsonTag.find('div').unbind();
-	jsonTag.find('div').remove();
-	
+	jsonTag.find('.add').remove();
+	jsonTag.empty();
 	str = JSON.stringify(obj, undefined, 2);
 	str = syntaxHighlight(str);
 	
 	jsonTag.html(str);
-	$(".add").mousedown(function(e){
+	$(".add").on("mousedown", function(e){
 		if (e.which === 1) {
+			if(!$(this).next().hasClass("newly-added")){
 			var spaces = $(this).text();
 			spaces = spaces.substr(0,spaces.indexOf('"'));
 			$(this).nextAll('.add:first').before('<div class="newly-added">'
@@ -36,8 +36,12 @@ function jsonOutput(jsonTag, obj)
 			$(".add-new").click(function(){
 				$(this).closest('div').find('.key').replaceWith('"'+$(this).closest('div').find('.key').val()+'"');
 				$(this).closest('div').find('.value').replaceWith(' "'+$(this).closest('div').find('.value').val()+'"');
+				$(this).closest('div').removeClass('newly-added');
+				$(this).closest('div').addClass('new-user-input');
+				$(this).closest('div').addClass('add');
 				$(this).remove();
 			});
+		}
 		}
 			
 	});
