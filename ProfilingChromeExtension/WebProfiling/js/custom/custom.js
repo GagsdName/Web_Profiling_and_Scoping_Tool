@@ -46,7 +46,7 @@ $(document).ready(
 					tour.end();
 				}
 			});
-			 $("input:text").change(function (){
+			 $("#user-input").find("input:text").change(function (){
 				 userInputMap[$(this).closest("div").find(".question").text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this).val();
 				 jsonOutput($('.user-input-json'),userInputMap);
 				updateUserInput(userInputMap);
@@ -54,7 +54,7 @@ $(document).ready(
 				 
 			 });
 			 
-			$("input:radio").click(
+			 $("#user-input").find("input:radio").click(
 					function() {
 						
 						if ($(this).hasClass("open-fs")) {
