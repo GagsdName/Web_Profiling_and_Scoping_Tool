@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 							detectedApps.innerHTML = detectedApps.innerHTML + html;
 						}
+						jsonOutput($(".wap-json"), appList);
 					}
 				});
 			});

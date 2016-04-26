@@ -199,13 +199,15 @@ function clearUserInput() {
 			});
 		};
 	})
+	initializeUserInputMap();
+	jsonOutput($('.user-input-json'),userInputMap);
 }
 
 function handleUserInput(usrInMap){
-	if(usrInMap != undefined && usrInMap != "none"){
-		userInputMap = usrInMap;
-		console.log(usrInMap);
+	if(usrInMap != undefined && usrInMap != "none"){		
 		prePopulateUserInput(usrInMap);
+		userInputMap = usrInMap;
+		jsonOutput($('.user-input-json'),userInputMap);
 	}
 }
 

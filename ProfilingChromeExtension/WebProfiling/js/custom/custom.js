@@ -4,6 +4,7 @@ var userInputMap = new Object();
 var quesAnsJson;
 var serverIPPort;
 var activeProgress = {};
+var isUserLoggedIn = false;
 activeProgress['portscan'] = false;
 activeProgress['hostinfo'] = false;
 activeProgress['crawlerscan'] = false;
@@ -27,6 +28,7 @@ $(document).ready(
 			
 			localdb.selectAll();
 			initializeUserInputMap();
+			
 			serverIPPort = localStorage.getItem("serverIPPort");
 			
 			$("#startTourInfo").click(function(e){
@@ -45,8 +47,9 @@ $(document).ready(
 			});
 			 $("input:text").change(function (){
 				 userInputMap[$(this).closest("div").find(".question").text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this).val();
-				 updateUserInput(userInputMap);
-				 localdb.updateSetting();
+				 jsonOutput($('.user-input-json'),userInputMap);
+				updateUserInput(userInputMap);
+				localdb.updateSetting();
 				 
 			 });
 			 
@@ -100,6 +103,7 @@ $(document).ready(
 						}
 						
 						userInputMap[$(this).closest("div").find(".question").text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this).val();
+						jsonOutput($('.user-input-json'),userInputMap);
 						updateUserInput(userInputMap);
 						localdb.updateSetting();
 
@@ -107,8 +111,8 @@ $(document).ready(
 			$("#submit").click(
 					function() {
 
-						$('.form-json').removeClass('hide');
-						jsonOutput($('.form-json'),userInputMap);
+//						$('.user-input-json').removeClass('hide');
+						jsonOutput($('.user-input-json'),userInputMap);
 					});
 
 			$.support.cors = true;
@@ -166,10 +170,6 @@ $(document).ready(
 				$("#windowsLocation").html(tabs[0].url);
 
 			});
-
-			// json - add data
-
-			queryForRetireJS();
 			
 			$("#siteSpiderStop").click(function(){
 				if( $("#siteSpiderStop").val() == "Stop" ){
@@ -197,9 +197,13 @@ $(document).ready(
 			
 		$("input[name='loginInfo']").change(function(){
 			if($('#userLoggedIn').is(':checked')){
+				isUserLoggedIn = true;
 				getWithLoginInfo();
+				queryForRetireJS();
 			}else{
+				isUserLoggedIn = false;
 				getWithoutLoginInfo();
+				queryForRetireJS();
 			}
 			
 		})
@@ -398,10 +402,8 @@ function queryForRetireJS() {
 
 function showRetireJsOP(retireJsResult) {
 	$("#results").html("");
-	console.log("results" + retireJsResult);
 	
 	if (null != results) {
-		console.log("**************"+JSON.stringify(results));
 		retirejsop = results;
 		vulnerabilityInfo = results;
 	}
@@ -460,7 +462,17 @@ function showRetireJsOP(retireJsResult) {
 			})
 		}
 	});
-	jsonOutput($(".vulnerability-json"), res);
+	if(isUserLoggedIn){
+		vulnerabilityInfo["after_login"] = res;
+		vulnerabilityInfo["before_login"] = JSON.parse(localStorage.getItem("vulnerabilityInfo"));
+	}else{
+		vulnerabilityInfo["before_login"] = res;
+		localStorage.clear("vulnerabilityInfo");
+		localStorage.setItem("vulnerabilityInfo",JSON.stringify(res));
+	}
+	
+	jsonOutput($(".vulnerability-json"), vulnerabilityInfo);
+	updateVulnerabilities(res);
 }
 
 function td(tr) {
@@ -518,7 +530,7 @@ function readInputJsonFile(curEle){
         updateWapData(importedData["technologies-used"]);
         updateUserInput(importedData["user-input"]);
         
-        userInputMap = importedUserInput;
+        userInputMap = importedData["user-input"];
        
         localdb.updateSetting();
         localdb.selectAll();

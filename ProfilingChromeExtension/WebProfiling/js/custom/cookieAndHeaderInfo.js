@@ -65,8 +65,8 @@ function getHeaders() {
 
 	if(element.login == true){
 		//if user is logged in retrieve header information before login
-		headers.push(localStorage.getItem("headerInfo"));
-		headerInfo['header before login'] = JSON.parse(localStorage.getItem("headerInfo"));
+		
+		headerInfo['header_before_login'] = parseResponseHeaders(localStorage.getItem("headerInfo"));
 	}
 	var hostUrl = $("#host").val()
 	var sData = {
@@ -81,16 +81,14 @@ function getHeaders() {
 	var respheaders = req.getAllResponseHeaders().toLowerCase();
 	var parsedResHeader = parseResponseHeaders(respheaders);
 	if(element.login == true){
-		headerInfo['header after login'] = parsedResHeader;
-		headers.push(JSON.stringify(parsedResHeader));
-		$("#headers").html(headers[0] + "</br></br>" + headers[1]);
+		headerInfo['header_after_login'] = parsedResHeader;
+		$("#headers").html("\nHeaders Before Login : \n" + localStorage.getItem("headerInfo") + "\nHeaders After Login : \n" + respheaders );
 		$("#headers").removeClass('hide');
 	}else{
-		headerInfo['header before login'] = parsedResHeader;
+		headerInfo['header_before_login']= parsedResHeader;
 		//if user is not looged in then store the currently fetched header information into local storage
-		localStorage.setItem("headerInfo",JSON.stringify(parsedResHeader));
-		headers.push(JSON.stringify(parsedResHeader));
-		$("#headers").html(headers);
+		localStorage.setItem("headerInfo",respheaders);
+		$("#headers").html("\nHeaders Before Login : \n" + respheaders);
 		$("#headers").removeClass('hide');
 	}
 	jsonOutput($(".header-json"), headerInfo); 

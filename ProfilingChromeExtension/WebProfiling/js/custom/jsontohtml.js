@@ -14,26 +14,32 @@ var entityMap = {
   }
 function jsonOutput(jsonTag, obj) 
 {
+	
+	jsonTag.find('div').unbind();
+	jsonTag.find('div').remove();
+	
 	str = JSON.stringify(obj, undefined, 2);
 	str = syntaxHighlight(str);
 	
 	jsonTag.html(str);
-	$(".add").mousedown(function(){
-		var spaces = $(this).text();
-		spaces = spaces.substr(0,spaces.indexOf('"'));
-		$(this).nextAll('.add:first').before('<div class="newly-added">'
-				+spaces+'<input class="key form-control" type="text" placeholder="Enter">:<input type="text" class="value form-control" placeholder="Enter"><button type="button" class="btn btn-sm btn-primary add-new"><i class="fa fa-check"></i></button><button type="button" class="btn btn-sm btn-danger remove-new margin-10"><i class="fa fa-close"></i></button>,</div');
-		
-		$(".remove-new").click(function(){
-			$(this).closest('div').remove();
-		});
-		
-		$(".add-new").click(function(){
-			$(this).closest('div').find('.key').replaceWith('"'+$(this).closest('div').find('.key').val()+'"');
-			$(this).closest('div').find('.value').replaceWith(' "'+$(this).closest('div').find('.value').val()+'"');
-			$(this).remove();
-		});
-		
+	$(".add").mousedown(function(e){
+		if (e.which === 1) {
+			var spaces = $(this).text();
+			spaces = spaces.substr(0,spaces.indexOf('"'));
+			$(this).nextAll('.add:first').before('<div class="newly-added">'
+					+spaces+'<input class="key form-control" type="text" placeholder="Enter">:<input type="text" class="value form-control" placeholder="Enter"><button type="button" class="btn btn-sm btn-primary add-new"><i class="fa fa-check"></i></button><button type="button" class="btn btn-sm btn-danger remove-new margin-10"><i class="fa fa-close"></i></button>,</div');
+			
+			$(".remove-new").click(function(){
+				$(this).closest('div').remove();
+			});
+			
+			$(".add-new").click(function(){
+				$(this).closest('div').find('.key').replaceWith('"'+$(this).closest('div').find('.key').val()+'"');
+				$(this).closest('div').find('.value').replaceWith(' "'+$(this).closest('div').find('.value').val()+'"');
+				$(this).remove();
+			});
+		}
+			
 	});
 }
 
