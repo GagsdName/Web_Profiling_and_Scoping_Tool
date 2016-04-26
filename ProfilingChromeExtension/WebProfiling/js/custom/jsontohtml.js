@@ -26,16 +26,23 @@ function jsonOutput(jsonTag, obj)
 			if(!$(this).next().hasClass("newly-added")){
 			var spaces = $(this).text();
 			spaces = spaces.substr(0,spaces.indexOf('"'));
-			$(this).nextAll('.add:first').before('<div class="newly-added">'
-					+spaces+'<input class="key form-control" type="text" placeholder="Enter">:<input type="text" class="value form-control" placeholder="Enter"><button type="button" class="btn btn-sm btn-primary add-new"><i class="fa fa-check"></i></button><button type="button" class="btn btn-sm btn-danger remove-new margin-10"><i class="fa fa-close"></i></button>,</div');
-			
+			if(jsonTag.hasClass("wap-json")){
+				$(this).nextAll('.add:first').before('<div class="newly-added">'
+						+spaces+'<input class="key form-control" type="text" placeholder="Enter"><button type="button" class="btn btn-sm btn-primary add-new"><i class="fa fa-check"></i></button><button type="button" class="btn btn-sm btn-danger remove-new margin-10"><i class="fa fa-close"></i></button>,</div');
+			}else{
+				$(this).nextAll('.add:first').before('<div class="newly-added">'
+						+spaces+'<input class="key form-control" type="text" placeholder="Enter">:<input type="text" class="value form-control" placeholder="Enter"><button type="button" class="btn btn-sm btn-primary add-new"><i class="fa fa-check"></i></button><button type="button" class="btn btn-sm btn-danger remove-new margin-10"><i class="fa fa-close"></i></button>,</div');
+			}
 			$(".remove-new").click(function(){
 				$(this).closest('div').remove();
 			});
 			
 			$(".add-new").click(function(){
 				$(this).closest('div').find('.key').replaceWith('"'+$(this).closest('div').find('.key').val()+'"');
-				$(this).closest('div').find('.value').replaceWith(' "'+$(this).closest('div').find('.value').val()+'"');
+				if(!jsonTag.hasClass("wap-json")){
+					$(this).closest('div').find('.value').replaceWith(' "'+$(this).closest('div').find('.value').val()+'"');
+				}
+				
 				$(this).closest('div').removeClass('newly-added');
 				$(this).closest('div').addClass('new-user-input');
 				$(this).closest('div').addClass('add');
