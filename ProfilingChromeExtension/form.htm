@@ -16,7 +16,8 @@
 	type="text/css" />
 <link href="WebProfiling/css/custom.css" rel="stylesheet"
 	type="text/css">
-<link href="WebProfiling/css/loadanim.css" rel="stylesheet" type="text/css">
+<link href="WebProfiling/css/loadanim.css" rel="stylesheet"
+	type="text/css">
 
 <script type="text/javascript" src="WebProfiling/js/jquery.min.js"></script>
 <script type="text/javascript"
@@ -39,7 +40,8 @@
 <script type="text/javascript"
 	src="WebProfiling/js/custom/popupOnload.js"></script>
 <script type="text/javascript" src="WebProfiling/js/localdb.js"></script>
-<script type="text/javascript" src="WebProfiling/js/custom/cookieAndHeaderInfo.js"></script>
+<script type="text/javascript"
+	src="WebProfiling/js/custom/cookieAndHeaderInfo.js"></script>
 <!-- <script type="text/javascript" src="WebProfiling/js/custom/loginPopup.js"></script> -->
 <script type="text/javascript" src="WebProfiling/js/custom/custom.js"></script>
 </head>
@@ -56,7 +58,9 @@
 					<ul class="nav nav-tabs pull-right ui-sortable-handle">
 
 						<!-- Amruta start -->
-
+						<li class="tab"><a href="#server" data-toggle="tab"
+							aria-expanded="false"><span
+								class="glyphicon glyphicon-wrench aria-hidden="true"></span></a></li>
 						<li class="tab"><a href="#json" data-toggle="tab"
 							aria-expanded="false">JSON</a></li>
 						<!-- Amruta stop -->
@@ -92,7 +96,7 @@
 															href="#collapseOne" aria-expanded="false"
 															class="collapsed"> General Questions </a>
 													</h4>
-													
+
 												</div>
 												<div id="collapseOne" class="panel-collapse collapse"
 													aria-expanded="false" style="height: 0px;">
@@ -775,13 +779,15 @@
 							<form role="form">
 								<div class="box-body">
 									<div class="box-group" id="accordion-active">
-										
+
 										<div class="panel box box-primary">
 											<div class="box-header with-border">
 												<h4 class="box-title">
 													<a data-toggle="collapse" data-parent="#accordion-active"
 														href="#collapsehost" aria-expanded="false"
-														class="collapsed"> Host Information </a> <img class='hosttick' style="display:none;" src="WebProfiling/img/tick.png">
+														class="collapsed"> Host Information </a> <img
+														class='hosttick' style="display: none;"
+														src="WebProfiling/img/tick.png">
 												</h4>
 											</div>
 											<div id="collapsehost" class="panel-collapse collapse"
@@ -797,13 +803,15 @@
 													style="width: 300px; height: 300px;"></div>
 											</div>
 										</div>
-										
+
 										<div class="panel box box-primary">
 											<div class="box-header with-border">
 												<h4 class="box-title">
 													<a data-toggle="collapse" data-parent="#accordion-active"
 														href="#collapseports" aria-expanded="false"
-														class="collapsed"> Port-Scanner </a> <img id='porttick' class='porttick'  style="display:none;" src="WebProfiling/img/tick.png">
+														class="collapsed"> Port-Scanner </a> <img id='porttick'
+														class='porttick' style="display: none;"
+														src="WebProfiling/img/tick.png">
 												</h4>
 											</div>
 											<div id="collapseports" class="panel-collapse collapse"
@@ -824,7 +832,9 @@
 												<h4 class="box-title">
 													<a data-toggle="collapse" data-parent="#accordion-active"
 														href="#collapsecrawler" aria-expanded="false"
-														class="collapsed" id="spiderButton"> Web Crawler</a> <img class='crawltick' style="display:none;" src="WebProfiling/img/tick.png">
+														class="collapsed" id="spiderButton"> Web Crawler</a> <img
+														class='crawltick' style="display: none;"
+														src="WebProfiling/img/tick.png">
 												</h4>
 											</div>
 											<div id="collapsecrawler" class="panel-collapse collapse"
@@ -886,19 +896,22 @@
 											</div>
 										</div>
 									</div>
-									
+
 									<div class="form-group">
-											
-											<input type="button" class="btn btn-primary float-left" id="startActiveScan" value="Start Active Scan" />
-											<span style="display:none;" id='activeMsg'><font color='white'>Active Scan is in Progress...</font></span>
-											<div align='center' class="containeranim" style="display:none;">											
-												<div class="contentanim">
-													<div class="circle"></div>
-													<div class="circle1"></div>
-												</div>
+
+										<input type="button" class="btn btn-primary btn-sm float-left"
+											id="startActiveScan" value="Start Active Scan" /> <span
+											style="display: none;" id='activeMsg'><font
+											color='white'>Active Scan is in Progress...</font></span>
+										<div align='center' class="containeranim"
+											style="display: none;">
+											<div class="contentanim">
+												<div class="circle"></div>
+												<div class="circle1"></div>
 											</div>
-											
-											
+										</div>
+
+
 
 
 									</div>
@@ -953,24 +966,24 @@
 									</div>
 									<div class="panel box box-primary">
 
-											<div class="box-header with-border">
-												<h4 class="box-title">
-													<a data-toggle="collapse" data-parent="#accordion-active"
-														href="#collapsecookie" aria-expanded="false"
-														class="collapsed"> Cookie Information </a>
-												</h4>
-											</div>
-											<div id="collapsecookie" class="panel-collapse collapse"
-												aria-expanded="false" style="height: 0px;">
-												<div class="form-group"></div>
-												<div class="row">
-													<div class="col-sm-12">
-														<div id="cookieInfo" style="overflow-x: scroll"
-															class="form-group wrap-text hide"></div>
-													</div>
+										<div class="box-header with-border">
+											<h4 class="box-title">
+												<a data-toggle="collapse" data-parent="#accordion-passive"
+													href="#collapsecookie" aria-expanded="false"
+													class="collapsed"> Cookie Information </a>
+											</h4>
+										</div>
+										<div id="collapsecookie" class="panel-collapse collapse"
+											aria-expanded="false" style="height: 0px;">
+											<div class="form-group"></div>
+											<div class="row">
+												<div class="col-sm-12">
+													<div id="cookieInfo" style="overflow-x: scroll"
+														class="form-group wrap-text hide"></div>
 												</div>
 											</div>
 										</div>
+									</div>
 									<div class="panel box box-primary">
 										<div class="box-header with-border">
 											<h4 class="box-title">
@@ -980,10 +993,7 @@
 											</h4>
 										</div>
 										<div id="collapsewap" class="panel-collapse collapse"
-											aria-expanded="false" style="height: 0px;">
-
-											
-										</div>
+											aria-expanded="false" style="height: 0px;"></div>
 									</div>
 
 								</div>
@@ -1149,7 +1159,7 @@
 																</form>
 															</div>
 														</div>
-														
+
 														<div class="chart tab-pane" id="headtabjson"
 															style="position: relative;">
 															<div class="box custom-box-border box-primary">
@@ -1175,18 +1185,43 @@
 					</div>
 				</div>
 				<!-- Amruta  stop -->
+				<div class="chart tab-pane" id="server" style="position: relative">
+					<div class="box custom-box-border box-primary">
+
+						<!-- /.box-header -->
+						<!-- form start -->
+						<form role="form">
+							<div class="box-body">
+								<div class="box-group">
+									<div class="form-group">
+
+										<label class="question">Enter server IP Adress: </label> <input
+											type="text" class="form-control" id="txtIpAddr"
+											placeholder="Enter">
+									</div>
+
+									<div class="box-footer">
+										<button id="updateserverdetails" type="button"
+											class="btn btn-sm btn-primary serverIp">Update Server IP
+										</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
-		
+
 	</div>
 	<div class="row message">
 		<div class="col-sm-12">
-		<span class="message-global error hide">&nbsp;</span>
+			<span class="message-global error hide">&nbsp;</span>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-sm-12" align="center">
-			
+
 			<button type="button" class="btn btn-sm btn-primary" id="getJsonData">
 				<i class="fa fa-download"></i> Download JSON
 			</button>
@@ -1196,15 +1231,18 @@
 				data-toggle="modal" data-target="#clearModal">
 				<i class="glyphicon glyphicon-refresh"></i> Clear
 			</button>
-			
+
 			<div class="form-group user-login-question">
 				<label><br>Have you logged in the application?</label>
-				&nbsp;&nbsp;<input type="radio" name ="loginInfo" id="userLoggedIn" value="Yes" class="open-yn open">Yes
-				&nbsp;&nbsp;<input type="radio" name ="loginInfo" id="userNotLoggedIn" value="No" class="open-yn">No
+				&nbsp;&nbsp;<input type="radio" name="loginInfo" id="userLoggedIn"
+					value="Yes" class="open-yn open">Yes &nbsp;&nbsp;<input
+					type="radio" name="loginInfo" id="userNotLoggedIn" value="No"
+					class="open-yn">No
 			</div>
-			
-			<input type="file" value="Import" class="btn btn-sm btn-primary" id="importJsonData"/>
-			
+
+			<input type="file" value="Import" class="btn btn-sm btn-primary"
+				id="importJsonData" />
+
 			<!-- Modal For Clear -->
 			<div class="modal fade bs-example-modal-sm" id="clearModal"
 				tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -1222,26 +1260,26 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- Modal For Login -->
-<!-- 			<div class="modal fade bs-example-modal-sm" id="loginModal" -->
-<!-- 				tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> -->
-<!-- 				<div class="modal-dialog modal-sm" role="document"> -->
-<!-- 					<div class="modal-content"> -->
+			<!-- 			<div class="modal fade bs-example-modal-sm" id="loginModal" -->
+			<!-- 				tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> -->
+			<!-- 				<div class="modal-dialog modal-sm" role="document"> -->
+			<!-- 					<div class="modal-content"> -->
 
-<!-- 						<div class="modal-body">Have you logged in the application?</div> -->
-<!-- 						<div class="modal-footer"> -->
+			<!-- 						<div class="modal-body">Have you logged in the application?</div> -->
+			<!-- 						<div class="modal-footer"> -->
 
-<!-- 							<button type="button" id="loginTrue" data-dismiss="modal" -->
-<!-- 								class="btn btn-primary">Yes</button> -->
-<!-- 							<button type="button" id="loginFalse" class="btn btn-default" -->
-<!-- 								data-dismiss="modal">No</button> -->
-<!-- 							<button type="button" id="loginNotPossible" class="btn btn-default" -->
-<!-- 								data-dismiss="modal">Not Applicable</button> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
+			<!-- 							<button type="button" id="loginTrue" data-dismiss="modal" -->
+			<!-- 								class="btn btn-primary">Yes</button> -->
+			<!-- 							<button type="button" id="loginFalse" class="btn btn-default" -->
+			<!-- 								data-dismiss="modal">No</button> -->
+			<!-- 							<button type="button" id="loginNotPossible" class="btn btn-default" -->
+			<!-- 								data-dismiss="modal">Not Applicable</button> -->
+			<!-- 						</div> -->
+			<!-- 					</div> -->
+			<!-- 				</div> -->
+			<!-- 			</div> -->
 
 		</div>
 	</div>
@@ -1254,6 +1292,6 @@
 
 		</div>
 	</div>
-	
+
 </body>
 </html>

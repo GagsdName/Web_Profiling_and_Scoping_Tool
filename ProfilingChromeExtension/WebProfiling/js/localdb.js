@@ -157,6 +157,9 @@ $(function() {
 
 	// Instantiate Demo
 	localdb.init();
+	
+	
+	
 
 });
 
@@ -204,4 +207,9 @@ function handleUserInput(usrInMap){
 		console.log(usrInMap);
 		prePopulateUserInput(usrInMap);
 	}
+}
+
+function setIpAddress(){
+
+	localStorage.setItem("serverIPPort",$("#txtIpAddr").val());
 }

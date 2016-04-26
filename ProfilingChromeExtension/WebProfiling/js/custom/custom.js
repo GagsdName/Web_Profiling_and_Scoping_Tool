@@ -2,7 +2,7 @@ var windowsLocation = "";
 // Amruta - start
 var userInputMap = new Object();
 var quesAnsJson;
-
+var serverIPPort;
 var activeProgress = {};
 activeProgress['portscan'] = false;
 activeProgress['hostinfo'] = false;
@@ -27,6 +27,7 @@ $(document).ready(
 			
 			localdb.selectAll();
 			initializeUserInputMap();
+			serverIPPort = localStorage.getItem("serverIPPort");
 			
 			$("#startTourInfo").click(function(e){
 				tour_formOnload(); 
@@ -121,6 +122,11 @@ $(document).ready(
 			/*$(".getHeaders").click(function() {
 				getHeaders()
 			});*/
+			
+			$(".serverIp").click(function() {
+				setIpAddress();
+				serverIPPort = localStorage.getItem("serverIPPort");
+			});
 			
 			$("#getJsonData").click(function(){
 				if($.trim($("#txtName").val()) == ""){
@@ -228,7 +234,7 @@ function testOpenPorts() {
 	$
 			.ajax({
 				type : "GET",
-				url : "http://localhost:8080/WPST_Web_App/rest/profiling_service/get_available_ports",
+				url : "http://" + serverIPPort + "/WPST_Web_App/rest/profiling_service/get_available_ports",
 				data : gameData,
 				timeout : 100000,
 				success : function(data) {
@@ -268,7 +274,7 @@ function getHostInfo() {
 	$
 			.ajax({
 				type : "GET",
-				url : "http://localhost:8080/WPST_Web_App/rest/profiling_service/getHost",
+				url : "http://" + serverIPPort + "/WPST_Web_App/rest/profiling_service/getHost",
 				data : sData,
 				timeout : 100000,
 				success : function(data) {
