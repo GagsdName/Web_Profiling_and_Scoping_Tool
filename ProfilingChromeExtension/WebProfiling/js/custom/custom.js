@@ -130,6 +130,7 @@ $(document).ready(
 			
 			$(".serverIp").click(function() {
 				setIpAddress();
+				$(".message-server").addClass("hide");
 				serverIPPort = localStorage.getItem("serverIPPort");
 			});
 			
@@ -258,9 +259,9 @@ function testOpenPorts() {
 					activeScanStat = false;
 				},
 				error : function(e) {
-					$(".message-host").html("Error fetching DNS information. Error Status : " + e.status);
-					$(".message-host").addClass("error");
-					$(".message-host").removeClass("hide");
+					$(".message-port").html("Error fetching open ports. Error Status : " + e.status);
+					$(".message-port").addClass("error");
+					$(".message-port").removeClass("hide");
 				},
 				done : function(e) {
 				}
@@ -271,11 +272,12 @@ function testOpenPorts() {
 function validateServerIp(){
 	
 	if (serverIPPort == null || $.trim(serverIPPort) == "") {
-		$(".message-host").html("Please enter valid IP Address.");
-		$(".message-host").addClass("error");
-		$(".message-host").removeClass("hide");
+		$(".message-server").html("Please enter valid IP Address.");
+		$(".message-server").addClass("error");
+		$(".message-server").removeClass("hide");
 		return false;
 	}
+	return true;
 }
 
 function getHostInfo() {
