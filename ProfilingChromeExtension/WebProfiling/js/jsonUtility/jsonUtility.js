@@ -39,8 +39,6 @@ function reset() {
 
 function download_json(fileName) {
 
-    //var wapData = document.getElementsByName("wapJson").value;
-    console.log("APP List"+JSON.stringify(appList));
     technologies['Technology-list'] = appList;
 	finalJsonOutput['cookie-info'] = cookieInfoJSON;
 	finalJsonOutput['user-input'] = userInputMap;

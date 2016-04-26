@@ -74,7 +74,7 @@ $(function() {
 		 **********************************************************************/
 		updateSetting : function() {
 			DEMODB.transaction(function(transaction) {
-				jsonString = JSON.stringify(userInputMap);
+				jsonString = JSON.stringify(finalJsonOutput);
 				transaction.executeSql(
 						"UPDATE page_settings SET jsonString=? WHERE id = 1",
 						[ jsonString ]);
@@ -99,12 +99,9 @@ $(function() {
 			for (i; i < results.rows.length; i++) {
 
 				row = results.rows.item(i);
-				usrInMap = $.parseJSON(row['jsonString']);
-				if(usrInMap != undefined && usrInMap != "none"){
-					userInputMap = usrInMap;
-					console.log(usrInMap);
-					prePopulateUserInput(usrInMap);
-				}
+				
+				handleUserInput($.parseJSON(row['jsonString'])["user-input"]);
+				
 				
 			}
 		},
@@ -199,4 +196,12 @@ function clearUserInput() {
 			});
 		};
 	})
+}
+
+function handleUserInput(usrInMap){
+	if(usrInMap != undefined && usrInMap != "none"){
+		userInputMap = usrInMap;
+		console.log(usrInMap);
+		prePopulateUserInput(usrInMap);
+	}
 }

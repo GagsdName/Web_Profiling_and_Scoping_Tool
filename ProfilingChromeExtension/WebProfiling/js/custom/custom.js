@@ -44,6 +44,7 @@ $(document).ready(
 			});
 			 $("input:text").change(function (){
 				 userInputMap[$(this).closest("div").find(".question").text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this).val();
+				 updateUserInput(userInputMap);
 				 localdb.updateSetting();
 				 
 			 });
@@ -98,18 +99,16 @@ $(document).ready(
 						}
 						
 						userInputMap[$(this).closest("div").find(".question").text().replace(/\t/g, '').replace(/\n/g, ' ')] = $(this).val();
+						updateUserInput(userInputMap);
 						localdb.updateSetting();
 
 					});
-			// Amruta - stop
-			// Amruta - start
 			$("#submit").click(
 					function() {
 
 						$('.form-json').removeClass('hide');
 						jsonOutput($('.form-json'),userInputMap);
 					});
-			// Amruta - stop
 
 			$.support.cors = true;
 			$("#getOpenPorts").click(function() {
@@ -142,24 +141,13 @@ $(document).ready(
 					$('.containeranim').show();
 					
 					activeProcess();
-					
 					$( "#siteSpiderGo" ).trigger( "click" );
-		           
-				   
-					
-					
 				}else {
 					$("#startActiveScan").prop('value', 'Restart');
 					activeScanStat = false;
 					$('#activeMsg').hide();
 					$('.containeranim').hide();
 					$( "#siteSpiderPause" ).trigger( "click" );
-					//clickPause();
-					
-					//After pause & play
-					
-			//activeProcess()
-			//$("#btnAddProfile").prop('value', '');
 				}
 			});
 
@@ -198,19 +186,7 @@ $(document).ready(
 			});
 			 
 			$("#importJsonData").change(function () {
-				var file = $('#importJsonData').prop('files')[0];
-			    if (file) {
-			        // create reader
-			        var reader = new FileReader();
-			        reader.readAsText(file);
-			        reader.onload = function(e) {
-			        importedData = JSON.parse(e.target.result);
-			        importedUserInput = importedData["user-input"];
-			        userInputMap = importedUserInput;
-			        localdb.updateSetting();
-			        localdb.selectAll();
-			        };
-			    }
+				readInputJsonFile($(this));				
 			});
 			
 		$("input[name='loginInfo']").change(function(){
@@ -238,11 +214,6 @@ function activeProcess()	{
 		activeProgress['portscan'] = true;
 		
 	}
-	
-	/*if(!activeProgress['crawlerscan'])	{
-
-	}*/
-
 }
 
 
@@ -492,14 +463,6 @@ function td(tr) {
 	return cell;
 }
 
-/*
- * Object.prototype.forEachOwnProperty = function(f) { mapOwnProperty(f); };
- * Object.prototype.mapOwnProperty = function(f) { var results = []; for(var i
- * in this) { if (this.hasOwnProperty(i)) results.push(f(this[i], i)); } return
- * results; }; Array.prototype.flatten = function(){ var result = [];
- * this.forEach(function(x) { result = result.concat(x); }); return result; };
- */
-
 function sendMessage(message, data, callback) {
 	chrome.extension.sendRequest({
 		to : 'background',
@@ -534,6 +497,50 @@ function initializeUserInputMap(){
 			});
 }
 
+function readInputJsonFile(curEle){
+	var file = curEle.prop('files')[0];
+    if (file) {
+        // create reader
+        var reader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = function(e) {
+        importedData = JSON.parse(e.target.result);
+
+        updateVulnerabilities(importedData["vulnerabilityInfo"]);
+        updateHeaders(importedData["headerInfo"]);
+        updateCookies(importedData["cookie-info"]);
+        updateWapData(importedData["technologies-used"]);
+        updateUserInput(importedData["user-input"]);
+        
+        userInputMap = importedUserInput;
+       
+        localdb.updateSetting();
+        localdb.selectAll();
+        
+        };
+    }
+}
+
 function hideGlobalMessage(){
 	$(".message-global").addClass("hide");
+}
+
+function updateVulnerabilities(data){
+	finalJsonOutput['vulnerabilityInfo'] = data;
+}
+
+function updateHeaders(data){
+	finalJsonOutput['headerInfo'] = data;
+}
+
+function updateCookies(data){
+	finalJsonOutput['cookie-info'] = data;
+}
+
+function updateWapData(data){
+	finalJsonOutput['technologies-used'] = data;
+}
+
+function updateUserInput(data){
+	finalJsonOutput['user-input'] = data;
 }
