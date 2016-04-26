@@ -18,7 +18,8 @@ $(document).ready(
 			$("body").click(function(evt){
 				if(evt.target.id == "crawlerPanel" || evt.target.id == "activeTab" || evt.target.class == "tour-tour")
 			          return;
-		       //For descendants of menu_content being clicked, remove this check if you do not want to put constraint on descendants.
+		       // For descendants of menu_content being clicked, remove this
+				// check if you do not want to put constraint on descendants.
 		       if($(evt.target).closest('#crawlerPanel').length || $(evt.target).closest('#activeTab').length || $(evt.target).closest('.tour-tour').length)
 		          return; 
 				if(tour != undefined){
@@ -111,7 +112,7 @@ $(document).ready(
 			$("#submit").click(
 					function() {
 
-//						$('.user-input-json').removeClass('hide');
+// $('.user-input-json').removeClass('hide');
 						jsonOutput($('.user-input-json'),userInputMap);
 					});
 
@@ -123,9 +124,9 @@ $(document).ready(
 				getHostInfo()
 			});
 
-			/*$(".getHeaders").click(function() {
-				getHeaders()
-			});*/
+			/*
+			 * $(".getHeaders").click(function() { getHeaders() });
+			 */
 			
 			$(".serverIp").click(function() {
 				setIpAddress();
@@ -229,6 +230,7 @@ function activeProcess()	{
 
 function testOpenPorts() {
 
+	validateServerIp();
 	var hostUrl = $("#host").val()
 	var gameData = {
 		host : windowsLocation
@@ -256,18 +258,29 @@ function testOpenPorts() {
 					activeScanStat = false;
 				},
 				error : function(e) {
-					console.log("ERROR: ", e);
-
+					$(".message-host").html("Error fetching DNS information. Error Status : " + e.status);
+					$(".message-host").addClass("error");
+					$(".message-host").removeClass("hide");
 				},
 				done : function(e) {
-					console.log("DONE");
 				}
 			});
 
 }
 
-function getHostInfo() {
+function validateServerIp(){
+	
+	if (serverIPPort == null || $.trim(serverIPPort) == "") {
+		$(".message-host").html("Please enter valid IP Address.");
+		$(".message-host").addClass("error");
+		$(".message-host").removeClass("hide");
+		return false;
+	}
+}
 
+function getHostInfo() {
+	
+	if(!validateServerIp()) return;
 	var hostUrl = $("#host").val()
 	var sData = {
 		location : windowsLocation
@@ -333,57 +346,39 @@ function getHostInfo() {
 					$(".message-host").addClass("error");
 					$(".message-host").removeClass("hide");
 					console.log("ERROR: ", e);
-
+					
 				},
 				done : function(e) {
-					console.log("DONE");
 				}
 			});
+	
 
 }
 /*
-function getHeaders() {
-
-	var hostUrl = $("#host").val()
-	var sData = {
-		location : windowsLocation
-	};
-
-	$("#headers").addClass('hide');
-	var req = new XMLHttpRequest();
-	req.open('GET', windowsLocation, false);
-	req.send(null);
-
-	var respheaders = req.getAllResponseHeaders().toLowerCase();
-	headerInfo['info'] = parseResponseHeaders(respheaders);
-	$("#headers").html(respheaders);
-	$("#headers").removeClass('hide');
-	jsonOutput($(".header-json"), headerInfo['info']); 
-}
-
-
-
-function parseResponseHeaders(headerStr) {
-	var headers = {};
-	if (!headerStr) {
-		return headers;
-	}
-	var headerPairs = headerStr.split('\u000d\u000a');
-	for (var i = 0; i < headerPairs.length; i++) {
-		var headerPair = headerPairs[i];
-		// Can't use split() here because it does the wrong thing
-		// if the header value has the string ": " in it.
-		var index = headerPair.indexOf('\u003a\u0020');
-		if (index > 0) {
-			var key = headerPair.substring(0, index);
-			var val = headerPair.substring(index + 2);
-
-			headers[key] = val;
-		}
-	}
-	return headers;
-}
-*/
+ * function getHeaders() {
+ * 
+ * var hostUrl = $("#host").val() var sData = { location : windowsLocation };
+ * 
+ * $("#headers").addClass('hide'); var req = new XMLHttpRequest();
+ * req.open('GET', windowsLocation, false); req.send(null);
+ * 
+ * var respheaders = req.getAllResponseHeaders().toLowerCase();
+ * headerInfo['info'] = parseResponseHeaders(respheaders);
+ * $("#headers").html(respheaders); $("#headers").removeClass('hide');
+ * jsonOutput($(".header-json"), headerInfo['info']); }
+ * 
+ * 
+ * 
+ * function parseResponseHeaders(headerStr) { var headers = {}; if (!headerStr) {
+ * return headers; } var headerPairs = headerStr.split('\u000d\u000a'); for (var
+ * i = 0; i < headerPairs.length; i++) { var headerPair = headerPairs[i]; //
+ * Can't use split() here because it does the wrong thing // if the header value
+ * has the string ": " in it. var index = headerPair.indexOf('\u003a\u0020'); if
+ * (index > 0) { var key = headerPair.substring(0, index); var val =
+ * headerPair.substring(index + 2);
+ * 
+ * headers[key] = val; } } return headers; }
+ */
 
 function queryForRetireJS() {
 	chrome.tabs.query({
