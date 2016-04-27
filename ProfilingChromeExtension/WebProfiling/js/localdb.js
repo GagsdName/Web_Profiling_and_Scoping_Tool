@@ -218,5 +218,6 @@ function handleUserInput(usrInMap){
 }
 
 function setIpAddress(){
-	localStorage.setItem("serverIPPort",$("#txtIpAddr").val());
+	localStorage.setItem("serverIPPort",$.trim($("#txtIpAddr").val()));
+	serverIPPort = $.trim($("#txtIpAddr").val());
 }

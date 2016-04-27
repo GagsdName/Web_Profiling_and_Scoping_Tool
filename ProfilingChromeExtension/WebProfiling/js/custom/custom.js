@@ -15,7 +15,6 @@ var activeScanStat = false;
 
 $(document).ready(
 		function() {
-			console.log("Timestamp - " + timeStamp);
 			$("body").click(function(evt){
 				if(evt.target.id == "crawlerPanel" || evt.target.id == "activeTab" || evt.target.class == "tour-tour")
 			          return;
@@ -32,7 +31,14 @@ $(document).ready(
 			initializeUserInputMap();
 			
 			queryForRetireJS();
-			serverIPPort = localStorage.getItem("serverIPPort");
+			console.log(localStorage.getItem("serverIPPort"));
+			if(localStorage.getItem("serverIPPort") != undefined){
+				console.log("asdasdf");
+				$("#txtIpAddr").val(localStorage.getItem("serverIPPort"));
+				console.log($("#txtIpAddr").val());
+				serverIPPort = localStorage.getItem("serverIPPort");
+			}
+			
 			
 			$("#startTourInfo").click(function(e){
 				tour_formOnload(); 
@@ -126,11 +132,7 @@ $(document).ready(
 				getHostInfo()
 			});
 
-			/*
-			 * $(".getHeaders").click(function() { getHeaders() });
-			 */
-			
-			$(".serverIp").click(function() {
+			$("#updateserverdetails").click(function() {
 				setIpAddress();
 				$(".message-server").addClass("hide");
 				serverIPPort = localStorage.getItem("serverIPPort");
