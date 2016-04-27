@@ -8,13 +8,14 @@ var isUserLoggedIn = false;
 activeProgress['portscan'] = false;
 activeProgress['hostinfo'] = false;
 activeProgress['crawlerscan'] = false;
-
+var timeStamp = Date.now();
+var session = false;
 var activeScanStat = false;
 
 
 $(document).ready(
 		function() {
-			
+			console.log("Timestamp - " + timeStamp);
 			$("body").click(function(evt){
 				if(evt.target.id == "crawlerPanel" || evt.target.id == "activeTab" || evt.target.class == "tour-tour")
 			          return;
@@ -29,7 +30,8 @@ $(document).ready(
 			
 			localdb.selectAll();
 			initializeUserInputMap();
-			
+			if(!session)
+				getWithoutLoginInfo();
 			serverIPPort = localStorage.getItem("serverIPPort");
 			
 			$("#startTourInfo").click(function(e){
@@ -199,10 +201,13 @@ $(document).ready(
 			
 		$("input[name='loginInfo']").change(function(){
 			if($('#userLoggedIn').is(':checked')){
+				console.log("inside user loginInfo");
+				session = true;
 				isUserLoggedIn = true;
 				getWithLoginInfo();
 				queryForRetireJS();
 			}else{
+				session = false;
 				isUserLoggedIn = false;
 				getWithoutLoginInfo();
 				queryForRetireJS();

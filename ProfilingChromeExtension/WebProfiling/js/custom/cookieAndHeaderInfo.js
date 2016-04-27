@@ -4,65 +4,59 @@ File Description: This file contains code for storing header and cookie informat
 */
 
 var cookieInfoJSON = {}; //For storing cookie info in JSON format
-var cookies = []; //For showing cookie info on the Passive tab
 var headers = []; //For showing header info on the Passive tab
-var element = {}; 
+var loginInfo; 
 
 function getWithLoginInfo(){
-	element.login = true;
+	//element.login = true;
+	loginInfo = true;
 	getCookieInfo();
 	getHeaders();
 }
 
 function getWithoutLoginInfo(){
-	element.login = false;
-	localStorage.clear("cookieInfo");	
-	localStorage.clear("headerInfo");
+	//element.login = false;
+	loginInfo = false;
 	getCookieInfo();
 	getHeaders();
 }
 
 function getCookieInfo(){
-	
-    if(element.login == true){
-		//if user is logged in retrieve cookies before login
-		cookies.push(localStorage.getItem("cookieInfo"));
-		cookieInfoJSON["Cookies before login"] = JSON.parse(localStorage.getItem("cookieInfo"));
+	var element = {};
+    if(loginInfo == true){
+		cookieInfoJSON["Cookies before login"] = element;
 	}
+	
     chrome.tabs.query({"status":"complete","windowId":chrome.windows.WINDOW_ID_CURRENT,"active":true}, function(tab){
             chrome.cookies.getAll({"url":tab[0].url},function(cookie){
 				//get all cookies related to current tab
-				element.length = cookie.length;
 				allCookieInfo = [];
 				for(i=0;i<cookie.length;i++){
 					allCookieInfo.push(cookie[i]);
 				}
 				element.cookies = allCookieInfo;
-				if(element.login == true){
-					cookies.push(JSON.stringify(element));
+				if(loginInfo == true){
 					cookieInfoJSON["Cookies after login"] = element;
-					$("#cookieInfo").addClass('hide');
-					$("#cookieInfo").html(cookies[0] + "</br></br>" + cookies[1]);
-					$("#cookieInfo").removeClass('hide');
 				}else{
-					//if user is not looged in then store the currently fetched cookies into local storage
-					localStorage.setItem("cookieInfo",JSON.stringify(element));
-					cookies.push(JSON.stringify(element));
 					cookieInfoJSON["Cookies before login"] = element;
-					$("#cookieInfo").addClass('hide');
-					$("#cookieInfo").html(cookies);
-					$("#cookieInfo").removeClass('hide');
+					cookieInfoJSON["Cookies after login"] = {};
+					
 				}
+				updateCookies(cookieInfoJSON);
+				localdb.updateSetting();
+				$("#cookieInfo").addClass('hide');
+				$("#cookieInfo").html("Cookies Before Login:</br>" + JSON.stringify(cookieInfoJSON["Cookies before login"]) +"</br></br>" + "Cookies After Login:</br>" + JSON.stringify(cookieInfoJSON["Cookies after login"]));
+				$("#cookieInfo").removeClass('hide');
 				jsonOutput($(".cookie-json"), cookieInfoJSON);
-            });
-           
+            });  
     });
     
 }
 
 
 function getHeaders() {
-
+	var element = {};
+	element.login = false;
 	if(element.login == true){
 		//if user is logged in retrieve header information before login
 		

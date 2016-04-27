@@ -101,7 +101,7 @@ $(function() {
 				row = results.rows.item(i);
 				
 				handleUserInput($.parseJSON(row['jsonString'])["user-input"]);
-				
+				console.log($.parseJSON(row['jsonString']));
 				
 			}
 		},
