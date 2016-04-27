@@ -12,7 +12,8 @@ $(function() {
 				localdb.updateSetting();				
 				clearUserInput();
 				window.close();
-			});
+			});			
+			
 		},
 
 		initDatabase : function() {
@@ -62,7 +63,8 @@ $(function() {
 			DEMODB
 					.transaction(function(transaction) {
 						// Starter data when page is initialized
-						var data = [ '1', 'none' ];
+						jsonString = JSON.stringify(finalJsonOutput);
+						var data = [ '1', jsonString ];
 
 						transaction
 								.executeSql(
@@ -99,10 +101,7 @@ $(function() {
 			var i = 0, row;
 
 			for (i; i < results.rows.length; i++) {
-
 				row = results.rows.item(i);
-//				finalJsonOutput = $.parseJSON(row['jsonString']);
-//				console.log($.parseJSON(row['jsonString']));
 				handleUserInput($.parseJSON(row['jsonString'])["user-input"]);
 				finalJsonOutput = $.parseJSON(row['jsonString']);
 				console.log(finalJsonOutput);

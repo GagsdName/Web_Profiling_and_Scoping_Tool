@@ -149,13 +149,13 @@
 			}, { urls: [ 'http://*/*', 'https://*/*' ], types: [ 'main_frame' ] }, [ 'responseHeaders' ]);
 
 			if ( firstRun ) {
-				w.driver.goToURL({ url: w.config.websiteURL + 'installed', medium: 'install' });
+//				w.driver.goToURL({ url: w.config.websiteURL + 'installed', medium: 'install' });
 
 				firstRun = false;
 			}
 
 			if ( upgraded ) {
-				w.driver.goToURL({ url: w.config.websiteURL + 'upgraded', medium: 'upgrade', background: true });
+//				w.driver.goToURL({ url: w.config.websiteURL + 'upgraded', medium: 'upgrade', background: true });
 
 				upgraded = false;
 			}
