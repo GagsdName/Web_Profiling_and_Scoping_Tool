@@ -14,21 +14,29 @@ function getWithLoginInfo(){
 	getHeaders();
 }
 
-function getWithoutLoginInfo(){
+function getWithoutLoginInfo(data){
 	//element.login = false;
 	loginInfo = false;
-	getCookieInfo();
-	getHeaders();
+	console.log("#############");
+	cookieInfoJSON = data["cookie-info"];
+	if(cookieInfoJSON["Cookies before login"] == undefined){
+		getCookieInfo();
+		getHeaders();
+	}else{
+		printCookies(cookieInfoJSON);
+	}
+	
 }
 
 function getCookieInfo(){
 	var element = {};
     if(loginInfo == true){
-		cookieInfoJSON["Cookies before login"] = element;
+    	cookieInfoJSON = finalJsonOutput["cookie-info"];
 	}
 	
     chrome.tabs.query({"status":"complete","windowId":chrome.windows.WINDOW_ID_CURRENT,"active":true}, function(tab){
             chrome.cookies.getAll({"url":tab[0].url},function(cookie){
+            	console.log("sgsdf");
 				//get all cookies related to current tab
 				allCookieInfo = [];
 				for(i=0;i<cookie.length;i++){
@@ -44,23 +52,29 @@ function getCookieInfo(){
 				}
 				updateCookies(cookieInfoJSON);
 				localdb.updateSetting();
-				$("#cookieInfo").addClass('hide');
-				$("#cookieInfo").html("Cookies Before Login:</br>" + JSON.stringify(cookieInfoJSON["Cookies before login"]) +"</br></br>" + "Cookies After Login:</br>" + JSON.stringify(cookieInfoJSON["Cookies after login"]));
-				$("#cookieInfo").removeClass('hide');
-				jsonOutput($(".cookie-json"), cookieInfoJSON);
+				printCookies(cookieInfoJSON);
+//				$("#cookieInfo").addClass('hide');
+//				$("#cookieInfo").html("Cookies Before Login:</br>" + JSON.stringify(cookieInfoJSON["Cookies before login"]) +"</br></br>" + "Cookies After Login:</br>" + JSON.stringify(cookieInfoJSON["Cookies after login"]));
+//				$("#cookieInfo").removeClass('hide');
+//				jsonOutput($(".cookie-json"), cookieInfoJSON);
             });  
     });
     
 }
 
-
+function printCookies(cookieInfoJSON){
+	$("#cookieInfo").addClass('hide');
+	$("#cookieInfo").html("Cookies Before Login:</br>" + JSON.stringify(cookieInfoJSON["Cookies before login"]) +"</br></br>" + "Cookies After Login:</br>" + JSON.stringify(cookieInfoJSON["Cookies after login"]));
+	$("#cookieInfo").removeClass('hide');
+	jsonOutput($(".cookie-json"), cookieInfoJSON);
+}
 function getHeaders() {
-	var element = {};
-	element.login = false;
-	if(element.login == true){
+	//var element = {};
+	//element.login = false;
+	if(loginInfo == true){
 		//if user is logged in retrieve header information before login
 		
-		headerInfo['header_before_login'] = parseResponseHeaders(localStorage.getItem("headerInfo"));
+		headerInfo = finalJsonOutput['headerInfo'];
 	}
 	var hostUrl = $("#host").val()
 	var sData = {
@@ -74,14 +88,16 @@ function getHeaders() {
 
 	var respheaders = req.getAllResponseHeaders().toLowerCase();
 	var parsedResHeader = parseResponseHeaders(respheaders);
-	if(element.login == true){
+	if(loginInfo == true){
 		headerInfo['header_after_login'] = parsedResHeader;
-		$("#headers").html("\nHeaders Before Login : \n" + localStorage.getItem("headerInfo") + "\nHeaders After Login : \n" + respheaders );
+		$("#headers").html("\nHeaders Before Login : \n" + headerInfo['header_before_login'] + "\nHeaders After Login : \n" + respheaders );
 		$("#headers").removeClass('hide');
 	}else{
 		headerInfo['header_before_login']= parsedResHeader;
+		updateHeaders(headerInfo);
+		localdb.updateSetting();
 		//if user is not looged in then store the currently fetched header information into local storage
-		localStorage.setItem("headerInfo",respheaders);
+		//localStorage.setItem("headerInfo",respheaders);
 		$("#headers").html("\nHeaders Before Login : \n" + respheaders);
 		$("#headers").removeClass('hide');
 	}

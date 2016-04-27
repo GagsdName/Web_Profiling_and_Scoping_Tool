@@ -8,7 +8,8 @@ $(function() {
 
 			// Button and link actions
 			$('#clearLocalDB').on('click', function() {
-				localdb.dropTables();
+				reset();
+				localdb.updateSetting();				
 				clearUserInput();
 			});
 		},
@@ -99,10 +100,14 @@ $(function() {
 			for (i; i < results.rows.length; i++) {
 
 				row = results.rows.item(i);
-				
+//				finalJsonOutput = $.parseJSON(row['jsonString']);
+//				console.log($.parseJSON(row['jsonString']));
 				handleUserInput($.parseJSON(row['jsonString'])["user-input"]);
-				console.log($.parseJSON(row['jsonString']));
-				
+				finalJsonOutput = $.parseJSON(row['jsonString']);
+				console.log(finalJsonOutput);
+				console.log(session);
+				if(!session)
+					getWithoutLoginInfo(finalJsonOutput);
 			}
 		},
 

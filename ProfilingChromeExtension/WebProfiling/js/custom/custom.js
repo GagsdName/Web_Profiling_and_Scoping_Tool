@@ -30,8 +30,8 @@ $(document).ready(
 			
 			localdb.selectAll();
 			initializeUserInputMap();
-			if(!session)
-				getWithoutLoginInfo();
+			
+			
 			serverIPPort = localStorage.getItem("serverIPPort");
 			
 			$("#startTourInfo").click(function(e){

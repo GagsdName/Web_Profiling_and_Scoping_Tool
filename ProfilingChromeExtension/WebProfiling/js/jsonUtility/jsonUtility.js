@@ -32,6 +32,7 @@ function reset() {
     finalJsonOutput['headerInfo'] = headerInfo;
     finalJsonOutput['vulnerabilityInfo'] = vulnerabilityInfo;
     finalJsonOutput['technologies-used'] = technologies;
+    finalJsonOutput['cookie-info']={};
 	
 
 }
