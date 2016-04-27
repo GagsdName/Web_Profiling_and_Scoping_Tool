@@ -227,7 +227,7 @@ function popupStop() {
     closeSpiderTab();
     spiderTab = null;
     resultsTab = null;
-	
+	referrer_string = "";
     window.clearTimeout(httpRequestWatchDogPid);
     window.clearTimeout(newTabWatchDogPid);
     // Reenable the Go button.
@@ -278,7 +278,7 @@ function spiderPage() {
 		if(flag == 0)
 		{
 			referrer_string = referrer_string + "<li class = 'collapsibleListOpen'> <font color = 'black'>" + currentRequest.referrer+ "</font><ul class='collapsibleList' style='display: block;'>";
-	    referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'black'>" + currentRequest.requestedURL + "</font></li>" ;
+	    referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.referrer+ "' target='_blank'>" + currentRequest.referrer+" </a>"+ "</font></li>" ;
 		
         string  =    currentRequest.referrer;
 		//referrer_string = referrer_string + "<li>" + url + "</li>" ; 
@@ -288,8 +288,8 @@ function spiderPage() {
 		}
 		else
 		{
-			referrer_string = referrer_string + "</ul></li><li class = 'collapsibleListOpen'><font color = 'black'>" + currentRequest.referrer+ "</font><ul class='collapsibleList' style='display: block;'>";
-	    referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'black'>" + currentRequest.requestedURL + "</font></li>" ;
+			referrer_string = referrer_string + "</ul></li><li class = 'collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.referrer+ "' target='_blank'>" + currentRequest.referrer+" </a>"+ "</font><ul class='collapsibleList' style='display: block;'>";
+	    referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.referrer+ "' target='_blank'>" + currentRequest.referrer+" </a>"+"</font></li>" ;
 		
         string  =    currentRequest.referrer;
 		
@@ -301,7 +301,7 @@ function spiderPage() {
 		flag++;
 	}
 	else  {
-		referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'black'>" + currentRequest.requestedURL + "</font></li>" ;
+		referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.referrer+ "' target='_blank'>" + currentRequest.referrer+" </a>"+ "</font></li>" ;
 	text = text +',{"RequestedURL":"'+currentRequest.requestedURL+'"}';
 	}
 		

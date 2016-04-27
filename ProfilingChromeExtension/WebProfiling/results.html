@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 <style type="text/css">
   body {
+  
    
     font-family: sans-serif
   }
@@ -113,21 +114,37 @@ section {
         background-image:url('/WebProfiling/img/list-item-last-open.png');
 		
 		
+		
       }
+	  
+	  td {
+	  color: black;
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
 </style>
 
 </head>
 <body onload="foo()"  >
+<div class="panel-body">
 <img src="img/icon128.png" align="right"/>
-<h1><font >Site Spider Results</font></h1>
+<h1><center><font >Spider Results</font></center></h1>
 
-<form>
-<input type="button" id="pauseSpider" value="Pause" />
-<input type="button" id="stopSpider" value="Stop"/>
-<input type="button" id="help" value="Help" onclick="tour_onload()"/>
+<form >
+
+ 
+ 
+<input type="button" id="pauseSpider" value="Pause" class="btn btn-sm btn-primary"/>
+<input type="button" id="stopSpider" value="Stop" class="btn btn-sm btn-primary"/>
+<input type="button" id="help" value="Help" onclick="tour_onload()" class="btn btn-sm btn-primary"/> 
+
+
 </form>
 
+<div  class="panel-body">
+
 <table>
+<div class="panel panel-default">
   <tr>
     <td><font> Starting on:</font></td>
     <td id="startingOn"></td>
@@ -144,13 +161,15 @@ section {
     <td><font color = "black">Status:</font></td>
     <td id="status"><font color = "black">Initializing...</font></td>
   </tr>
+  </div>
 </table>
 
-
+</div>
 
 <section id="resultbody" >
 
 </section>
+</div>
   
 </body>
 </html>

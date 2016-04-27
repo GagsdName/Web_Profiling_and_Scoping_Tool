@@ -3,8 +3,10 @@ function foo()
 { 
 // make the list with the ID 'newList' collapsible
 CollapsibleLists.applyTo(document.getElementById('newList'));
+
 var helpButton = document.getElementById('help');
 	helpButton.onclick=function(){
+		
 	tour_onload();
 	};
 
@@ -16,8 +18,34 @@ function tour_onload(){
   steps: [
   {
     element: "#startingOn",
-    title: "Title of my step",
-    content: "Content of my step"
+    title: "Starting On URL",
+    content: "The URL being crawled at the moment.",
+	prev: -1,
+	next: 1
+  },
+  
+   {
+    element: "#restrictTo",
+    title: "Restrict To Regex",
+    content: "URL Regex to which this crawling session is limited to. ",
+	prev: 0,
+	next: 2
+  },
+  
+   {
+    element: "#queue",
+    title: "Queue",
+    content: "Number of URLs in Queue.",
+	prev: 1,
+	next: 3
+  },
+  
+   {
+    element: "#status",
+    title: "Status",
+    content: "Status of current URL being crawled.",
+	prev: 2,
+	next: -1
   }
 ]});
 
