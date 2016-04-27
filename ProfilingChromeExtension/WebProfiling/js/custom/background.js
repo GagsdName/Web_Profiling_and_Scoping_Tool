@@ -541,6 +541,7 @@ function setStatus(msg) {
                 if (started && (response =="" || response== null)){
                     popupStop();
                     alert('Lost access to results pane. Halting.');
+					referrer_string = "";
                 }
             });
             chrome.tabs.sendMessage(resultsTab.id, {
