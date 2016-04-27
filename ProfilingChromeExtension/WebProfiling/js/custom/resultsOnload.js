@@ -1,16 +1,27 @@
 
+var spiderData;
 function foo()
 { 
 // make the list with the ID 'newList' collapsible
-CollapsibleLists.applyTo(document.getElementById('newList'));
+//CollapsibleLists.applyTo(document.getElementById('newList'));
 
 var helpButton = document.getElementById('help');
 	helpButton.onclick=function(){
 		
 	tour_onload();
 	};
+	
+	var exportButton = document.getElementById('exportSpider');
+	exportButton.onclick=function(){
+		
+	download_json ("Spider");
+	};
+	
+	
 
 }
+
+
 
 function tour_onload(){
 	
@@ -85,6 +96,11 @@ function messageDispatch(request, sender, sendResponse) {
             break;
         case "insertResultBodyTR":
             insertResultBodyTR(request.value);
+		
+            break;
+		 case "setSpiderData":
+                spiderData = request.value;
+		
             break;
     }
 }
@@ -127,6 +143,19 @@ function insertResultBodyTR(innerHTML){
     br.innerHTML += innerHTML
     tbody.appendChild(br);
 	foo();
+}
+
+
+function download_json(fileName) {
+	
+    var data = "text/json;charset=utf-8," + encodeURIComponent(spiderData);
+    var downloadLink = document.getElementById('jsonDownloadLink');
+
+    downloadLink.href = 'data:' + data;
+    downloadLink.download = fileName+".json";
+
+    downloadLink.click();
+
 }
 
 window.addEventListener("load",pageLoaded);

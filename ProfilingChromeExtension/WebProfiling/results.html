@@ -13,9 +13,7 @@
 <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 <style type="text/css">
   body {
-  
-   
-    font-family: sans-serif
+	font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
   }
   #resultsTable {
     border-spacing: 1px;
@@ -28,7 +26,7 @@
     background-color: #FFFFFF;
   }
   #resultsTable td, #resultsTable th {
-    font-size: 9pt;
+    font-size: 12px	;
     padding: 4px;
     white-space: nowrap;
     overflow: hidden;
@@ -118,28 +116,29 @@ section {
       }
 	  
 	  td {
-	  color: black;
-    padding-top: .5em;
-    padding-bottom: .5em;
-}
+		color: black;
+		padding-bottom: .5em;
+	}
+
+	.spider-btn{
+	text-align:center;
+	}
 </style>
 
 </head>
 <body onload="foo()"  >
 <div class="panel-body">
-<img src="img/icon128.png" align="right"/>
-<h1><center><font >Spider Results</font></center></h1>
+<!--<img src="img/icon128.png" align="right"/>-->
+<h2><center>Spider Results</center></h2>
 
-<form >
-
- 
- 
+<div class="spider-btn">
 <input type="button" id="pauseSpider" value="Pause" class="btn btn-sm btn-primary"/>
 <input type="button" id="stopSpider" value="Stop" class="btn btn-sm btn-primary"/>
 <input type="button" id="help" value="Help" onclick="tour_onload()" class="btn btn-sm btn-primary"/> 
+<input type="button" id="exportSpider" value="Export JSON" class="btn btn-sm btn-primary"/>
+<a id="jsonDownloadLink" />
 
-
-</form>
+</div>
 
 <div  class="panel-body">
 

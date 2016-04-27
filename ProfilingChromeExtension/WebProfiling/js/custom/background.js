@@ -278,7 +278,7 @@ function spiderPage() {
 		if(flag == 0)
 		{
 			referrer_string = referrer_string + "<li class = 'collapsibleListOpen'> <font color = 'black'>" + currentRequest.referrer+ "</font><ul class='collapsibleList' style='display: block;'>";
-	    referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.referrer+ "' target='_blank'>" + currentRequest.referrer+" </a>"+ "</font></li>" ;
+	    referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.requestedURL+ "' target='_blank'>" + currentRequest.requestedURL+" </a>"+ "</font></li>" ;
 		
         string  =    currentRequest.referrer;
 		//referrer_string = referrer_string + "<li>" + url + "</li>" ; 
@@ -289,7 +289,7 @@ function spiderPage() {
 		else
 		{
 			referrer_string = referrer_string + "</ul></li><li class = 'collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.referrer+ "' target='_blank'>" + currentRequest.referrer+" </a>"+ "</font><ul class='collapsibleList' style='display: block;'>";
-	    referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.referrer+ "' target='_blank'>" + currentRequest.referrer+" </a>"+"</font></li>" ;
+	    referrer_string = referrer_string + "<li class = 'lastChild collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.requestedURL+ "' target='_blank'>" + currentRequest.requestedURL+" </a>"+"</font></li>" ;
 		
         string  =    currentRequest.referrer;
 		
@@ -301,7 +301,7 @@ function spiderPage() {
 		flag++;
 	}
 	else  {
-		referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.referrer+ "' target='_blank'>" + currentRequest.referrer+" </a>"+ "</font></li>" ;
+		referrer_string = referrer_string + "<li class = 'lastChild collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.requestedURL+ "' target='_blank'>" + currentRequest.requestedURL+" </a>"+ "</font></li>" ;
 	text = text +',{"RequestedURL":"'+currentRequest.requestedURL+'"}';
 	}
 		
@@ -521,6 +521,11 @@ function recordPage() {
         action:"insertResultBodyTR",
         value:referrer_string
     });
+	chrome.tabs.sendMessage(resultsTab.id, {
+        method:"custom",
+        action:"setSpiderData",
+        value:text
+    });
 	//referrer_string = "";
 	//flag = 0;
 }
@@ -561,4 +566,6 @@ function setStatus(msg) {
         }
     }
 }
+
+
 
