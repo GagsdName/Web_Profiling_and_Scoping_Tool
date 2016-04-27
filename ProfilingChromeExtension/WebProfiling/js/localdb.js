@@ -11,6 +11,7 @@ $(function() {
 				reset();
 				localdb.updateSetting();				
 				clearUserInput();
+				window.close();
 			});
 		},
 

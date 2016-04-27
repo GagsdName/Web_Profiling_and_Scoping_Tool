@@ -41,7 +41,7 @@ function download_json(fileName) {
 
 	json = convertHTMLtoJson($(".wap-json"), "Wap");//appList;
 	if(!json) return false;
-    technologies['Technology-list'] = json;
+	finalJsonOutput['technologies-used'] = json;
     
     json = convertHTMLtoJson($(".cookie-json"), "Cookie");
 	if(!json) return false;

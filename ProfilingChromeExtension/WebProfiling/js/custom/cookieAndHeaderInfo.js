@@ -17,13 +17,13 @@ function getWithLoginInfo(){
 function getWithoutLoginInfo(data){
 	//element.login = false;
 	loginInfo = false;
-	console.log("#############");
 	cookieInfoJSON = data["cookie-info"];
-	if(cookieInfoJSON["Cookies before login"] == undefined){
+	if(cookieInfoJSON["before_login"] == undefined){
 		getCookieInfo();
 		getHeaders();
 	}else{
 		printCookies(cookieInfoJSON);
+		printHeaders(data["headerInfo"]);
 	}
 	
 }
@@ -44,10 +44,10 @@ function getCookieInfo(){
 				}
 				element.cookies = allCookieInfo;
 				if(loginInfo == true){
-					cookieInfoJSON["Cookies after login"] = element;
+					cookieInfoJSON["after_login"] = element;
 				}else{
-					cookieInfoJSON["Cookies before login"] = element;
-					cookieInfoJSON["Cookies after login"] = {};
+					cookieInfoJSON["before_login"] = element;
+					cookieInfoJSON["after_login"] = {};
 					
 				}
 				updateCookies(cookieInfoJSON);
@@ -64,7 +64,7 @@ function getCookieInfo(){
 
 function printCookies(cookieInfoJSON){
 	$("#cookieInfo").addClass('hide');
-	$("#cookieInfo").html("Cookies Before Login:</br>" + JSON.stringify(cookieInfoJSON["Cookies before login"]) +"</br></br>" + "Cookies After Login:</br>" + JSON.stringify(cookieInfoJSON["Cookies after login"]));
+	$("#cookieInfo").html("Cookies Before Login:</br>" + JSON.stringify(cookieInfoJSON["before_login"]) +"</br></br>" + "Cookies After Login:</br>" + JSON.stringify(cookieInfoJSON["after_login"]));
 	$("#cookieInfo").removeClass('hide');
 	jsonOutput($(".cookie-json"), cookieInfoJSON);
 }
@@ -89,22 +89,23 @@ function getHeaders() {
 	var respheaders = req.getAllResponseHeaders().toLowerCase();
 	var parsedResHeader = parseResponseHeaders(respheaders);
 	if(loginInfo == true){
-		headerInfo['header_after_login'] = parsedResHeader;
-		$("#headers").html("\nHeaders Before Login : \n" + headerInfo['header_before_login'] + "\nHeaders After Login : \n" + respheaders );
-		$("#headers").removeClass('hide');
+		headerInfo['after_login'] = parsedResHeader;
 	}else{
-		headerInfo['header_before_login']= parsedResHeader;
-		updateHeaders(headerInfo);
-		localdb.updateSetting();
+		headerInfo['before_login']= parsedResHeader;
+		headerInfo['after_login'] = {};		
 		//if user is not looged in then store the currently fetched header information into local storage
 		//localStorage.setItem("headerInfo",respheaders);
-		$("#headers").html("\nHeaders Before Login : \n" + respheaders);
-		$("#headers").removeClass('hide');
 	}
-	jsonOutput($(".header-json"), headerInfo); 
+	updateHeaders(headerInfo);
+	localdb.updateSetting();
+	printHeaders(headerInfo);
 }
 
-
+function printHeaders(headerInfo){
+	$("#headers").html("Headers Before Login:</br>" + convertHeaderJsonToString(headerInfo['before_login']) +"</br></br>" + "Headers After Login:</br>" + convertHeaderJsonToString(headerInfo['after_login']) );
+	$("#headers").removeClass('hide');
+	jsonOutput($(".header-json"), headerInfo); 
+}
 
 function parseResponseHeaders(headerStr) {
 	var headers = {};
@@ -126,4 +127,11 @@ function parseResponseHeaders(headerStr) {
 	}
 	return headers;
 }
-  
+ 
+function convertHeaderJsonToString(headerInfo){
+	headers = "";
+	$.each( headerInfo, function( key, value ) {
+		headers += key + ": " + value + "\n";
+	});
+	return headers;
+}

@@ -31,7 +31,7 @@ $(document).ready(
 			localdb.selectAll();
 			initializeUserInputMap();
 			
-			
+			queryForRetireJS();
 			serverIPPort = localStorage.getItem("serverIPPort");
 			
 			$("#startTourInfo").click(function(e){
@@ -201,16 +201,15 @@ $(document).ready(
 			
 		$("input[name='loginInfo']").change(function(){
 			if($('#userLoggedIn').is(':checked')){
-				console.log("inside user loginInfo");
 				session = true;
 				isUserLoggedIn = true;
 				getWithLoginInfo();
-				queryForRetireJS();
+//				queryForRetireJS();
 			}else{
 				session = false;
 				isUserLoggedIn = false;
 				getWithoutLoginInfo();
-				queryForRetireJS();
+//				queryForRetireJS();
 			}
 			
 		})
@@ -405,9 +404,9 @@ function queryForRetireJS() {
 function showRetireJsOP(retireJsResult) {
 	$("#results").html("");
 	
-	if (null != results) {
-		retirejsop = results;
-		vulnerabilityInfo = results;
+	if (null != retireJsResult) {
+		retirejsop = retireJsResult;
+		vulnerabilityInfo = retireJsResult;
 	}
 	
 	retireJsResult.forEach(function(rs) {
@@ -464,17 +463,23 @@ function showRetireJsOP(retireJsResult) {
 			})
 		}
 	});
-	if(isUserLoggedIn){
-		vulnerabilityInfo["after_login"] = res;
-		vulnerabilityInfo["before_login"] = JSON.parse(localStorage.getItem("vulnerabilityInfo"));
-	}else{
-		vulnerabilityInfo["before_login"] = res;
-		localStorage.clear("vulnerabilityInfo");
-		localStorage.setItem("vulnerabilityInfo",JSON.stringify(res));
-	}
-	
+//	if(session){
+//		vulnerabilityInfo['after_login'] = vulnerabilityInfo;
+//	}else{
+//		if(finalJsonOutput['vulnerabilityInfo']['before_login'] != undefined){
+//			vulnerabilityInfo['before_login']= finalJsonOutput['vulnerabilityInfo']['before_login'];
+//		}else{
+//			vulnerabilityInfo['before_login']= vulnerabilityInfo;
+//		}
+//		
+//		vulnerabilityInfo['after_login'] = {};		
+//	}
+	printVulnerabilities(vulnerabilityInfo);
+	updateVulnerabilities(vulnerabilityInfo);
+}
+
+function printVulnerabilities(vulnerabilityInfo){
 	jsonOutput($(".vulnerability-json"), vulnerabilityInfo);
-	updateVulnerabilities(res);
 }
 
 function td(tr) {
@@ -550,11 +555,19 @@ function updateVulnerabilities(data){
 }
 
 function updateHeaders(data){
+	if(!session){
+		data['after_login'] = {};
+	}
 	finalJsonOutput['headerInfo'] = data;
+	printHeaders(data);
 }
 
 function updateCookies(data){
+	if(!session){
+		data['after_login'] = {};
+	}
 	finalJsonOutput['cookie-info'] = data;
+	printCookies(data);
 }
 
 function updateWapData(data){
