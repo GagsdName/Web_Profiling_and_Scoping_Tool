@@ -201,8 +201,8 @@ $(document).ready(
 				readInputJsonFile($(this));				
 			});
 			
-		$("input[name='loginInfo']").change(function(){
-			if($('#userLoggedIn').is(':checked')){
+		$("input[id='loginInfo']").change(function(){
+			if($('#loginInfo').is(':checked')){
 				session = true;
 				isUserLoggedIn = true;
 				getWithLoginInfo();

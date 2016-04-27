@@ -10,6 +10,8 @@ var loginInfo;
 function getWithLoginInfo(){
 	//element.login = true;
 	loginInfo = true;
+	document.getElementById('loginLabel').innerHTML = 'You are logged in the application!';
+	document.getElementById("loginInfo").disabled = true;
 	getCookieInfo();
 	getHeaders();
 }
@@ -18,14 +20,18 @@ function getWithoutLoginInfo(data){
 	//element.login = false;
 	loginInfo = false;
 	cookieInfoJSON = data["cookie-info"];
+	document.getElementById('loginLabel').innerHTML = 'Have you logged in the application?';
 	if(cookieInfoJSON["before_login"] == undefined){
 		getCookieInfo();
 		getHeaders();
 	}else{
+		if(JSON.stringify(cookieInfoJSON["after_login"]) != "{}"){
+			document.getElementById('loginLabel').innerHTML = 'You are logged in the application!';
+			document.getElementById("loginInfo").disabled = true;
+		}
 		printCookies(cookieInfoJSON);
 		printHeaders(data["headerInfo"]);
 	}
-	
 }
 
 function getCookieInfo(){
