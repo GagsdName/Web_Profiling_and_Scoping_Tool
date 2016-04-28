@@ -223,6 +223,8 @@ function setInnerSafely(msg) {
 function popupStop() {
 	if (flag != 0)text = text + ']}';
     started= false;
+    flag=0;
+    string="";
     pagesTodo = {};
     closeSpiderTab();
     spiderTab = null;
@@ -281,6 +283,7 @@ function spiderPage() {
 	    referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.requestedURL+ "' target='_blank'>" + currentRequest.requestedURL+" </a>"+ "</font></li>" ;
 		
         string  =    currentRequest.referrer;
+        text = '{"crawledCouple": [';
 		//referrer_string = referrer_string + "<li>" + url + "</li>" ; 
 		text = text + '{"Referrer" : "'+currentRequest.referrer+'", "RequestedURLs" :[' +'{"RequestedURL" :"'+currentRequest.requestedURL+'"}' ;
 		//obj = {Referrer: currentRequest.referrer, RequestedURL: currentRequest.requestedURL};

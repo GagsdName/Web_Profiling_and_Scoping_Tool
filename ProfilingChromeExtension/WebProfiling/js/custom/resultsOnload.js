@@ -148,7 +148,8 @@ function insertResultBodyTR(innerHTML){
 
 function download_json(fileName) {
 	
-    var data = "text/json;charset=utf-8," + encodeURIComponent(spiderData);
+	spiderData = spiderData + ']}]}';
+    var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(JSON.parse(spiderData), null, '\t')) 	;
     var downloadLink = document.getElementById('jsonDownloadLink');
 
     downloadLink.href = 'data:' + data;
