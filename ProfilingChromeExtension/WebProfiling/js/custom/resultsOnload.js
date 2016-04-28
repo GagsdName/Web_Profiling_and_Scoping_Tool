@@ -3,7 +3,7 @@ var spiderData;
 function foo()
 { 
 // make the list with the ID 'newList' collapsible
-//CollapsibleLists.applyTo(document.getElementById('newList'));
+CollapsibleLists.applyTo(document.getElementById('newList'));
 
 var helpButton = document.getElementById('help');
 	helpButton.onclick=function(){

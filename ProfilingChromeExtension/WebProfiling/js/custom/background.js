@@ -54,7 +54,7 @@ var currentRequest ={
     referrer:null
 };
 var string = ""; var obj, jsonString;
-var text = '{"crawledCouple": [';
+var text;
 var referrer_string = "<ul class= 'treeView' > <ul class='collapsibleList' id ='newList'>";
 var flag = 0;
 /**
@@ -130,7 +130,9 @@ function trimAfter(string, sep) {
  * Called by the popup's Go button.
  */
 function popupGo() {
-
+    referrer_string = "<ul class= 'treeView' > <ul class='collapsibleList' id ='newList'>";
+    flag=0;
+    text = '{"crawledCouple": [';
     console.log('popupGo');
     // Terminate any previous execution.
     popupStop();
@@ -223,13 +225,13 @@ function setInnerSafely(msg) {
 function popupStop() {
 	if (flag != 0)text = text + ']}';
     started= false;
-    flag=0;
+  
     string="";
     pagesTodo = {};
     closeSpiderTab();
     spiderTab = null;
     resultsTab = null;
-	referrer_string = "";
+	
     window.clearTimeout(httpRequestWatchDogPid);
     window.clearTimeout(newTabWatchDogPid);
     // Reenable the Go button.
@@ -265,6 +267,8 @@ function spiderPage() {
     if (!url) {
 		//	text = text + ']}';
         // Done.
+		referrer_string = "<ul class= 'treeView' > <ul class='collapsibleList' id ='newList'>";
+        flag=0;
         setStatus('Complete');
         popupStop();
         return;
@@ -279,7 +283,10 @@ function spiderPage() {
 		
 		if(flag == 0)
 		{
-			referrer_string = referrer_string + "<li class = 'collapsibleListOpen'> <font color = 'black'>" + currentRequest.referrer+ "</font><ul class='collapsibleList' style='display: block;'>";
+			/*referrer_string = referrer_string + "<li class = 'collapsibleListOpen'> <font color = 'black'>" + currentRequest.referrer+ "</font><ul class='collapsibleList' style='display: block;'>";
+	    referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.requestedURL+ "' target='_blank'>" + currentRequest.requestedURL+" </a>"+ "</font></li>" ;*/
+		
+		referrer_string = referrer_string + "<li class = 'collapsibleListOpen'> <font color = 'black'>" + currentRequest.referrer+ "</font><ul class='collapsibleList' style='display: block;'>";
 	    referrer_string = referrer_string + "<li class = 'lastChild\ collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.requestedURL+ "' target='_blank'>" + currentRequest.requestedURL+" </a>"+ "</font></li>" ;
 		
         string  =    currentRequest.referrer;
@@ -291,7 +298,11 @@ function spiderPage() {
 		}
 		else
 		{
-			referrer_string = referrer_string + "</ul></li><li class = 'collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.referrer+ "' target='_blank'>" + currentRequest.referrer+" </a>"+ "</font><ul class='collapsibleList' style='display: block;'>";
+			/*referrer_string = referrer_string + "</ul></li><li class = 'collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.referrer+ "' target='_blank'>" + currentRequest.referrer+" </a>"+ "</font><ul class='collapsibleList' style='display: block;'>";
+	    referrer_string = referrer_string + "<li class = 'lastChild collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.requestedURL+ "' target='_blank'>" + currentRequest.requestedURL+" </a>"+"</font></li>" ;*/
+		
+		
+		referrer_string = referrer_string + "</ul></li><li class = 'collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.referrer+ "' target='_blank'>" + currentRequest.referrer+" </a>"+ "</font><ul class='collapsibleList' style='display: block;'>";
 	    referrer_string = referrer_string + "<li class = 'lastChild collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.requestedURL+ "' target='_blank'>" + currentRequest.requestedURL+" </a>"+"</font></li>" ;
 		
         string  =    currentRequest.referrer;
@@ -304,6 +315,8 @@ function spiderPage() {
 		flag++;
 	}
 	else  {
+		/*referrer_string = referrer_string + "<li class = 'lastChild collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.requestedURL+ "' target='_blank'>" + currentRequest.requestedURL+" </a>"+ "</font></li>" ;*/
+		
 		referrer_string = referrer_string + "<li class = 'lastChild collapsibleListOpen'><font color = 'black'>" + "<a href='"+currentRequest.requestedURL+ "' target='_blank'>" + currentRequest.requestedURL+" </a>"+ "</font></li>" ;
 	text = text +',{"RequestedURL":"'+currentRequest.requestedURL+'"}';
 	}
@@ -426,15 +439,17 @@ chrome.extension.onMessage.addListener(
         }
         if ('stop' in request) {
             if(started){
-                if (request.stop =="Stopped"){
+                if (request.stop =="Stopping"){
                     setStatus("Stopped");
-                    chrome.tabs.sendMessage(resultsTab.id, {
+					chrome.tabs.sendMessage(resultsTab.id, {
                         method:"getElementById",
                         id:"stopSpider",
                         action:"setValue",
                         value:"Stopped"
                     });
                     popupStop();
+					referrer_string = "<ul class= 'treeView' > <ul class='collapsibleList' id ='newList'>";
+                    flag=0;
                 }
             }
         }
@@ -548,8 +563,10 @@ function setStatus(msg) {
             }, function(response) {
                 if (started && (response =="" || response== null)){
                     popupStop();
+					referrer_string = "<ul class= 'treeView' > <ul class='collapsibleList' id ='newList'>";
+                    flag=0;
                     alert('Lost access to results pane. Halting.');
-					referrer_string = "";
+					
                 }
             });
             chrome.tabs.sendMessage(resultsTab.id, {
