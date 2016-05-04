@@ -12,7 +12,6 @@ var timeStamp = Date.now();
 var session = false;
 var activeScanStat = false;
 
-
 $(document).ready(
 		function() {
 			$("body").click(function(evt){
@@ -31,11 +30,8 @@ $(document).ready(
 			initializeUserInputMap();
 			
 			queryForRetireJS();
-			console.log(localStorage.getItem("serverIPPort"));
 			if(localStorage.getItem("serverIPPort") != undefined){
-				console.log("asdasdf");
 				$("#txtIpAddr").val(localStorage.getItem("serverIPPort"));
-				console.log($("#txtIpAddr").val());
 				serverIPPort = localStorage.getItem("serverIPPort");
 			}
 			
@@ -171,7 +167,6 @@ $(document).ready(
 				'active' : true,
 				'windowId' : chrome.windows.WINDOW_ID_CURRENT
 			}, function(tabs) {
-				console.log(tabs[0].url);
 				windowsLocation = tabs[0].url;
 				$("#windowsLocation").html(tabs[0].url);
 
@@ -215,6 +210,7 @@ $(document).ready(
 			}
 			
 		})
+		
 	});
 		
 function activeProcess()	{
@@ -412,9 +408,7 @@ function showRetireJsOP(retireJsResult) {
 	}
 	
 	retireJsResult.forEach(function(rs) {
-		console.log("rs" + rs);
 		rs.results.forEach(function(r) {
-			console.log("r" + r);
 			r.url = rs.url;
 			r.vulnerable = r.vulnerabilities && r.vulnerabilities.length > 0;
 		});
@@ -449,7 +443,6 @@ function showRetireJsOP(retireJsResult) {
 				var tr = document.createElement("tr");
 				table.appendChild(tr);
 				td(tr).innerText = v.severity || "  ";
-				console.log(v);
 				td(tr).innerText = v.identifiers.summary;
 				// ? v.identifiers.mapOwnProperty(function(val) { return val
 				// }).flatten().join(" ") : " ";

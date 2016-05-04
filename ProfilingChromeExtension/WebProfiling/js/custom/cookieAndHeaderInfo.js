@@ -42,7 +42,6 @@ function getCookieInfo(){
 	
     chrome.tabs.query({"status":"complete","windowId":chrome.windows.WINDOW_ID_CURRENT,"active":true}, function(tab){
             chrome.cookies.getAll({"url":tab[0].url},function(cookie){
-            	console.log("sgsdf");
 				//get all cookies related to current tab
 				allCookieInfo = [];
 				for(i=0;i<cookie.length;i++){
@@ -59,10 +58,6 @@ function getCookieInfo(){
 				updateCookies(cookieInfoJSON);
 				localdb.updateSetting();
 				printCookies(cookieInfoJSON);
-//				$("#cookieInfo").addClass('hide');
-//				$("#cookieInfo").html("Cookies Before Login:</br>" + JSON.stringify(cookieInfoJSON["Cookies before login"]) +"</br></br>" + "Cookies After Login:</br>" + JSON.stringify(cookieInfoJSON["Cookies after login"]));
-//				$("#cookieInfo").removeClass('hide');
-//				jsonOutput($(".cookie-json"), cookieInfoJSON);
             });  
     });
     

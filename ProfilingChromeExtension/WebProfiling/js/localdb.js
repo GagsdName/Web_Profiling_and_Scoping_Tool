@@ -104,8 +104,6 @@ $(function() {
 				row = results.rows.item(i);
 				handleUserInput($.parseJSON(row['jsonString'])["user-input"]);
 				finalJsonOutput = $.parseJSON(row['jsonString']);
-				console.log(finalJsonOutput);
-				console.log(session);
 				if(!session)
 					getWithoutLoginInfo(finalJsonOutput);
 			}
@@ -131,7 +129,7 @@ $(function() {
 		},
 
 		nullDataHandler : function() {
-			console.log("SQL Query Succeeded");
+//			console.log("SQL Query Succeeded");
 		},
 
 		/***********************************************************************
